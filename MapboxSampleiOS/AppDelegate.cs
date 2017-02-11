@@ -16,7 +16,7 @@ namespace MapBoxSampleiOS
             set;
         }
 
-        const string MAPBOX_ACCESS_TOKEN = "YOUR-ACCESS-TOKEN";
+        const string MAPBOX_ACCESS_TOKEN = "mitoken";
 
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
