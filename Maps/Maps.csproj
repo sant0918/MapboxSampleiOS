@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
@@ -40,11 +41,51 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Annotation.cs" />
+    <Compile Include="AnnotationImage.cs" />
+    <Compile Include="AnnotationVerticalAlignment.cs" />
+    <Compile Include="AnnotationView.cs" />
+    <Compile Include="AnnotationViewDragState.cs" />
+    <Compile Include="AnnotationWrapper.cs" />
+    <Compile Include="Annotation_Extensions.cs" />
     <Compile Include="ApiDefinition.cs" />
+    <Compile Include="CalloutViewDelegateWrapper.cs" />
+    <Compile Include="CalloutViewWrapper.cs" />
     <Compile Include="CoordinateBounds.cs" />
     <Compile Include="CoordinateSpan.cs" />
+    <Compile Include="DebugMaskOptions.cs" />
+    <Compile Include="Feature.cs" />
+    <Compile Include="FeatureWrapper.cs" />
+    <Compile Include="IAnnotation.cs" />
+    <Compile Include="ICalloutView.cs" />
+    <Compile Include="ICalloutViewDelegate.cs" />
+    <Compile Include="IFeature.cs" />
+    <Compile Include="IMapViewDelegate.cs" />
+    <Compile Include="IOverlay.cs" />
+    <Compile Include="MapCamera.cs" />
+    <Compile Include="MapView.cs" />
+    <Compile Include="MapViewDelegateWrapper.cs" />
+    <Compile Include="MultiPoint.cs" />
+    <Compile Include="CustomStyleLayerCompletionHandler.cs" />
+    <Compile Include="CustomStyleLayerDrawingHandler.cs" />
+    <Compile Include="CustomStyleLayerPreparationHandler.cs" />
+    <Compile Include="IOfflineRegion.cs" />
+    <Compile Include="ObjCruntime\Libraries.cs" />
+    <Compile Include="ObjCruntime\OfflinePackRemovalCompletion.cs" />
+    <Compile Include="OfflinePack.cs" />
+    <Compile Include="OfflinePackAdditionCompletion.cs" />
+    <Compile Include="OfflinePackState.cs" />
+    <Compile Include="OfflineRegionWrapper.cs" />
+    <Compile Include="ObjCruntime\Trampolines.cs" />
     <Compile Include="OfflinePackProgress.cs" />
+    <Compile Include="OverlayWrapper.cs" />
+    <Compile Include="PointAnnotation.cs" />
+    <Compile Include="Polygon.cs" />
+    <Compile Include="Polyline.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Shape.cs" />
+    <Compile Include="UserLocation.cs" />
+    <Compile Include="UserTrackingMode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

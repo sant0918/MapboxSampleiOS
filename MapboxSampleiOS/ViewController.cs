@@ -1,7 +1,7 @@
 ﻿using System;
 
 using UIKit;
-using Mapbox;
+using Maps;
 using System.Linq;
 using CoreLocation;
 using Foundation;
