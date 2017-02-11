@@ -1,7 +1,7 @@
 ﻿using System;
 
 
-namespace Mapserver
+namespace Maps
 {
     public struct CoordinateSpan
     {

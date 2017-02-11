@@ -130,10 +130,4 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\ApiDefinition\Mapserver.csproj">
-      <Project>{63b3ecad-cbc7-4e27-8de4-bef18985e6f3}</Project>
-      <Name>Mapserver</Name>
-    </ProjectReference>
-  </ItemGroup>
 </Project>

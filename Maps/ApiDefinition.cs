@@ -1,11 +1,11 @@
-﻿using CoreGraphics;
+using CoreGraphics;
 using CoreLocation;
 using Foundation;
 using System;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using UIKit;
-
+using Maps;
 
 
 namespace ApiDefinition
