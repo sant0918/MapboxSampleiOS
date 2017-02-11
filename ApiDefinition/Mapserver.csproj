@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>ApiDefinition</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
-    <AssemblyName>ApiDefinition</AssemblyName>
+    <AssemblyName>Mapserver</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -38,6 +38,8 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mapserver\CoordinateBounds.cs" />
+    <Compile Include="Mapserver\CoordinateSpan.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
