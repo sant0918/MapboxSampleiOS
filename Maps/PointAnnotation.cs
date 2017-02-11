@@ -86,7 +86,7 @@ namespace Maps
             }
         }
 
-        [Export("init"), EditorBrowsable(EditorBrowsableState.Advanced), CompilerGenerated]
+        [Export("init"), EditorBrowsable(EditorBrowsableState.Advanced)]
         public PointAnnotation() : base(NSObjectFlag.Empty)
         {
             base.IsDirectBinding = (base.GetType().Assembly == Messaging.this_assembly);
@@ -100,13 +100,13 @@ namespace Maps
             }
         }
 
-        [EditorBrowsable(EditorBrowsableState.Advanced), CompilerGenerated]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
         protected PointAnnotation(NSObjectFlag t) : base(t)
         {
             base.IsDirectBinding = (base.GetType().Assembly == Messaging.this_assembly);
         }
 
-        [EditorBrowsable(EditorBrowsableState.Advanced), CompilerGenerated]
+        [EditorBrowsable(EditorBrowsableState.Advanced)]
         protected internal PointAnnotation(IntPtr handle) : base(handle)
         {
             base.IsDirectBinding = (base.GetType().Assembly == Messaging.this_assembly);

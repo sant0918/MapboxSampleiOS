@@ -51,6 +51,7 @@
     <Compile Include="ApiDefinition.cs" />
     <Compile Include="CalloutViewDelegateWrapper.cs" />
     <Compile Include="CalloutViewWrapper.cs" />
+    <Compile Include="AccountManager.cs" />
     <Compile Include="CoordinateBounds.cs" />
     <Compile Include="CoordinateSpan.cs" />
     <Compile Include="DebugMaskOptions.cs" />

@@ -1,6 +1,6 @@
 ﻿using Foundation;
 using UIKit;
-using Mapbox;
+using Maps;
 
 namespace MapBoxSampleiOS
 {
