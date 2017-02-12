@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace Maps
 {
-    [Register("MGLOfflinePack", true)]
+    [Protocol, Register("MGLOfflinePack", true)]
     public class OfflinePack : NSObject
     {
         

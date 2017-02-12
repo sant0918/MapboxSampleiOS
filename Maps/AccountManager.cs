@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace Maps
 {
-    [Register("MGLAccountManager", true)]
+    [Protocol, Register("MGLAccountManager", true)]
     public class AccountManager : NSObject
     {
         

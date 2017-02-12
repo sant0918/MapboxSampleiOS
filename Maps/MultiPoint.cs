@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 
 namespace Maps
 {
-    [Register("MGLMultiPoint", true)]
+    [Protocol, Register("MGLMultiPoint", true)]
     public class MultiPoint : Shape
     {
         

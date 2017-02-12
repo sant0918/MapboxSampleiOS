@@ -11,7 +11,7 @@ using UIKit;
 
 namespace Maps
 {
-    [Register("MGLMapView", true)]
+    [Protocol, Register("MGLMapView", true)]
     public class MapView : UIView
     {
         public class MapViewAppearance : UIView.UIViewAppearance

@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Maps
 {
-    [Register("MGLPolyline", true)]
+    [Protocol, Register("MGLPolyline", true)]
     public class Polyline : MultiPoint, IOverlay, INativeObject, IDisposable, IAnnotation
     {
        

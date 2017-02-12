@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Maps
 {
-    [Register("MGLShape", true)]
+    [Protocol, Register("MGLShape", true)]
     public class Shape : NSObject, IAnnotation, INativeObject, IDisposable
     {
         

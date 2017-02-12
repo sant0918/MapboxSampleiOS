@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Maps
 {
-    [Register("MGLUserLocation", true)]
+    [Protocol, Register("MGLUserLocation", true)]
     public class UserLocation : NSObject, IAnnotation, INativeObject, IDisposable
     {
         

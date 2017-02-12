@@ -9,7 +9,7 @@ using UIKit;
 
 namespace Maps
 {
-    [Register("MGLAnnotationView", true)]
+    [Protocol, Register("MGLAnnotationView", true)]
     public class AnnotationView : UIView
     {
         public class AnnotationViewAppearance : UIView.UIViewAppearance

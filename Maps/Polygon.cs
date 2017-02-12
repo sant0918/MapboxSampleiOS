@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Maps
 {
-    [Register("MGLPolygon", true)]
+    [Protocol, Register("MGLPolygon", true)]
     public class Polygon : MultiPoint, IOverlay, INativeObject, IDisposable, IAnnotation
     {
         

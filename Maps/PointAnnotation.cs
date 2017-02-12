@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Maps
 {
-    [Register("MGLPointAnnotation", true)]
+    [Protocol, Register("MGLPointAnnotation", true)]
     public class PointAnnotation : Shape
     {
         

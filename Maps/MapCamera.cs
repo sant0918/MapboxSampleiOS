@@ -8,7 +8,7 @@ using System.Runtime.CompilerServices;
 
 namespace Maps
 {
-    [Register("MGLMapCamera", true)]
+    [Protocol, Register("MGLMapCamera", true)]
     public class MapCamera : NSObject, INSCoding, INSCopying, INSSecureCoding, INativeObject, IDisposable
     {
        

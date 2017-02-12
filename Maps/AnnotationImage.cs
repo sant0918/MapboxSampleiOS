@@ -8,7 +8,7 @@ using UIKit;
 
 namespace Maps
 {
-    [Register("MGLAnnotationImage", true)]
+    [Protocol, Register("MGLAnnotationImage", true)]
     public class AnnotationImage : NSObject
     {
         
