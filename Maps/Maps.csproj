@@ -37,9 +37,7 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="Annotation.cs" />
     <Compile Include="AnnotationImage.cs" />
@@ -87,6 +85,9 @@
     <Compile Include="Shape.cs" />
     <Compile Include="UserLocation.cs" />
     <Compile Include="UserTrackingMode.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\Mapbox.framework" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>
