@@ -59,7 +59,7 @@ namespace MapBoxSampleiOS
             });
 
             mapView.ShowAnnotations (mapView.Annotations, false);*/
-            testView.Draw(View.Bounds);
+            testView.Draw(new CoreGraphics.CGRect(10,10,10,10));
         }
 
         // Delegate for an annotation to be selected
