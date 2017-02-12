@@ -4,6 +4,7 @@ using UIKit;
 using Maps;
 using System.Linq;
 using CoreLocation;
+using CoreGraphics;
 using Foundation;
 
 namespace MapBoxSampleiOS
@@ -22,7 +23,7 @@ namespace MapBoxSampleiOS
             base.ViewDidLoad ();
 
             testView = new t_UIView(View.Bounds);
-
+            View.AddSubview(mapView);
             /*// Create a MapView and set the coordinates/zoom
             mapView = new MapView (View.Bounds);
             mapView.SetCenterCoordinate (new CLLocationCoordinate2D (45.520486, -122.673541), 11, false);
@@ -59,8 +60,7 @@ namespace MapBoxSampleiOS
             });
 
             mapView.ShowAnnotations (mapView.Annotations, false);*/
-            testView.Draw(new RectangleF(new PointF(30.0F, 40.0F),
-        new SizeF(50.0F, 100.0F)));
+            testView.Draw(new CoreGraphics.CGRect(10,10,10,10));
         }
 
         // Delegate for an annotation to be selected
