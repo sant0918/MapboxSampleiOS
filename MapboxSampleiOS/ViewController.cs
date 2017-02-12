@@ -6,6 +6,7 @@ using System.Linq;
 using CoreLocation;
 using CoreGraphics;
 using Foundation;
+using ImageIO;
 
 namespace MapBoxSampleiOS
 {
@@ -30,9 +31,11 @@ namespace MapBoxSampleiOS
             testView.Layer.ShadowOpacity = 1.0f;
             testView.Layer.ShadowOffset = new SizeF(0, 4);
             testView.BackgroundColor = UIColor.White;
-            
-           
-            
+
+
+            var image = new UIImageView(UIImage.FromBundle("mapserv.png"));
+            View.AddSubview(image);
+            image.Frame = new CoreGraphics.CGRect(10, 10, image.Image.CGImage.Width, image.Image.CGImage.Height);
            
         }
 
