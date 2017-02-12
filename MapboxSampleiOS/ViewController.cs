@@ -8,6 +8,7 @@ using CoreGraphics;
 using Foundation;
 using ImageIO;
 
+
 namespace MapBoxSampleiOS
 {
     public partial class ViewController : UIViewController, IMapViewDelegate
@@ -35,7 +36,7 @@ namespace MapBoxSampleiOS
 
             var image = new UIImageView(UIImage.FromBundle("mapserv.png"));
             View.AddSubview(image);
-            image.Frame = new CoreGraphics.CGRect(10, 10, image.Image.CGImage.Width, image.Image.CGImage.Height);
+            image.Frame = new CGRect(10, 10, image.Image.CGImage.Width, image.Image.CGImage.Height);
            
         }
 
