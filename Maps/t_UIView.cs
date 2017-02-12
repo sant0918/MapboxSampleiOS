@@ -72,7 +72,7 @@ namespace Maps
         public override void DrawInContext(CGContext ctx)
         {
             ctx.SetFillColor(0, 0, 1, 1);
-            ctx.FillRect(Bounds);
+            ctx.FillRect(new CGRect(10,10,10,10));
         }
     }
 }
