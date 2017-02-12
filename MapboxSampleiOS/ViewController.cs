@@ -23,7 +23,12 @@ namespace MapBoxSampleiOS
             base.ViewDidLoad ();
 
             testView = new t_UIView(View.Bounds);
-            View.AddSubview(mapView);
+            testView.Layer.CornerRadius = 4;
+            testView.Layer.ShadowColor = new CGColor(1, 0, 0);
+            testView.Layer.ShadowOpacity = 1.0f;
+            testView.Layer.ShadowOffset = new SizeF(0, 4);
+
+            View.AddSubview(testView);
             /*// Create a MapView and set the coordinates/zoom
             mapView = new MapView (View.Bounds);
             mapView.SetCenterCoordinate (new CLLocationCoordinate2D (45.520486, -122.673541), 11, false);
@@ -60,7 +65,8 @@ namespace MapBoxSampleiOS
             });
 
             mapView.ShowAnnotations (mapView.Annotations, false);*/
-            testView.Draw(new CoreGraphics.CGRect(10,10,10,10));
+            
+           
         }
 
         // Delegate for an annotation to be selected

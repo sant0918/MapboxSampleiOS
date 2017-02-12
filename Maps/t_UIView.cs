@@ -31,6 +31,12 @@ namespace Maps
 
         }
 
+        [Export("requiresConstraintBasedLayout")]
+        bool UseNewLayout()
+        {
+            return true;
+        }
+
         public override void Draw(CGRect rect)
         {
             base.Draw(rect);
@@ -40,7 +46,7 @@ namespace Maps
             context.SetLineWidth(4);
             UIColor.Red.SetFill();
             UIColor.Blue.SetStroke();
-
+            
             var path = new CGPath();
 
             path.AddLines(new CGPoint[]{
