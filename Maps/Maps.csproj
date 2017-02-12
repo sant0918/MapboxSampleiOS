@@ -72,7 +72,7 @@
     <Compile Include="CustomStyleLayerPreparationHandler.cs" />
     <Compile Include="IOfflineRegion.cs" />
     <Compile Include="ObjCruntime\Libraries.cs" />
-    <Compile Include="ObjCruntime\OfflinePackRemovalCompletion.cs" />
+    <Compile Include="OfflinePackRemovalCompletion.cs" />
     <Compile Include="OfflinePack.cs" />
     <Compile Include="OfflinePackAdditionCompletion.cs" />
     <Compile Include="OfflinePackState.cs" />

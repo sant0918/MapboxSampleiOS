@@ -5,8 +5,9 @@ using Maps;
 using System;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using ObjCRuntime;
 
-namespace ObjCRuntime
+namespace ObjCR
 {
     
     internal static class Trampolines

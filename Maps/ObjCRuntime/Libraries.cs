@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Runtime.CompilerServices;
+using ObjCRuntime;
 
-namespace ObjCRuntime
+namespace ObjCR
 {
     
     internal static class Libraries
