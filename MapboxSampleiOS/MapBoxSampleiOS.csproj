@@ -135,4 +135,7 @@
       <IsWatchApp>false</IsWatchApp>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="mapserv.png" />
+  </ItemGroup>
 </Project>
