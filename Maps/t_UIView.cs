@@ -37,6 +37,11 @@ namespace Maps
             return true;
         }
 
+        [Export("layerClass")]
+        public static Class GetLayerClass()
+        {
+            return new Class(typeof(MapLayer));
+        }
         public override void Draw(CGRect rect)
         {
             base.Draw(rect);
@@ -59,6 +64,15 @@ namespace Maps
 
             context.AddPath(path);
             context.DrawPath(CGPathDrawingMode.FillStroke);
+        }
+    }
+
+    public class MapLayer : CALayer
+    {
+        public override void DrawInContext(CGContext ctx)
+        {
+            ctx.SetFillColor(0, 0, 1, 1);
+            ctx.FillRect(Bounds);
         }
     }
 }

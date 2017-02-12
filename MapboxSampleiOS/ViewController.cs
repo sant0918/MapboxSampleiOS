@@ -23,12 +23,14 @@ namespace MapBoxSampleiOS
             base.ViewDidLoad ();
 
             testView = new t_UIView(View.Bounds);
+            View.AddSubview(testView);
+
             testView.Layer.CornerRadius = 4;
             testView.Layer.ShadowColor = new CGColor(1, 0, 0);
             testView.Layer.ShadowOpacity = 1.0f;
             testView.Layer.ShadowOffset = new SizeF(0, 4);
-
-            View.AddSubview(testView);
+            testView.BackgroundColor = UIColor.White;
+            
             /*// Create a MapView and set the coordinates/zoom
             mapView = new MapView (View.Bounds);
             mapView.SetCenterCoordinate (new CLLocationCoordinate2D (45.520486, -122.673541), 11, false);
