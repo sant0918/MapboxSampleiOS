@@ -31,7 +31,7 @@ namespace Maps
 
         }
 
-        public override void Draw(CGRect rect)
+        public void Draw(RectangleF rect)
         {
             base.Draw(rect);
 
