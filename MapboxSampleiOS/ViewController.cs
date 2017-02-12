@@ -15,12 +15,15 @@ namespace MapBoxSampleiOS
         }
 
         MapView mapView;
+        t_UIView testView;
 
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
 
-            // Create a MapView and set the coordinates/zoom
+            testView = new t_UIView(View.Bounds);
+
+            /*// Create a MapView and set the coordinates/zoom
             mapView = new MapView (View.Bounds);
             mapView.SetCenterCoordinate (new CLLocationCoordinate2D (45.520486, -122.673541), 11, false);
 
@@ -55,7 +58,8 @@ namespace MapBoxSampleiOS
                 Subtitle = "This is a sample!"
             });
 
-            mapView.ShowAnnotations (mapView.Annotations, false);
+            mapView.ShowAnnotations (mapView.Annotations, false);*/
+            testView.Draw(View.Bounds);
         }
 
         // Delegate for an annotation to be selected

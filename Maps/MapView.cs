@@ -12,7 +12,7 @@ using UIKit;
 
 namespace Maps
 {
-    [Protocol, Register("MGLMapView", true)]
+    [Protocol, Register("MGLMapView", false)]
     public class MapView : UIView
     {
         public class MapViewAppearance : UIView.UIViewAppearance
