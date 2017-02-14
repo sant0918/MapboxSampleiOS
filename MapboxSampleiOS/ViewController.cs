@@ -84,7 +84,7 @@ namespace MapBoxSampleiOS
                 }
 
             });
-
+            
             image.AddGestureRecognizer(panGesture);
             image.AddGestureRecognizer(rotateGesture);
            
