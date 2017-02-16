@@ -111,9 +111,13 @@
     <None Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="GlobalMapTiles.cs" />
     <Compile Include="ImageTileView.cs" />
     <Compile Include="Main.cs" />
     <Compile Include="AppDelegate.cs" />
+    <Compile Include="Models\Distance.cs" />
+    <Compile Include="Models\GeoCoordinates.cs" />
+    <Compile Include="Models\Pixels.cs" />
     <Compile Include="ViewController.cs" />
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>

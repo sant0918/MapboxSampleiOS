@@ -15,6 +15,8 @@ namespace MapBoxSampleiOS
     public class ImageTileView : UIView
     {
 
+        CLLocation loc;
+        GlobalMapTiles gmt;
         public ImageTileView(CGRect frame) : base (frame)
         {
 
@@ -29,7 +31,8 @@ namespace MapBoxSampleiOS
         [Export("initiWithCoder:")]
         public ImageTileView(NSCoder coder): base (coder)
         {
-
+             loc = new CLLocation();
+             gmt = new GlobalMapTiles();
         }
 
         public override void Draw(CGRect area)
@@ -46,11 +49,12 @@ namespace MapBoxSampleiOS
             int firstRow = (int)Math.Floor(area.GetMinY() / tileSize.Height);
             int lastRow = (int)Math.Floor((area.GetMaxY() - 1) / tileSize.Height);
 
+            UIImage que = getTile(16);
             for (int row = firstRow; row <= lastRow; row++) { 
                 for (int col = firstCol; col <= lastCol; col++)
                 {
                     UIImage tile = getTile(ZOOM,col, row);
-
+                    
                     CGRect tileRect = new CGRect(tileSize.Width * col,
                                                 tileSize.Height * row,
                                                 tileSize.Width,
@@ -121,6 +125,31 @@ namespace MapBoxSampleiOS
             string path = "tiles/";
             
             string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + ".png");
+
+            return UIImage.FromFile(pngFilename);
+        }
+        
+        
+        
+        public UIImage getTile(int zoom)
+        {
+            Tuple<double, double> metersXY = gmt.LatLonToMeters(loc.Coordinate.Latitude, loc.Coordinate.Longitude);
+            Tuple<int, int> tilesMinXY = gmt.MetersToTile(metersXY.Item1, metersXY.Item2, zoom);
+            Tuple<int, int> tilesMaxXY = tilesMinXY;
+
+            for (int ty = tilesMinXY.Item2; ty <= tilesMaxXY.Item2; ty++)
+            {
+                for (int tx = tilesMinXY.Item1; tx <= tilesMaxXY.Item1; tx++)
+                {
+                    Tuple<int, int> googleTiles = gmt.GoogleTile(tx, ty, zoom);
+
+                    // TODO: fetch tiles from mapserver.
+                }
+            }
+
+            string path = "tiles/";
+
+            string pngFilename = Path.Combine(path, zoom.ToString());
 
             return UIImage.FromFile(pngFilename);
         }
