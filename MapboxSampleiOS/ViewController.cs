@@ -19,7 +19,7 @@ namespace MapBoxSampleiOS
 
         MapView mapView;
         t_UIView testView;
-        UIImageView image;
+        ImageTileView image;
 
         UIRotationGestureRecognizer rotateGesture;
         UIPanGestureRecognizer panGesture;
@@ -27,7 +27,7 @@ namespace MapBoxSampleiOS
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
-
+            
             nfloat r = 0;            
             nfloat dx = 0;
             nfloat dy = 0;
@@ -42,14 +42,18 @@ namespace MapBoxSampleiOS
             testView.BackgroundColor = UIColor.Black;
 
 
-            using (UIImage foto = UIImage.FromBundle("mapserv.png"))
-            {
-                image = new UIImageView(foto);
-                image.UserInteractionEnabled = true;
-                View.AddSubview(image);
-                image.Frame = new CGRect(10, 10, image.Image.CGImage.Width, image.Image.CGImage.Height);
+            /* using (UIImage foto = UIImage.FromBundle("mapserv.png"))
+             {
+                 image = new UIImageView(foto);
+                 image.UserInteractionEnabled = true;
+                 View.AddSubview(image);
+                 image.Frame = new CGRect(10, 10, image.Image.CGImage.Width, image.Image.CGImage.Height);
 
-            }
+             }*/
+            image = new ImageTileView(View.Bounds);
+            image.UserInteractionEnabled = true;
+            View.AddSubview(image);
+
 
             rotateGesture = new UIRotationGestureRecognizer(() =>
             {

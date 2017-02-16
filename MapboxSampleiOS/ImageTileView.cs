@@ -3,16 +3,16 @@ using CoreGraphics;
 using CoreLocation;
 using Foundation;
 using System;
-
+using System.IO;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Drawing;
 using UIKit;
 using GLKit;
 
-namespace MapboxSampleiOS
+namespace MapBoxSampleiOS
 {
-    class ImageTileView : UIView
+    public class ImageTileView : UIView
     {
 
         public ImageTileView(CGRect frame) : base (frame)
@@ -35,6 +35,7 @@ namespace MapboxSampleiOS
         public override void DrawRect(CGRect area, UIViewPrintFormatter formatter)
         {
             base.DrawRect(area, formatter);
+            const int ZOOM = 4;
 
             var context = UIGraphics.GetCurrentContext();
 
@@ -48,14 +49,15 @@ namespace MapboxSampleiOS
             for (int row = firstRow; row <= lastRow; row++) { 
                 for (int col = firstCol; col <= lastCol; col++)
                 {
-                    UIImage tile = getTile(col, row);
+                    UIImage tile = getTile(ZOOM,col, row);
 
                     CGRect tileRect = new CGRect(tileSize.Width * col,
                                                 tileSize.Height * row,
                                                 tileSize.Width,
                                                 tileSize.Height);
                     tileRect.Intersect(tileRect);
-                    
+
+                    tile.DrawAsPatternInRect(tileRect);
                     
                 }
 
@@ -114,11 +116,11 @@ namespace MapboxSampleiOS
             }
         }
 
-        public UIImage getTile(int col, int row)
+        public UIImage getTile(int zoom, int col, int row)
         {
-            var path = Environment.GetFolderPath(Environment.SpecialFolder.Personal);
-
-            string pngFilename = System.IO.Path.Combine(path, col.ToString() + row.ToString());
+            string path = "tiles/";
+            
+            string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + ".png");
 
             return UIImage.FromFile(pngFilename);
         }
