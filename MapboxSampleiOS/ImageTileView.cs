@@ -32,9 +32,9 @@ namespace MapBoxSampleiOS
 
         }
 
-        public override void DrawRect(CGRect area, UIViewPrintFormatter formatter)
+        public override void Draw(CGRect area)
         {
-            base.DrawRect(area, formatter);
+            base.Draw(area);
             const int ZOOM = 4;
 
             var context = UIGraphics.GetCurrentContext();
