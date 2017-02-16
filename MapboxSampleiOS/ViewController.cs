@@ -32,14 +32,14 @@ namespace MapBoxSampleiOS
             nfloat dx = 0;
             nfloat dy = 0;
 
-            testView = new t_UIView(View.Bounds);
-            View.AddSubview(testView);
+            //testView = new t_UIView(View.Bounds);
+            //View.AddSubview(testView);
 
-            testView.Layer.CornerRadius = 4;
-            testView.Layer.ShadowColor = new CGColor(1, 0, 0);
-            testView.Layer.ShadowOpacity = 1.0f;
-            testView.Layer.ShadowOffset = new SizeF(0, 4);
-            testView.BackgroundColor = UIColor.Black;
+            //testView.Layer.CornerRadius = 4;
+            //testView.Layer.ShadowColor = new CGColor(1, 0, 0);
+            //testView.Layer.ShadowOpacity = 1.0f;
+            //testView.Layer.ShadowOffset = new SizeF(0, 4);
+            //testView.BackgroundColor = UIColor.Black;
 
 
             /* using (UIImage foto = UIImage.FromBundle("mapserv.png"))
