@@ -1,26 +1,28 @@
 ﻿using System;
+using System.IO;
+using System.Xml;
 using System.Drawing;
 using UIKit;
-using Maps;
 using System.Linq;
 using CoreLocation;
 using CoreGraphics;
 using Foundation;
 using ImageIO;
+using Svg;
 
 
 namespace MapBoxSampleiOS
 {
-    public partial class ViewController : UIViewController, IMapViewDelegate
-    {
+    public partial class ViewController : UIViewController
+    { 
         public ViewController (IntPtr handle) : base (handle)
         {
         }
 
-        MapView mapView;
-        t_UIView testView;
+       
         ImageTileView image;
-
+        UIImageView imagen;
+        SvgDocument svgDoc = SvgDocument.Open(Path.Combine(Path.GetDirectoryName(Environment.CurrentDirectory), @"newyork.svg"));
         UIRotationGestureRecognizer rotateGesture;
         UIPanGestureRecognizer panGesture;
 
@@ -41,19 +43,22 @@ namespace MapBoxSampleiOS
             //testView.Layer.ShadowOffset = new SizeF(0, 4);
             //testView.BackgroundColor = UIColor.Black;
 
-
-            /* using (UIImage foto = UIImage.FromBundle("mapserv.png"))
+            UIImage pictura;
+            using (UIImage foto = (Bitmap)UIImage.FromBundle("mapserv.png"))
              {
-                 image = new UIImageView(foto);
-                 image.UserInteractionEnabled = true;
-                 View.AddSubview(image);
-                 image.Frame = new CGRect(10, 10, image.Image.CGImage.Width, image.Image.CGImage.Height);
+                imagen = new UIImageView(foto);
+                imagen.UserInteractionEnabled = true;
+                View.AddSubview(imagen);
+                imagen.Frame = new CGRect(10, 10, imagen.Image.CGImage.Width, imagen.Image.CGImage.Height);
 
-             }*/
+             }
+
+            /*
+            // adds maps to view
             image = new ImageTileView(View.Bounds);
             image.UserInteractionEnabled = true;
             View.AddSubview(image);
-
+            */
 
             rotateGesture = new UIRotationGestureRecognizer(() =>
             {
@@ -95,22 +100,12 @@ namespace MapBoxSampleiOS
         }
 
 
-
-        // Delegate for an annotation to be selected
-        [Export ("mapView:didSelectAnnotation:")]
-        public void DidSelectAnnotation (MapView mapView, IAnnotation annotation)
-        {
-            // Just show the user which one was pressed
-            new UIAlertView ("Annotation Tapped", "You tapped on: " + annotation.GetTitle (), null, "OK")
-                .Show ();
-        }
-
         public override void DidReceiveMemoryWarning ()
         {
             base.DidReceiveMemoryWarning ();
 
             // Cleanup anything possible
-            mapView.EmptyMemoryCache ();
+           // mapView.EmptyMemoryCache ();
         }
     }
 }

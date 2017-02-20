@@ -1,6 +1,6 @@
 ﻿using Foundation;
 using UIKit;
-using Maps;
+
 
 namespace MapBoxSampleiOS
 {
@@ -16,17 +16,13 @@ namespace MapBoxSampleiOS
             set;
         }
 
-        const string MAPBOX_ACCESS_TOKEN = "mitoken";
+       
 
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
-            if (MAPBOX_ACCESS_TOKEN == "YOUR-ACCESS-TOKEN") {
-                new UIAlertView ("Change Access Token", "You need to change the MAPBOX_ACCESS_TOKEN to your own token from MapBox!", null, "OK")
-                    .Show ();
-            }
+            
 
-            // Set your own Access Token 
-            AccountManager.AccessToken = MAPBOX_ACCESS_TOKEN;
+            
 
             return true;
         }
