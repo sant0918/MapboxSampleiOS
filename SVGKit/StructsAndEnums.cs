@@ -1,5 +1,7 @@
+using System;
 using System.Runtime.InteropServices;
 using CoreGraphics;
+using SVGKit;
 
 public enum DOMNodeType : uint
 {
@@ -61,6 +63,79 @@ public struct SVGColor
 	public byte b;
 
 	public byte a;
+}
+
+static class CFunctions
+{
+	// extern SVGColor SVGColorMake (uint8_t r, uint8_t g, uint8_t b, uint8_t a);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern SVGColor SVGColorMake (byte r, byte g, byte b, byte a);
+
+	// extern SVGColor SVGColorFromString (const char *string);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern unsafe SVGColor SVGColorFromString (sbyte* @string);
+
+	// extern CGFloat SVGPercentageFromString (const char *string);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern unsafe nfloat SVGPercentageFromString (sbyte* @string);
+
+	// extern CGMutablePathRef createPathFromPointsInString (const char *string, boolean_t close);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern unsafe CGMutablePathRef* createPathFromPointsInString (sbyte* @string, int close);
+
+	// extern CGColorRef CGColorWithSVGColor (SVGColor color);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern unsafe CGColorRef* CGColorWithSVGColor (SVGColor color);
+
+	// extern SVGRect SVGRectUninitialized ();
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern SVGRect SVGRectUninitialized ();
+
+	// extern BOOL SVGRectIsInitialized (SVGRect rect);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern bool SVGRectIsInitialized (SVGRect rect);
+
+	// extern SVGRect SVGRectMake (float x, float y, float width, float height);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern SVGRect SVGRectMake (float x, float y, float width, float height);
+
+	// extern CGRect CGRectFromSVGRect (SVGRect rect);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern CGRect CGRectFromSVGRect (SVGRect rect);
+
+	// extern CGSize CGSizeFromSVGRect (SVGRect rect);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern CGSize CGSizeFromSVGRect (SVGRect rect);
+
+	// extern SVGCurve SVGCurveMake (CGFloat cx1, CGFloat cy1, CGFloat cx2, CGFloat cy2, CGFloat px, CGFloat py);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern SVGCurve SVGCurveMake (nfloat cx1, nfloat cy1, nfloat cx2, nfloat cy2, nfloat px, nfloat py);
+
+	// extern BOOL SVGCurveEqualToCurve (SVGCurve curve1, SVGCurve curve2);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern bool SVGCurveEqualToCurve (SVGCurve curve1, SVGCurve curve2);
+
+	// extern CGPathRef CGPathCreateByOffsettingPath (CGPathRef aPath, CGFloat x, CGFloat y);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern unsafe CGPathRef* CGPathCreateByOffsettingPath (CGPathRef* aPath, nfloat x, nfloat y);
+
+	// extern CGPathRef CGPathCreateByTranslatingPath (CGPathRef aPath, CGFloat x, CGFloat y);
+	[DllImport ("__Internal")]
+	[Verify (PlatformInvoke)]
+	static extern unsafe CGPathRef* CGPathCreateByTranslatingPath (CGPathRef* aPath, nfloat x, nfloat y);
 }
 
 [StructLayout (LayoutKind.Sequential)]
