@@ -8,7 +8,7 @@ using CoreLocation;
 using CoreGraphics;
 using Foundation;
 using ImageIO;
-using Svg;
+
 
 
 namespace MapBoxSampleiOS
@@ -21,8 +21,7 @@ namespace MapBoxSampleiOS
 
        
         ImageTileView image;
-        UIImageView imagen;
-        SvgDocument svgDoc = SvgDocument.Open(Path.Combine(Path.GetDirectoryName(Environment.CurrentDirectory), @"newyork.svg"));
+        UIImageView imagen;        
         UIRotationGestureRecognizer rotateGesture;
         UIPanGestureRecognizer panGesture;
 
@@ -44,7 +43,7 @@ namespace MapBoxSampleiOS
             //testView.BackgroundColor = UIColor.Black;
 
             UIImage pictura;
-            using (UIImage foto = (Bitmap)UIImage.FromBundle("mapserv.png"))
+            using (UIImage foto = UIImage.FromBundle("mapserv.png"))
              {
                 imagen = new UIImageView(foto);
                 imagen.UserInteractionEnabled = true;

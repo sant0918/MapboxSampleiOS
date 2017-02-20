@@ -5,8 +5,6 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MapBoxSampleiOS", "MapBoxSampleiOS\MapBoxSampleiOS.csproj", "{9FB6D2BF-B2D6-4BBB-8542-82011E45D3E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Svg", "..\..\..\..\SVG-master\SVG-master\Source\Svg.csproj", "{886A98C5-37C0-4E8B-885E-30C1D2F98B47}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,18 +25,6 @@ Global
 		{9FB6D2BF-B2D6-4BBB-8542-82011E45D3E6}.Release|iPhone.Build.0 = Release|iPhone
 		{9FB6D2BF-B2D6-4BBB-8542-82011E45D3E6}.Release|iPhoneSimulator.ActiveCfg = Release|iPhoneSimulator
 		{9FB6D2BF-B2D6-4BBB-8542-82011E45D3E6}.Release|iPhoneSimulator.Build.0 = Release|iPhoneSimulator
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Debug|iPhone.ActiveCfg = Debug|Any CPU
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Debug|iPhone.Build.0 = Debug|Any CPU
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Release|Any CPU.Build.0 = Release|Any CPU
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Release|iPhone.ActiveCfg = Release|Any CPU
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Release|iPhone.Build.0 = Release|Any CPU
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
-		{886A98C5-37C0-4E8B-885E-30C1D2F98B47}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

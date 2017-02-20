@@ -1167,12 +1167,6 @@
     <BundleResource Include="Resources\tiles\4\9\9.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\SVG-master\SVG-master\Source\Svg.csproj">
-      <Project>{886a98c5-37c0-4e8b-885e-30c1d2f98b47}</Project>
-      <Name>Svg</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="newyork.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
