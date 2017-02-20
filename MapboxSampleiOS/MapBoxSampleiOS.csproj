@@ -132,8 +132,6 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Settings.bundle\Root.plist" />
-    <BundleResource Include="ApiDefinitions.cs" />
-    <BundleResource Include="StructsAndEnums.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
