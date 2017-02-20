@@ -38,9 +38,7 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
-    <BundleResource Include="ApiDefinitions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <BundleResource Include="StructsAndEnums.cs" />
     <Compile Include="libSVGKit-iOS.2.0.0.linkwith.cs">
       <DependentUpon>libSVGKit-iOS.2.0.0.a</DependentUpon>
     </Compile>
