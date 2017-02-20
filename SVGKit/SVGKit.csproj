@@ -41,6 +41,12 @@
     <BundleResource Include="ApiDefinitions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <BundleResource Include="StructsAndEnums.cs" />
+    <Compile Include="libSVGKit-iOS.2.0.0.linkwith.cs">
+      <DependentUpon>libSVGKit-iOS.2.0.0.a</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ObjcBindingNativeLibrary Include="libSVGKit-iOS.2.0.0.a" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.ObjCBinding.CSharp.targets" />
 </Project>
