@@ -116,8 +116,8 @@ namespace SVGKit
 		IntPtr Constructor(DOMNodeType nt, string n, string v);
 
 		// -(id)initType:(DOMNodeType)nt name:(NSString *)n inNamespace:(NSString *)nsURI;
-		[Export("initType:name:inNamespace:")]
-		IntPtr Constructor(DOMNodeType nt, string n, string nsURI);
+		//[Export("initType:name:inNamespace:")]
+		//IntPtr Constructor(DOMNodeType nt, string n, string nsURI);
 
 		// -(id)initType:(DOMNodeType)nt name:(NSString *)n value:(NSString *)v inNamespace:(NSString *)nsURI;
 		[Export("initType:name:value:inNamespace:")]
@@ -610,7 +610,7 @@ namespace SVGKit
 	{
 		// @property (readonly, nonatomic) CGPathRef pathForShapeInRelativeCoords;
 		[Export("pathForShapeInRelativeCoords")]
-		unsafe CGPathRef* PathForShapeInRelativeCoords { get; }
+		unsafe CGPath PathForShapeInRelativeCoords { get; }
 	}
 
 	// @interface  (BaseClassForAllSVGBasicShapes)
@@ -620,7 +620,7 @@ namespace SVGKit
 	{
 		// @property (readwrite, nonatomic) CGPathRef pathForShapeInRelativeCoords;
 		[Export("pathForShapeInRelativeCoords", ArgumentSemantic.Assign)]
-		unsafe CGPathRef* PathForShapeInRelativeCoords { get; set; }
+		unsafe CGPath PathForShapeInRelativeCoords { get; set; }
 	}
 
 	// @interface RecursiveClone (CALayer)
@@ -646,7 +646,7 @@ namespace SVGKit
 		// +(void)maskLayer:(CALayer *)layer inContext:(CGContextRef)ctx;
 		[Static]
 		[Export("maskLayer:inContext:")]
-		unsafe void MaskLayer(CALayer layer, CGContextRef* ctx);
+		unsafe void MaskLayer(CALayer layer, CGContext ctx);
 	}
 
 	// @interface CALayerWithChildHitTest : CALayerWithClipRender
@@ -1160,11 +1160,11 @@ namespace SVGKit
 	{
 		// @property (nonatomic) SVG_PRESERVEASPECTRATIO align;
 		[Export("align", ArgumentSemantic.Assign)]
-		SVG_PRESERVEASPECTRATIO Align { get; set; }
+		SvgPreserveaspectratio Align { get; set; }
 
 		// @property (nonatomic) SVG_MEETORSLICE meetOrSlice;
 		[Export("meetOrSlice", ArgumentSemantic.Assign)]
-		SVG_MEETORSLICE MeetOrSlice { get; set; }
+		SvgMeetorsliceE MeetOrSlice { get; set; }
 	}
 
 	// @interface SVGAnimatedPreserveAspectRatio : NSObject
@@ -1932,7 +1932,7 @@ namespace SVGKit
 	{
 		// @property (readwrite, nonatomic) CGPathRef maskPath;
 		[Export("maskPath", ArgumentSemantic.Assign)]
-		unsafe CGPathRef* MaskPath { get; set; }
+		unsafe CGPath MaskPath { get; set; }
 
 		// @property (readwrite, nonatomic, strong) NSArray * stopIdentifiers;
 		[Export("stopIdentifiers", ArgumentSemantic.Strong)]
@@ -2019,7 +2019,7 @@ namespace SVGKit
 		// +(CALayer *)newCALayerForPathBasedSVGElement:(SVGElement *)svgElement withPath:(CGPathRef)path;
 		[Static]
 		[Export("newCALayerForPathBasedSVGElement:withPath:")]
-		unsafe CALayer NewCALayerForPathBasedSVGElement(SVGElement svgElement, CGPathRef* path);
+		unsafe CALayer NewCALayerForPathBasedSVGElement(SVGElement svgElement, CGPath path);
 
 		// +(CGColorRef)parseFillForElement:(SVGElement *)svgElement;
 		[Static]
