@@ -507,7 +507,7 @@ namespace SVGKit
 		// +(SVGLength *)svgLengthZero;
 		[Static]
 		[Export ("svgLengthZero")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGLength SvgLengthZero { get; }
 
 		// +(SVGLength *)svgLengthFromNSString:(NSString *)s;
@@ -517,7 +517,7 @@ namespace SVGKit
 
 		// -(float)pixelsValue;
 		[Export ("pixelsValue")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		float PixelsValue { get; }
 
 		// -(float)pixelsValueWithDimension:(float)dimension;
@@ -526,7 +526,7 @@ namespace SVGKit
 
 		// -(float)numberValue;
 		[Export ("numberValue")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		float NumberValue { get; }
 	}
 
@@ -583,7 +583,7 @@ namespace SVGKit
 		// @required -(CALayer *)newLayer;
 		[Abstract]
 		[Export ("newLayer")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		CALayer NewLayer { get; }
 
 		// @required -(void)layoutLayer:(CALayer *)layer;
@@ -629,12 +629,12 @@ namespace SVGKit
 	{
 		// -(CALayer *)cloneRecursively;
 		[Export ("cloneRecursively")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		CALayer CloneRecursively { get; }
 
 		// -(CALayer *)cloneShallow;
 		[Export ("cloneShallow")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		CALayer CloneShallow { get; }
 	}
 
@@ -743,7 +743,7 @@ namespace SVGKit
 
 		// -(NSString *)getStringValue;
 		[Export ("getStringValue")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		string StringValue { get; }
 
 		// -(void)getCounterValue;
@@ -932,7 +932,7 @@ namespace SVGKit
 
 		// -(DocumentFragment *)createDocumentFragment __attribute__((ns_returns_retained));
 		[Export ("createDocumentFragment")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		DocumentFragment CreateDocumentFragment { get; }
 
 		// -(Text *)createTextNode:(NSString *)data __attribute__((ns_returns_retained));
@@ -1094,7 +1094,7 @@ namespace SVGKit
 		// +(NSCharacterSet *)SVGWhitespaceCharacterSet;
 		[Static]
 		[Export ("SVGWhitespaceCharacterSet")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		NSCharacterSet SVGWhitespaceCharacterSet { get; }
 	}
 
@@ -1105,12 +1105,12 @@ namespace SVGKit
 	{
 		// -(NSArray *)allNodesUnsortedDOM1;
 		[Export ("allNodesUnsortedDOM1")]
-		[Verify (MethodToProperty), Verify (StronglyTypedNSArray)]
+		//[Verify (MethodToProperty), Verify (StronglyTypedNSArray)]
 		NSObject[] AllNodesUnsortedDOM1 { get; }
 
 		// -(NSDictionary *)allNodesUnsortedDOM2;
 		[Export ("allNodesUnsortedDOM2")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		NSDictionary AllNodesUnsortedDOM2 { get; }
 	}
 
@@ -1284,7 +1284,7 @@ namespace SVGKit
 
 		// -(SVGMatrix *)inverse;
 		[Export ("inverse")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGMatrix Inverse { get; }
 
 		// -(SVGMatrix *)translate:(float)x y:(float)y;
@@ -1309,12 +1309,12 @@ namespace SVGKit
 
 		// -(SVGMatrix *)flipX;
 		[Export ("flipX")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGMatrix FlipX { get; }
 
 		// -(SVGMatrix *)flipY;
 		[Export ("flipY")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGMatrix FlipY { get; }
 
 		// -(SVGMatrix *)skewX:(float)angle;
@@ -1503,12 +1503,12 @@ namespace SVGKit
 
 		// -(BOOL)animationsPaused;
 		[Export ("animationsPaused")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		bool AnimationsPaused { get; }
 
 		// -(float)getCurrentTime;
 		[Export ("getCurrentTime")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		float CurrentTime { get; }
 
 		// -(void)setCurrentTime:(float)seconds;
@@ -1537,37 +1537,37 @@ namespace SVGKit
 
 		// -(SVGNumber)createSVGNumber;
 		[Export ("createSVGNumber")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGNumber CreateSVGNumber { get; }
 
 		// -(SVGLength *)createSVGLength __attribute__((ns_returns_retained));
 		[Export ("createSVGLength")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGLength CreateSVGLength { get; }
 
 		// -(SVGAngle *)createSVGAngle;
 		[Export ("createSVGAngle")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGAngle CreateSVGAngle { get; }
 
 		// -(SVGPoint *)createSVGPoint;
 		[Export ("createSVGPoint")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGPoint CreateSVGPoint { get; }
 
 		// -(SVGMatrix *)createSVGMatrix;
 		[Export ("createSVGMatrix")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGMatrix CreateSVGMatrix { get; }
 
 		// -(SVGRect)createSVGRect;
 		[Export ("createSVGRect")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGRect CreateSVGRect { get; }
 
 		// -(SVGTransform *)createSVGTransform;
 		[Export ("createSVGTransform")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGTransform CreateSVGTransform { get; }
 
 		// -(SVGTransform *)createSVGTransformFromMatrix:(SVGMatrix *)matrix;
@@ -1621,12 +1621,12 @@ namespace SVGKit
 
 		// -(NSMutableDictionary *)allPrefixesByNamespace;
 		[Export ("allPrefixesByNamespace")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		NSMutableDictionary AllPrefixesByNamespace { get; }
 
 		// -(NSMutableDictionary *)allPrefixesByNamespaceNormalized;
 		[Export ("allPrefixesByNamespaceNormalized")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		NSMutableDictionary AllPrefixesByNamespaceNormalized { get; }
 	}
 
@@ -1638,13 +1638,13 @@ namespace SVGKit
 		// @required -(NSArray *)supportedNamespaces;
 		[Abstract]
 		[Export ("supportedNamespaces")]
-		[Verify (MethodToProperty), Verify (StronglyTypedNSArray)]
+		//[Verify (MethodToProperty), Verify (StronglyTypedNSArray)]
 		NSObject[] SupportedNamespaces { get; }
 
 		// @required -(NSArray *)supportedTags;
 		[Abstract]
 		[Export ("supportedTags")]
-		[Verify (MethodToProperty), Verify (StronglyTypedNSArray)]
+		//[Verify (MethodToProperty), Verify (StronglyTypedNSArray)]
 		NSObject[] SupportedTags { get; }
 
 		// @required -(Node *)handleStartElement:(NSString *)name document:(SVGKSource *)document namePrefix:(NSString *)prefix namespaceURI:(NSString *)XMLNSURI attributes:(NSMutableDictionary *)attributes parseResult:(SVGKParseResult *)parseResult parentNode:(Node *)parentNode;
@@ -1723,7 +1723,7 @@ namespace SVGKit
 		// +(BOOL)shouldStoreContent;
 		[Static]
 		[Export ("shouldStoreContent")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		bool ShouldStoreContent { get; }
 
 		// -(void)loadDefaults;
@@ -1745,7 +1745,7 @@ namespace SVGKit
 
 		// -(CALayer *)newLayer;
 		[Export ("newLayer")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		CALayer NewLayer { get; }
 
 		// -(void)layoutLayer:(CALayer *)layer toMaskLayer:(CALayer *)maskThis;
@@ -1935,7 +1935,7 @@ namespace SVGKit
 
 		// @property (readwrite, nonatomic, strong) NSArray * stopIdentifiers;
 		[Export ("stopIdentifiers", ArgumentSemantic.Strong)]
-		[Verify (StronglyTypedNSArray)]
+		//[Verify (StronglyTypedNSArray)]
 		NSObject[] StopIdentifiers { get; set; }
 
 		// @property (nonatomic) CGFloat radius;
@@ -1961,17 +1961,17 @@ namespace SVGKit
 	{
 		// @property (readonly, strong) NSArray * stops;
 		[Export ("stops", ArgumentSemantic.Strong)]
-		[Verify (StronglyTypedNSArray)]
+		//[Verify (StronglyTypedNSArray)]
 		NSObject[] Stops { get; }
 
 		// @property (readonly, strong) NSArray * locations;
 		[Export ("locations", ArgumentSemantic.Strong)]
-		[Verify (StronglyTypedNSArray)]
+		//[Verify (StronglyTypedNSArray)]
 		NSObject[] Locations { get; }
 
 		// @property (readonly, strong) NSArray * colors;
 		[Export ("colors", ArgumentSemantic.Strong)]
-		[Verify (StronglyTypedNSArray)]
+		//[Verify (StronglyTypedNSArray)]
 		NSObject[] Colors { get; }
 
 		// -(void)addStop:(SVGGradientStop *)gradientStop;
@@ -2097,7 +2097,7 @@ namespace SVGKit
 
 		// -(SVGKParseResult *)parseSynchronously;
 		[Export ("parseSynchronously")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		SVGKParseResult ParseSynchronously { get; }
 
 		// +(NSDictionary *)NSDictionaryFromCSSAttributes:(Attr *)styleAttribute;
@@ -2208,7 +2208,7 @@ namespace SVGKit
 
 		// -(BOOL)hasSize;
 		[Export ("hasSize")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		bool HasSize { get; }
 
 		// @property (nonatomic) CGSize size;
@@ -2252,7 +2252,7 @@ namespace SVGKit
 		// +(UIImage *)animatedImageWithImages:(NSArray *)images duration:(NSTimeInterval)duration;
 		[Static]
 		[Export ("animatedImageWithImages:duration:")]
-		[Verify (StronglyTypedNSArray)]
+		//[Verify (StronglyTypedNSArray)]
 		UIImage AnimatedImageWithImages (NSObject[] images, double duration);
 
 		// +(SVGKImage *)imageWithContentsOfURL:(NSURL *)url;
@@ -2270,7 +2270,7 @@ namespace SVGKit
 
 		// -(CALayer *)newCALayerTree;
 		[Export ("newCALayerTree")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		CALayer NewCALayerTree { get; }
 
 		// -(CALayer *)layerWithIdentifier:(NSString *)identifier;
@@ -2295,7 +2295,7 @@ namespace SVGKit
 
 		// -(NSDictionary *)dictionaryOfLayers;
 		[Export ("dictionaryOfLayers")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		NSDictionary DictionaryOfLayers { get; }
 
 		// -(void)scaleToFitInside:(CGSize)maxSize;
@@ -2453,7 +2453,7 @@ namespace SVGKit
 
 		// -(CGColorRef)CGColor;
 		[Export ("CGColor")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		unsafe CGColorRef* CGColor { get; }
 	}
 
@@ -2548,7 +2548,7 @@ namespace SVGKit
 	}
 
 	[Static]
-	[Verify (ConstantsInterfaceAssociation)]
+	//[Verify (ConstantsInterfaceAssociation)]
 	partial interface Constants
 	{
 		// extern double SVGKitFramework_VersionNumber;
@@ -2721,7 +2721,7 @@ namespace SVGKit
 	{
 		// -(CGContextRef)newCGContextAutosizedToFit;
 		[Export ("newCGContextAutosizedToFit")]
-		[Verify (MethodToProperty)]
+		//[Verify (MethodToProperty)]
 		unsafe CGContextRef* NewCGContextAutosizedToFit { get; }
 
 		// -(void)renderInContext:(CGContextRef)ctx;
