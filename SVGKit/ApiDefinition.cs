@@ -459,7 +459,7 @@ namespace SVGKit
 	// @protocol SVGStylable <NSObject>
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
-	interface SVGStylable
+	interface ISVGStylable
 	{
 		// @required @property (retain, nonatomic) NSString * className;
 		[Abstract]
@@ -579,7 +579,7 @@ namespace SVGKit
 	// @protocol ConverterSVGToCALayer <NSObject>
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
-	interface ConverterSVGToCALayer
+	interface IConverterSVGToCALayer
 	{
 		// @required -(CALayer *)newLayer;
 		[Abstract]
@@ -596,7 +596,7 @@ namespace SVGKit
 	// @protocol SVGTransformable <NSObject>
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
-	interface SVGTransformable
+	interface ISVGTransformable
 	{
 		// @required @property (nonatomic) CGAffineTransform transform;
 		[Abstract]
@@ -1044,7 +1044,7 @@ namespace SVGKit
 	// @protocol DocumentStyle <NSObject>
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
-	interface DocumentStyle
+	interface IDocumentStyle
 	{
 		// @required @property (retain, nonatomic) StyleSheetList * styleSheets;
 		[Abstract]
@@ -1054,7 +1054,7 @@ namespace SVGKit
 
 	// @protocol DocumentCSS <DocumentStyle>
 	[Protocol, Model]
-	interface DocumentCSS : IDocumentStyle
+	interface IDocumentCSS : IDocumentStyle
 	{
 		// @required -(CSSStyleDeclaration *)getOverrideStyle:(Element *)element pseudoElt:(NSString *)pseudoElt;
 		[Abstract]
@@ -1213,7 +1213,7 @@ namespace SVGKit
 	// @protocol SVGFitToViewBox <NSObject>
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
-	interface SVGFitToViewBox
+	interface ISVGFitToViewBox
 	{
 		// @required @property (nonatomic) SVGRect viewBox;
 		[Abstract]
@@ -2792,19 +2792,19 @@ namespace SVGKit
 
 	// @interface SVGKParserDefsAndUse : NSObject <SVGKParserExtension>
 	[BaseType(typeof(NSObject))]
-	interface SVGKParserDefsAndUse : ISVGKParserExtension
+	interface SVGKParserDefsAndUse : SVGKParserExtension
 	{
 	}
 
 	// @interface SVGKParserDOM : NSObject <SVGKParserExtension>
 	[BaseType(typeof(NSObject))]
-	interface SVGKParserDOM : ISVGKParserExtension
+	interface SVGKParserDOM : SVGKParserExtension
 	{
 	}
 
 	// @interface SVGKParserSVG : NSObject <SVGKParserExtension>
 	[BaseType(typeof(NSObject))]
-	interface SVGKParserSVG : ISVGKParserExtension
+	interface SVGKParserSVG : SVGKParserExtension
 	{
 	}
 
@@ -2816,13 +2816,13 @@ namespace SVGKit
 
 	// @interface SVGKParserPatternsAndGradients : NSObject <SVGKParserExtension>
 	[BaseType(typeof(NSObject))]
-	interface SVGKParserPatternsAndGradients : ISVGKParserExtension
+	interface SVGKParserPatternsAndGradients : SVGKParserExtension
 	{
 	}
 
 	// @interface SVGKParserStyles : NSObject <SVGKParserExtension>
 	[BaseType(typeof(NSObject))]
-	interface SVGKParserStyles : ISVGKParserExtension
+	interface SVGKParserStyles : SVGKParserExtension
 	{
 	}
 
