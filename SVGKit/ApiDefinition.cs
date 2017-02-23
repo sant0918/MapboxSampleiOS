@@ -7,7 +7,7 @@ using CoreAnimation;
 
 namespace SVGKit
 {
-	// @interface Node : NSObject
+    /*// @interface Node : NSObject
 	[BaseType(typeof(NSObject))]
 	interface Node
 	{
@@ -1381,257 +1381,257 @@ namespace SVGKit
 		[Export("setSkewY:")]
 		void SetSkewY(float angle);
 	}
+    */
+    // @interface SVGKSource : NSObject <NSCopying>
+    [BaseType(typeof(NSObject))]
+    interface SVGKSource : INSCopying
+    {
+        // @property (nonatomic, strong) NSString * svgLanguageVersion;
+        [Export("svgLanguageVersion", ArgumentSemantic.Strong)]
+        string SvgLanguageVersion { get; set; }
 
-	// @interface SVGKSource : NSObject <NSCopying>
-	[BaseType(typeof(NSObject))]
-	interface SVGKSource : INSCopying
-	{
-		// @property (nonatomic, strong) NSString * svgLanguageVersion;
-		[Export("svgLanguageVersion", ArgumentSemantic.Strong)]
-		string SvgLanguageVersion { get; set; }
+        // @property (nonatomic, strong) NSInputStream * stream;
+        [Export("stream", ArgumentSemantic.Strong)]
+        NSInputStream Stream { get; set; }
 
-		// @property (nonatomic, strong) NSInputStream * stream;
-		[Export("stream", ArgumentSemantic.Strong)]
-		NSInputStream Stream { get; set; }
+        // @property (nonatomic) uint64_t approximateLengthInBytesOr0;
+        [Export("approximateLengthInBytesOr0")]
+        ulong ApproximateLengthInBytesOr0 { get; set; }
 
-		// @property (nonatomic) uint64_t approximateLengthInBytesOr0;
-		[Export("approximateLengthInBytesOr0")]
-		ulong ApproximateLengthInBytesOr0 { get; set; }
+        // @property (nonatomic, strong) NSString * keyForAppleDictionaries;
+        [Export("keyForAppleDictionaries", ArgumentSemantic.Strong)]
+        string KeyForAppleDictionaries { get; set; }
 
-		// @property (nonatomic, strong) NSString * keyForAppleDictionaries;
-		[Export("keyForAppleDictionaries", ArgumentSemantic.Strong)]
-		string KeyForAppleDictionaries { get; set; }
+        // -(id)initWithInputSteam:(NSInputStream *)stream;
+        [Export("initWithInputSteam:")]
+        IntPtr Constructor(NSInputStream stream);
 
-		// -(id)initWithInputSteam:(NSInputStream *)stream;
-		[Export("initWithInputSteam:")]
-		IntPtr Constructor(NSInputStream stream);
+        // -(SVGKSource *)sourceFromRelativePath:(NSString *)path;
+        [Export("sourceFromRelativePath:")]
+        SVGKSource SourceFromRelativePath(string path);
+    }
 
-		// -(SVGKSource *)sourceFromRelativePath:(NSString *)path;
-		[Export("sourceFromRelativePath:")]
-		SVGKSource SourceFromRelativePath(string path);
-	}
+    // @interface SVGSVGElement : SVGElement <DocumentCSS, SVGFitToViewBox, ConverterSVGToCALayer>
+    [BaseType(typeof(SVGElement))]
+    interface SVGSVGElement : IDocumentCSS, ISVGFitToViewBox, IConverterSVGToCALayer
+    {
+        // @property (readonly, nonatomic, strong) SVGLength * x;
+        [Export("x", ArgumentSemantic.Strong)]
+        SVGLength X { get; }
 
-	// @interface SVGSVGElement : SVGElement <DocumentCSS, SVGFitToViewBox, ConverterSVGToCALayer>
-	[BaseType(typeof(SVGElement))]
-	interface SVGSVGElement : IDocumentCSS, ISVGFitToViewBox, IConverterSVGToCALayer
-	{
-		// @property (readonly, nonatomic, strong) SVGLength * x;
-		[Export("x", ArgumentSemantic.Strong)]
-		SVGLength X { get; }
+        // @property (readonly, nonatomic, strong) SVGLength * y;
+        [Export("y", ArgumentSemantic.Strong)]
+        SVGLength Y { get; }
 
-		// @property (readonly, nonatomic, strong) SVGLength * y;
-		[Export("y", ArgumentSemantic.Strong)]
-		SVGLength Y { get; }
+        // @property (readonly, nonatomic, strong) SVGLength * width;
+        [Export("width", ArgumentSemantic.Strong)]
+        SVGLength Width { get; }
 
-		// @property (readonly, nonatomic, strong) SVGLength * width;
-		[Export("width", ArgumentSemantic.Strong)]
-		SVGLength Width { get; }
+        // @property (readonly, nonatomic, strong) SVGLength * height;
+        [Export("height", ArgumentSemantic.Strong)]
+        SVGLength Height { get; }
 
-		// @property (readonly, nonatomic, strong) SVGLength * height;
-		[Export("height", ArgumentSemantic.Strong)]
-		SVGLength Height { get; }
+        // @property (readonly, nonatomic, strong) NSString * contentScriptType;
+        [Export("contentScriptType", ArgumentSemantic.Strong)]
+        string ContentScriptType { get; }
 
-		// @property (readonly, nonatomic, strong) NSString * contentScriptType;
-		[Export("contentScriptType", ArgumentSemantic.Strong)]
-		string ContentScriptType { get; }
+        // @property (readonly, nonatomic, strong) NSString * contentStyleType;
+        [Export("contentStyleType", ArgumentSemantic.Strong)]
+        string ContentStyleType { get; }
 
-		// @property (readonly, nonatomic, strong) NSString * contentStyleType;
-		[Export("contentStyleType", ArgumentSemantic.Strong)]
-		string ContentStyleType { get; }
+        // @property (readonly, nonatomic) SVGRect viewport;
+        [Export("viewport")]
+        SVGRect Viewport { get; }
 
-		// @property (readonly, nonatomic) SVGRect viewport;
-		[Export("viewport")]
-		SVGRect Viewport { get; }
+        // @property (readonly, nonatomic) float pixelUnitToMillimeterX;
+        [Export("pixelUnitToMillimeterX")]
+        float PixelUnitToMillimeterX { get; }
 
-		// @property (readonly, nonatomic) float pixelUnitToMillimeterX;
-		[Export("pixelUnitToMillimeterX")]
-		float PixelUnitToMillimeterX { get; }
+        // @property (readonly, nonatomic) float pixelUnitToMillimeterY;
+        [Export("pixelUnitToMillimeterY")]
+        float PixelUnitToMillimeterY { get; }
 
-		// @property (readonly, nonatomic) float pixelUnitToMillimeterY;
-		[Export("pixelUnitToMillimeterY")]
-		float PixelUnitToMillimeterY { get; }
+        // @property (readonly, nonatomic) float screenPixelToMillimeterX;
+        [Export("screenPixelToMillimeterX")]
+        float ScreenPixelToMillimeterX { get; }
 
-		// @property (readonly, nonatomic) float screenPixelToMillimeterX;
-		[Export("screenPixelToMillimeterX")]
-		float ScreenPixelToMillimeterX { get; }
+        // @property (readonly, nonatomic) float screenPixelToMillimeterY;
+        [Export("screenPixelToMillimeterY")]
+        float ScreenPixelToMillimeterY { get; }
 
-		// @property (readonly, nonatomic) float screenPixelToMillimeterY;
-		[Export("screenPixelToMillimeterY")]
-		float ScreenPixelToMillimeterY { get; }
+        // @property (readonly, nonatomic) BOOL useCurrentView;
+        [Export("useCurrentView")]
+        bool UseCurrentView { get; }
 
-		// @property (readonly, nonatomic) BOOL useCurrentView;
-		[Export("useCurrentView")]
-		bool UseCurrentView { get; }
+        // @property (readonly, nonatomic, strong) SVGViewSpec * currentView;
+        [Export("currentView", ArgumentSemantic.Strong)]
+        SVGViewSpec CurrentView { get; }
 
-		// @property (readonly, nonatomic, strong) SVGViewSpec * currentView;
-		[Export("currentView", ArgumentSemantic.Strong)]
-		SVGViewSpec CurrentView { get; }
+        // @property (readonly, nonatomic) float currentScale;
+        [Export("currentScale")]
+        float CurrentScale { get; }
 
-		// @property (readonly, nonatomic) float currentScale;
-		[Export("currentScale")]
-		float CurrentScale { get; }
+        // @property (readonly, nonatomic, strong) SVGPoint * currentTranslate;
+        [Export("currentTranslate", ArgumentSemantic.Strong)]
+        SVGPoint CurrentTranslate { get; }
 
-		// @property (readonly, nonatomic, strong) SVGPoint * currentTranslate;
-		[Export("currentTranslate", ArgumentSemantic.Strong)]
-		SVGPoint CurrentTranslate { get; }
+        // @property (readwrite, nonatomic, strong) SVGKSource * source;
+        [Export("source", ArgumentSemantic.Strong)]
+        SVGKSource Source { get; set; }
 
-		// @property (readwrite, nonatomic, strong) SVGKSource * source;
-		[Export("source", ArgumentSemantic.Strong)]
-		SVGKSource Source { get; set; }
+        // -(long)suspendRedraw:(long)maxWaitMilliseconds;
+        [Export("suspendRedraw:")]
+        nint SuspendRedraw(nint maxWaitMilliseconds);
 
-		// -(long)suspendRedraw:(long)maxWaitMilliseconds;
-		[Export("suspendRedraw:")]
-		nint SuspendRedraw(nint maxWaitMilliseconds);
+        // -(void)unsuspendRedraw:(long)suspendHandleID;
+        [Export("unsuspendRedraw:")]
+        void UnsuspendRedraw(nint suspendHandleID);
 
-		// -(void)unsuspendRedraw:(long)suspendHandleID;
-		[Export("unsuspendRedraw:")]
-		void UnsuspendRedraw(nint suspendHandleID);
+        // -(void)unsuspendRedrawAll;
+        [Export("unsuspendRedrawAll")]
+        void UnsuspendRedrawAll();
 
-		// -(void)unsuspendRedrawAll;
-		[Export("unsuspendRedrawAll")]
-		void UnsuspendRedrawAll();
+        // -(void)forceRedraw;
+        [Export("forceRedraw")]
+        void ForceRedraw();
 
-		// -(void)forceRedraw;
-		[Export("forceRedraw")]
-		void ForceRedraw();
+        // -(void)pauseAnimations;
+        [Export("pauseAnimations")]
+        void PauseAnimations();
 
-		// -(void)pauseAnimations;
-		[Export("pauseAnimations")]
-		void PauseAnimations();
+        // -(void)unpauseAnimations;
+        [Export("unpauseAnimations")]
+        void UnpauseAnimations();
 
-		// -(void)unpauseAnimations;
-		[Export("unpauseAnimations")]
-		void UnpauseAnimations();
+        // -(BOOL)animationsPaused;
+        [Export("animationsPaused")]
+        //[Verify (MethodToProperty)]
+        bool AnimationsPaused { get; }
 
-		// -(BOOL)animationsPaused;
-		[Export("animationsPaused")]
-		//[Verify (MethodToProperty)]
-		bool AnimationsPaused { get; }
+        // -(float)getCurrentTime;
+        [Export("getCurrentTime")]
+        //[Verify (MethodToProperty)]
+        float CurrentTime { get; }
 
-		// -(float)getCurrentTime;
-		[Export("getCurrentTime")]
-		//[Verify (MethodToProperty)]
-		float CurrentTime { get; }
+        // -(void)setCurrentTime:(float)seconds;
+        [Export("setCurrentTime:")]
+        void SetCurrentTime(float seconds);
 
-		// -(void)setCurrentTime:(float)seconds;
-		[Export("setCurrentTime:")]
-		void SetCurrentTime(float seconds);
+        // -(NodeList *)getIntersectionList:(SVGRect)rect referenceElement:(SVGElement *)referenceElement;
+        [Export("getIntersectionList:referenceElement:")]
+        NodeList GetIntersectionList(SVGRect rect, SVGElement referenceElement);
 
-		// -(NodeList *)getIntersectionList:(SVGRect)rect referenceElement:(SVGElement *)referenceElement;
-		[Export("getIntersectionList:referenceElement:")]
-		NodeList GetIntersectionList(SVGRect rect, SVGElement referenceElement);
+        // -(NodeList *)getEnclosureList:(SVGRect)rect referenceElement:(SVGElement *)referenceElement;
+        [Export("getEnclosureList:referenceElement:")]
+        NodeList GetEnclosureList(SVGRect rect, SVGElement referenceElement);
 
-		// -(NodeList *)getEnclosureList:(SVGRect)rect referenceElement:(SVGElement *)referenceElement;
-		[Export("getEnclosureList:referenceElement:")]
-		NodeList GetEnclosureList(SVGRect rect, SVGElement referenceElement);
+        // -(BOOL)checkIntersection:(SVGElement *)element rect:(SVGRect)rect;
+        [Export("checkIntersection:rect:")]
+        bool CheckIntersection(SVGElement element, SVGRect rect);
 
-		// -(BOOL)checkIntersection:(SVGElement *)element rect:(SVGRect)rect;
-		[Export("checkIntersection:rect:")]
-		bool CheckIntersection(SVGElement element, SVGRect rect);
+        // -(BOOL)checkEnclosure:(SVGElement *)element rect:(SVGRect)rect;
+        [Export("checkEnclosure:rect:")]
+        bool CheckEnclosure(SVGElement element, SVGRect rect);
 
-		// -(BOOL)checkEnclosure:(SVGElement *)element rect:(SVGRect)rect;
-		[Export("checkEnclosure:rect:")]
-		bool CheckEnclosure(SVGElement element, SVGRect rect);
+        // -(void)deselectAll;
+        [Export("deselectAll")]
+        void DeselectAll();
 
-		// -(void)deselectAll;
-		[Export("deselectAll")]
-		void DeselectAll();
+        // -(SVGNumber)createSVGNumber;
+        [Export("createSVGNumber")]
+        //[Verify (MethodToProperty)]
+        SVGNumber CreateSVGNumber { get; }
 
-		// -(SVGNumber)createSVGNumber;
-		[Export("createSVGNumber")]
-		//[Verify (MethodToProperty)]
-		SVGNumber CreateSVGNumber { get; }
+        // -(SVGLength *)createSVGLength __attribute__((ns_returns_retained));
+        [Export("createSVGLength")]
+        //[Verify (MethodToProperty)]
+        SVGLength CreateSVGLength { get; }
 
-		// -(SVGLength *)createSVGLength __attribute__((ns_returns_retained));
-		[Export("createSVGLength")]
-		//[Verify (MethodToProperty)]
-		SVGLength CreateSVGLength { get; }
+        // -(SVGAngle *)createSVGAngle;
+        [Export("createSVGAngle")]
+        //[Verify (MethodToProperty)]
+        SVGAngle CreateSVGAngle { get; }
 
-		// -(SVGAngle *)createSVGAngle;
-		[Export("createSVGAngle")]
-		//[Verify (MethodToProperty)]
-		SVGAngle CreateSVGAngle { get; }
+        // -(SVGPoint *)createSVGPoint;
+        [Export("createSVGPoint")]
+        //[Verify (MethodToProperty)]
+        SVGPoint CreateSVGPoint { get; }
 
-		// -(SVGPoint *)createSVGPoint;
-		[Export("createSVGPoint")]
-		//[Verify (MethodToProperty)]
-		SVGPoint CreateSVGPoint { get; }
+        // -(SVGMatrix *)createSVGMatrix;
+        [Export("createSVGMatrix")]
+        //[Verify (MethodToProperty)]
+        SVGMatrix CreateSVGMatrix { get; }
 
-		// -(SVGMatrix *)createSVGMatrix;
-		[Export("createSVGMatrix")]
-		//[Verify (MethodToProperty)]
-		SVGMatrix CreateSVGMatrix { get; }
+        // -(SVGRect)createSVGRect;
+        [Export("createSVGRect")]
+        //[Verify (MethodToProperty)]
+        SVGRect CreateSVGRect { get; }
 
-		// -(SVGRect)createSVGRect;
-		[Export("createSVGRect")]
-		//[Verify (MethodToProperty)]
-		SVGRect CreateSVGRect { get; }
+        // -(SVGTransform *)createSVGTransform;
+        [Export("createSVGTransform")]
+        //[Verify (MethodToProperty)]
+        SVGTransform CreateSVGTransform { get; }
 
-		// -(SVGTransform *)createSVGTransform;
-		[Export("createSVGTransform")]
-		//[Verify (MethodToProperty)]
-		SVGTransform CreateSVGTransform { get; }
+        // -(SVGTransform *)createSVGTransformFromMatrix:(SVGMatrix *)matrix;
+        [Export("createSVGTransformFromMatrix:")]
+        SVGTransform CreateSVGTransformFromMatrix(SVGMatrix matrix);
 
-		// -(SVGTransform *)createSVGTransformFromMatrix:(SVGMatrix *)matrix;
-		[Export("createSVGTransformFromMatrix:")]
-		SVGTransform CreateSVGTransformFromMatrix(SVGMatrix matrix);
+        // -(Element *)getElementById:(NSString *)elementId;
+        [Export("getElementById:")]
+        Element GetElementById(string elementId);
 
-		// -(Element *)getElementById:(NSString *)elementId;
-		[Export("getElementById:")]
-		Element GetElementById(string elementId);
+        // -(SVGElement *)findFirstElementOfClass:(Class)classParameter;
+        [Export("findFirstElementOfClass:")]
+        SVGElement FindFirstElementOfClass(Class classParameter);
 
-		// -(SVGElement *)findFirstElementOfClass:(Class)classParameter;
-		[Export("findFirstElementOfClass:")]
-		SVGElement FindFirstElementOfClass(Class classParameter);
+        // @property (readonly, nonatomic) SVGRect requestedViewport;
+        [Export("requestedViewport")]
+        SVGRect RequestedViewport { get; }
 
-		// @property (readonly, nonatomic) SVGRect requestedViewport;
-		[Export("requestedViewport")]
-		SVGRect RequestedViewport { get; }
+        // @property (readonly) double aspectRatioFromWidthPerHeight;
+        [Export("aspectRatioFromWidthPerHeight")]
+        double AspectRatioFromWidthPerHeight { get; }
 
-		// @property (readonly) double aspectRatioFromWidthPerHeight;
-		[Export("aspectRatioFromWidthPerHeight")]
-		double AspectRatioFromWidthPerHeight { get; }
+        // @property (readonly) double aspectRatioFromViewBox;
+        [Export("aspectRatioFromViewBox")]
+        double AspectRatioFromViewBox { get; }
+    }
 
-		// @property (readonly) double aspectRatioFromViewBox;
-		[Export("aspectRatioFromViewBox")]
-		double AspectRatioFromViewBox { get; }
-	}
+    // @interface SVGDocument : Document
+    [BaseType(typeof(Document))]
+    interface SVGDocument
+    {
+        // @property (readonly, nonatomic, strong) NSString * title;
+        [Export("title", ArgumentSemantic.Strong)]
+        string Title { get; }
 
-	// @interface SVGDocument : Document
-	[BaseType(typeof(Document))]
-	interface SVGDocument
-	{
-		// @property (readonly, nonatomic, strong) NSString * title;
-		[Export("title", ArgumentSemantic.Strong)]
-		string Title { get; }
+        // @property (readonly, nonatomic, strong) NSString * referrer;
+        [Export("referrer", ArgumentSemantic.Strong)]
+        string Referrer { get; }
 
-		// @property (readonly, nonatomic, strong) NSString * referrer;
-		[Export("referrer", ArgumentSemantic.Strong)]
-		string Referrer { get; }
+        // @property (readonly, nonatomic, strong) NSString * domain;
+        [Export("domain", ArgumentSemantic.Strong)]
+        string Domain { get; }
 
-		// @property (readonly, nonatomic, strong) NSString * domain;
-		[Export("domain", ArgumentSemantic.Strong)]
-		string Domain { get; }
+        // @property (readonly, nonatomic, strong) NSString * URL;
+        [Export("URL", ArgumentSemantic.Strong)]
+        string URL { get; }
 
-		// @property (readonly, nonatomic, strong) NSString * URL;
-		[Export("URL", ArgumentSemantic.Strong)]
-		string URL { get; }
+        // @property (readonly, nonatomic, strong) SVGSVGElement * rootElement;
+        [Export("rootElement", ArgumentSemantic.Strong)]
+        SVGSVGElement RootElement { get; }
 
-		// @property (readonly, nonatomic, strong) SVGSVGElement * rootElement;
-		[Export("rootElement", ArgumentSemantic.Strong)]
-		SVGSVGElement RootElement { get; }
+        // -(NSMutableDictionary *)allPrefixesByNamespace;
+        [Export("allPrefixesByNamespace")]
+        //[Verify (MethodToProperty)]
+        NSMutableDictionary AllPrefixesByNamespace { get; }
 
-		// -(NSMutableDictionary *)allPrefixesByNamespace;
-		[Export("allPrefixesByNamespace")]
-		//[Verify (MethodToProperty)]
-		NSMutableDictionary AllPrefixesByNamespace { get; }
-
-		// -(NSMutableDictionary *)allPrefixesByNamespaceNormalized;
-		[Export("allPrefixesByNamespaceNormalized")]
-		//[Verify (MethodToProperty)]
-		NSMutableDictionary AllPrefixesByNamespaceNormalized { get; }
-	}
-
+        // -(NSMutableDictionary *)allPrefixesByNamespaceNormalized;
+        [Export("allPrefixesByNamespaceNormalized")]
+        //[Verify (MethodToProperty)]
+        NSMutableDictionary AllPrefixesByNamespaceNormalized { get; }
+    }
+    /*
 	// @protocol SVGKParserExtension <NSObject>
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
@@ -1659,64 +1659,64 @@ namespace SVGKit
 		[Export("handleEndElement:document:parseResult:")]
 		void HandleEndElement(Node newNode, SVGKSource document, SVGKParseResult parseResult);
 	}
+    */
+    // @interface SVGKParseResult : NSObject
+    [BaseType(typeof(NSObject))]
+    interface SVGKParseResult
+    {
+        // @property (nonatomic, strong) NSMutableArray * warnings;
+        [Export("warnings", ArgumentSemantic.Strong)]
+        NSMutableArray Warnings { get; set; }
 
-	// @interface SVGKParseResult : NSObject
-	[BaseType(typeof(NSObject))]
-	interface SVGKParseResult
-	{
-		// @property (nonatomic, strong) NSMutableArray * warnings;
-		[Export("warnings", ArgumentSemantic.Strong)]
-		NSMutableArray Warnings { get; set; }
+        // @property (nonatomic, strong) NSMutableArray * errorsRecoverable;
+        [Export("errorsRecoverable", ArgumentSemantic.Strong)]
+        NSMutableArray ErrorsRecoverable { get; set; }
 
-		// @property (nonatomic, strong) NSMutableArray * errorsRecoverable;
-		[Export("errorsRecoverable", ArgumentSemantic.Strong)]
-		NSMutableArray ErrorsRecoverable { get; set; }
+        // @property (nonatomic, strong) NSMutableArray * errorsFatal;
+        [Export("errorsFatal", ArgumentSemantic.Strong)]
+        NSMutableArray ErrorsFatal { get; set; }
 
-		// @property (nonatomic, strong) NSMutableArray * errorsFatal;
-		[Export("errorsFatal", ArgumentSemantic.Strong)]
-		NSMutableArray ErrorsFatal { get; set; }
+        // @property (nonatomic) BOOL libXMLFailed;
+        [Export("libXMLFailed")]
+        bool LibXMLFailed { get; set; }
 
-		// @property (nonatomic) BOOL libXMLFailed;
-		[Export("libXMLFailed")]
-		bool LibXMLFailed { get; set; }
+        // @property (nonatomic) double parseProgressFractionApproximate;
+        [Export("parseProgressFractionApproximate")]
+        double ParseProgressFractionApproximate { get; set; }
 
-		// @property (nonatomic) double parseProgressFractionApproximate;
-		[Export("parseProgressFractionApproximate")]
-		double ParseProgressFractionApproximate { get; set; }
+        // @property (nonatomic, strong) SVGSVGElement * rootOfSVGTree;
+        [Export("rootOfSVGTree", ArgumentSemantic.Strong)]
+        SVGSVGElement RootOfSVGTree { get; set; }
 
-		// @property (nonatomic, strong) SVGSVGElement * rootOfSVGTree;
-		[Export("rootOfSVGTree", ArgumentSemantic.Strong)]
-		SVGSVGElement RootOfSVGTree { get; set; }
+        // @property (nonatomic, strong) SVGDocument * parsedDocument;
+        [Export("parsedDocument", ArgumentSemantic.Strong)]
+        SVGDocument ParsedDocument { get; set; }
 
-		// @property (nonatomic, strong) SVGDocument * parsedDocument;
-		[Export("parsedDocument", ArgumentSemantic.Strong)]
-		SVGDocument ParsedDocument { get; set; }
+        // @property (nonatomic, strong) NSMutableDictionary * namespacesEncountered;
+        [Export("namespacesEncountered", ArgumentSemantic.Strong)]
+        NSMutableDictionary NamespacesEncountered { get; set; }
 
-		// @property (nonatomic, strong) NSMutableDictionary * namespacesEncountered;
-		[Export("namespacesEncountered", ArgumentSemantic.Strong)]
-		NSMutableDictionary NamespacesEncountered { get; set; }
+        // -(void)addSourceError:(NSError *)fatalError;
+        [Export("addSourceError:")]
+        void AddSourceError(NSError fatalError);
 
-		// -(void)addSourceError:(NSError *)fatalError;
-		[Export("addSourceError:")]
-		void AddSourceError(NSError fatalError);
+        // -(void)addParseWarning:(NSError *)warning;
+        [Export("addParseWarning:")]
+        void AddParseWarning(NSError warning);
 
-		// -(void)addParseWarning:(NSError *)warning;
-		[Export("addParseWarning:")]
-		void AddParseWarning(NSError warning);
+        // -(void)addParseErrorRecoverable:(NSError *)recoverableError;
+        [Export("addParseErrorRecoverable:")]
+        void AddParseErrorRecoverable(NSError recoverableError);
 
-		// -(void)addParseErrorRecoverable:(NSError *)recoverableError;
-		[Export("addParseErrorRecoverable:")]
-		void AddParseErrorRecoverable(NSError recoverableError);
+        // -(void)addParseErrorFatal:(NSError *)fatalError;
+        [Export("addParseErrorFatal:")]
+        void AddParseErrorFatal(NSError fatalError);
 
-		// -(void)addParseErrorFatal:(NSError *)fatalError;
-		[Export("addParseErrorFatal:")]
-		void AddParseErrorFatal(NSError fatalError);
-
-		// -(void)addSAXError:(NSError *)saxError;
-		[Export("addSAXError:")]
-		void AddSAXError(NSError saxError);
-	}
-
+        // -(void)addSAXError:(NSError *)saxError;
+        [Export("addSAXError:")]
+        void AddSAXError(NSError saxError);
+    }
+    /*
 	// @interface  (SVGElement)
 	[Category]
 	[BaseType(typeof(SVGElement))]
@@ -2057,968 +2057,968 @@ namespace SVGKit
 		[Export("href", ArgumentSemantic.Strong)]
 		string Href { get; }
 	}
+    */
+    // @interface SVGKParser : NSObject
+    [BaseType(typeof(NSObject))]
+    interface SVGKParser
+    {
+        // @property (readonly, nonatomic, strong) SVGKSource * source;
+        [Export("source", ArgumentSemantic.Strong)]
+        SVGKSource Source { get; }
 
-	// @interface SVGKParser : NSObject
-	[BaseType(typeof(NSObject))]
-	interface SVGKParser
-	{
-		// @property (readonly, nonatomic, strong) SVGKSource * source;
-		[Export("source", ArgumentSemantic.Strong)]
-		SVGKSource Source { get; }
+        // @property (readonly, nonatomic, strong) NSMutableArray * externalStylesheets;
+        [Export("externalStylesheets", ArgumentSemantic.Strong)]
+        NSMutableArray ExternalStylesheets { get; }
 
-		// @property (readonly, nonatomic, strong) NSMutableArray * externalStylesheets;
-		[Export("externalStylesheets", ArgumentSemantic.Strong)]
-		NSMutableArray ExternalStylesheets { get; }
+        // @property (readonly, nonatomic, strong) SVGKParseResult * currentParseRun;
+        [Export("currentParseRun", ArgumentSemantic.Strong)]
+        SVGKParseResult CurrentParseRun { get; }
 
-		// @property (readonly, nonatomic, strong) SVGKParseResult * currentParseRun;
-		[Export("currentParseRun", ArgumentSemantic.Strong)]
-		SVGKParseResult CurrentParseRun { get; }
+        // @property (nonatomic, strong) NSMutableArray * parserExtensions;
+        [Export("parserExtensions", ArgumentSemantic.Strong)]
+        NSMutableArray ParserExtensions { get; set; }
 
-		// @property (nonatomic, strong) NSMutableArray * parserExtensions;
-		[Export("parserExtensions", ArgumentSemantic.Strong)]
-		NSMutableArray ParserExtensions { get; set; }
+        // @property (nonatomic, strong) NSMutableDictionary * parserKnownNamespaces;
+        [Export("parserKnownNamespaces", ArgumentSemantic.Strong)]
+        NSMutableDictionary ParserKnownNamespaces { get; set; }
 
-		// @property (nonatomic, strong) NSMutableDictionary * parserKnownNamespaces;
-		[Export("parserKnownNamespaces", ArgumentSemantic.Strong)]
-		NSMutableDictionary ParserKnownNamespaces { get; set; }
+        // +(void)cancelParser:(SVGKParser *)parserToCancel;
+        [Static]
+        [Export("cancelParser:")]
+        void CancelParser(SVGKParser parserToCancel);
 
-		// +(void)cancelParser:(SVGKParser *)parserToCancel;
-		[Static]
-		[Export("cancelParser:")]
-		void CancelParser(SVGKParser parserToCancel);
+        // +(SVGKParser *)newParserWithDefaultSVGKParserExtensions:(SVGKSource *)source;
+        [Static]
+        [Export("newParserWithDefaultSVGKParserExtensions:")]
+        SVGKParser NewParserWithDefaultSVGKParserExtensions(SVGKSource source);
 
-		// +(SVGKParser *)newParserWithDefaultSVGKParserExtensions:(SVGKSource *)source;
-		[Static]
-		[Export("newParserWithDefaultSVGKParserExtensions:")]
-		SVGKParser NewParserWithDefaultSVGKParserExtensions(SVGKSource source);
+        // +(SVGKParseResult *)parseSourceUsingDefaultSVGKParser:(SVGKSource *)source;
+        [Static]
+        [Export("parseSourceUsingDefaultSVGKParser:")]
+        SVGKParseResult ParseSourceUsingDefaultSVGKParser(SVGKSource source);
 
-		// +(SVGKParseResult *)parseSourceUsingDefaultSVGKParser:(SVGKSource *)source;
-		[Static]
-		[Export("parseSourceUsingDefaultSVGKParser:")]
-		SVGKParseResult ParseSourceUsingDefaultSVGKParser(SVGKSource source);
+        // -(SVGKParseResult *)parseSynchronously;
+        [Export("parseSynchronously")]
+        //[Verify (MethodToProperty)]
+        SVGKParseResult ParseSynchronously { get; }
 
-		// -(SVGKParseResult *)parseSynchronously;
-		[Export("parseSynchronously")]
-		//[Verify (MethodToProperty)]
-		SVGKParseResult ParseSynchronously { get; }
+        // +(NSDictionary *)NSDictionaryFromCSSAttributes:(Attr *)styleAttribute;
+        [Static]
+        [Export("NSDictionaryFromCSSAttributes:")]
+        NSDictionary NSDictionaryFromCSSAttributes(Attr styleAttribute);
 
-		// +(NSDictionary *)NSDictionaryFromCSSAttributes:(Attr *)styleAttribute;
-		[Static]
-		[Export("NSDictionaryFromCSSAttributes:")]
-		NSDictionary NSDictionaryFromCSSAttributes(Attr styleAttribute);
+        // -(id)initWithSource:(SVGKSource *)doc;
+        [Export("initWithSource:")]
+        IntPtr Constructor(SVGKSource doc);
 
-		// -(id)initWithSource:(SVGKSource *)doc;
-		[Export("initWithSource:")]
-		IntPtr Constructor(SVGKSource doc);
+        // -(void)addDefaultSVGParserExtensions;
+        [Export("addDefaultSVGParserExtensions")]
+        void AddDefaultSVGParserExtensions();
 
-		// -(void)addDefaultSVGParserExtensions;
-		[Export("addDefaultSVGParserExtensions")]
-		void AddDefaultSVGParserExtensions();
-
-		// -(void)addParserExtension:(NSObject<SVGKParserExtension> *)extension;
-		[Export("addParserExtension:")]
-		void AddParserExtension(SVGKParserExtension extension);
-	}
-
+        // -(void)addParserExtension:(NSObject<SVGKParserExtension> *)extension;
+        [Export("addParserExtension:")]
+        void AddParserExtension(SVGKParserExtension extension);
+    }
+    /*
 	// typedef void (^SVGKImageAsynchronousLoadingDelegate)(SVGKImage *, SVGKParseResult *);
 	delegate void SVGKImageAsynchronousLoadingDelegate(SVGKImage arg0, SVGKParseResult arg1);
-
-	// @interface SVGKImage : NSObject
-	[BaseType(typeof(NSObject))]
-	interface SVGKImage
-	{
-		// @property (readonly, nonatomic, weak) UIImage * UIImage;
-		[Export("UIImage", ArgumentSemantic.Weak)]
-		UIImage UIImage { get; }
-
-		// @property (readonly, nonatomic, strong) SVGKSource * source;
-		[Export("source", ArgumentSemantic.Strong)]
-		SVGKSource Source { get; }
-
-		// @property (readonly, nonatomic, strong) SVGKParseResult * parseErrorsAndWarnings;
-		[Export("parseErrorsAndWarnings", ArgumentSemantic.Strong)]
-		SVGKParseResult ParseErrorsAndWarnings { get; }
-
-		// @property (readonly, nonatomic, strong) SVGDocument * DOMDocument;
-		[Export("DOMDocument", ArgumentSemantic.Strong)]
-		SVGDocument DOMDocument { get; }
-
-		// @property (readonly, nonatomic, strong) SVGSVGElement * DOMTree;
-		[Export("DOMTree", ArgumentSemantic.Strong)]
-		SVGSVGElement DOMTree { get; }
-
-		// @property (readonly, nonatomic, strong) CALayer * CALayerTree;
-		[Export("CALayerTree", ArgumentSemantic.Strong)]
-		CALayer CALayerTree { get; }
-
-		// @property (readonly, nonatomic, strong) NSString * nameUsedToInstantiate;
-		[Export("nameUsedToInstantiate", ArgumentSemantic.Strong)]
-		string NameUsedToInstantiate { get; }
-
-		// +(SVGKImage *)imageNamed:(NSString *)name;
-		[Static]
-		[Export("imageNamed:")]
-		SVGKImage ImageNamed(string name);
-
-		// +(SVGKImage *)imageNamed:(NSString *)name inBundle:(NSBundle *)bundle;
-		[Static]
-		[Export("imageNamed:inBundle:")]
-		SVGKImage ImageNamed(string name, NSBundle bundle);
-
-		// +(SVGKParser *)imageAsynchronouslyNamed:(NSString *)name onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
-		[Static]
-		[Export("imageAsynchronouslyNamed:onCompletion:")]
-		SVGKParser ImageAsynchronouslyNamed(string name, SVGKImageAsynchronousLoadingDelegate blockCompleted);
-
-		// +(SVGKImage *)imageWithContentsOfFile:(NSString *)path;
-		[Static]
-		[Export("imageWithContentsOfFile:")]
-		SVGKImage ImageWithContentsOfFile(string path);
-
-		// +(SVGKImage *)imageWithContentsOfFileAsynchronously:(NSString *)aPath onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
-		[Static]
-		[Export("imageWithContentsOfFileAsynchronously:onCompletion:")]
-		SVGKImage ImageWithContentsOfFileAsynchronously(string aPath, SVGKImageAsynchronousLoadingDelegate blockCompleted);
-
-		// +(SVGKImage *)imageWithData:(NSData *)newNSData;
-		[Static]
-		[Export("imageWithData:")]
-		SVGKImage ImageWithData(NSData newNSData);
-
-		// +(SVGKImage *)imageWithDataAsynchronously:(NSData *)newNSData onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
-		[Static]
-		[Export("imageWithDataAsynchronously:onCompletion:")]
-		SVGKImage ImageWithDataAsynchronously(NSData newNSData, SVGKImageAsynchronousLoadingDelegate blockCompleted);
-
-		// +(SVGKImage *)imageWithSource:(SVGKSource *)newSource;
-		[Static]
-		[Export("imageWithSource:")]
-		SVGKImage ImageWithSource(SVGKSource newSource);
-
-		// +(SVGKParser *)imageWithSource:(SVGKSource *)source onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
-		[Static]
-		[Export("imageWithSource:onCompletion:")]
-		SVGKParser ImageWithSource(SVGKSource source, SVGKImageAsynchronousLoadingDelegate blockCompleted);
-
-		// -(id)initWithContentsOfFile:(NSString *)path;
-		[Export("initWithContentsOfFile:")]
-		IntPtr Constructor(string path);
-
-		// -(id)initWithData:(NSData *)data;
-		[Export("initWithData:")]
-		IntPtr Constructor(NSData data);
-
-		// -(BOOL)hasSize;
-		[Export("hasSize")]
-		//[Verify (MethodToProperty)]
-		bool HasSize { get; }
-
-		// @property (nonatomic) CGSize size;
-		[Export("size", ArgumentSemantic.Assign)]
-		CGSize Size { get; set; }
-
-		// -(void)drawAtPoint:(CGPoint)point;
-		[Export("drawAtPoint:")]
-		void DrawAtPoint(CGPoint point);
-
-		// @property (nonatomic) CGFloat scale;
-		[Export("scale")]
-		nfloat Scale { get; set; }
-
-		// -(void)drawAtPoint:(CGPoint)point blendMode:(CGBlendMode)blendMode alpha:(CGFloat)alpha;
-		[Export("drawAtPoint:blendMode:alpha:")]
-		void DrawAtPoint(CGPoint point, CGBlendMode blendMode, nfloat alpha);
-
-		// -(void)drawInRect:(CGRect)rect;
-		[Export("drawInRect:")]
-		void DrawInRect(CGRect rect);
-
-		// -(void)drawInRect:(CGRect)rect blendMode:(CGBlendMode)blendMode alpha:(CGFloat)alpha;
-		[Export("drawInRect:blendMode:alpha:")]
-		void DrawInRect(CGRect rect, CGBlendMode blendMode, nfloat alpha);
-
-		// -(void)drawAsPatternInRect:(CGRect)rect;
-		[Export("drawAsPatternInRect:")]
-		void DrawAsPatternInRect(CGRect rect);
-
-		// +(UIImage *)animatedImageNamed:(NSString *)name duration:(NSTimeInterval)duration;
-		[Static]
-		[Export("animatedImageNamed:duration:")]
-		UIImage AnimatedImageNamed(string name, double duration);
-
-		// +(UIImage *)animatedResizableImageNamed:(NSString *)name capInsets:(UIEdgeInsets)capInsets duration:(NSTimeInterval)duration;
-		[Static]
-		[Export("animatedResizableImageNamed:capInsets:duration:")]
-		UIImage AnimatedResizableImageNamed(string name, UIEdgeInsets capInsets, double duration);
-
-		// +(UIImage *)animatedImageWithImages:(NSArray *)images duration:(NSTimeInterval)duration;
-		[Static]
-		[Export("animatedImageWithImages:duration:")]
-		//[Verify (StronglyTypedNSArray)]
-		UIImage AnimatedImageWithImages(NSObject[] images, double duration);
-
-		// +(SVGKImage *)imageWithContentsOfURL:(NSURL *)url;
-		[Static]
-		[Export("imageWithContentsOfURL:")]
-		SVGKImage ImageWithContentsOfURL(NSUrl url);
-
-		// -(id)initWithSource:(SVGKSource *)source;
-		[Export("initWithSource:")]
-		IntPtr Constructor(SVGKSource source);
-
-		// -(id)initWithParsedSVG:(SVGKParseResult *)parseResult fromSource:(SVGKSource *)parseSource;
-		[Export("initWithParsedSVG:fromSource:")]
-		IntPtr Constructor(SVGKParseResult parseResult, SVGKSource parseSource);
-
-		// -(CALayer *)newCALayerTree;
-		[Export("newCALayerTree")]
-		//[Verify (MethodToProperty)]
-		CALayer NewCALayerTree { get; }
-
-		// -(CALayer *)layerWithIdentifier:(NSString *)identifier;
-		[Export("layerWithIdentifier:")]
-		CALayer LayerWithIdentifier(string identifier);
-
-		// -(CALayer *)layerWithIdentifier:(NSString *)identifier layer:(CALayer *)layer;
-		[Export("layerWithIdentifier:layer:")]
-		CALayer LayerWithIdentifier(string identifier, CALayer layer);
-
-		// -(CALayer *)newCopyPositionedAbsoluteLayerWithIdentifier:(NSString *)identifier;
-		[Export("newCopyPositionedAbsoluteLayerWithIdentifier:")]
-		CALayer NewCopyPositionedAbsoluteLayerWithIdentifier(string identifier);
-
-		// -(CALayer *)newCopyPositionedAbsoluteOfLayer:(CALayer *)originalLayer;
-		[Export("newCopyPositionedAbsoluteOfLayer:")]
-		CALayer NewCopyPositionedAbsoluteOfLayer(CALayer originalLayer);
-
-		// -(CALayer *)newCopyPositionedAbsoluteOfLayer:(CALayer *)originalLayer withSubLayers:(BOOL)recursive;
-		[Export("newCopyPositionedAbsoluteOfLayer:withSubLayers:")]
-		CALayer NewCopyPositionedAbsoluteOfLayer(CALayer originalLayer, bool recursive);
-
-		// -(NSDictionary *)dictionaryOfLayers;
-		[Export("dictionaryOfLayers")]
-		//[Verify (MethodToProperty)]
-		NSDictionary DictionaryOfLayers { get; }
-
-		// -(void)scaleToFitInside:(CGSize)maxSize;
-		[Export("scaleToFitInside:")]
-		void ScaleToFitInside(CGSize maxSize);
-	}
-
-	// @interface SVGKExporterNSData : NSObject
-	[BaseType(typeof(NSObject))]
-	interface SVGKExporterNSData
-	{
-		// +(NSData *)exportAsNSData:(SVGKImage *)image;
-		[Static]
-		[Export("exportAsNSData:")]
-		NSData ExportAsNSData(SVGKImage image);
-
-		// +(NSData *)exportAsNSData:(SVGKImage *)image flipYaxis:(BOOL)flipYaxis;
-		[Static]
-		[Export("exportAsNSData:flipYaxis:")]
-		NSData ExportAsNSData(SVGKImage image, bool flipYaxis);
-
-		// +(NSData *)exportAsNSData:(SVGKImage *)image antiAliased:(BOOL)shouldAntialias curveFlatnessFactor:(CGFloat)multiplyFlatness interpolationQuality:(CGInterpolationQuality)interpolationQuality flipYaxis:(BOOL)flipYaxis;
-		[Static]
-		[Export("exportAsNSData:antiAliased:curveFlatnessFactor:interpolationQuality:flipYaxis:")]
-		NSData ExportAsNSData(SVGKImage image, bool shouldAntialias, nfloat multiplyFlatness, CGInterpolationQuality interpolationQuality, bool flipYaxis);
-	}
-
-	// @interface SVGKExporterUIImage : NSObject
-	[BaseType(typeof(NSObject))]
-	interface SVGKExporterUIImage
-	{
-		// +(UIImage *)exportAsUIImage:(SVGKImage *)image;
-		[Static]
-		[Export("exportAsUIImage:")]
-		UIImage ExportAsUIImage(SVGKImage image);
-
-		// +(UIImage *)exportAsUIImage:(SVGKImage *)image antiAliased:(BOOL)shouldAntialias curveFlatnessFactor:(CGFloat)multiplyFlatness interpolationQuality:(CGInterpolationQuality)interpolationQuality;
-		[Static]
-		[Export("exportAsUIImage:antiAliased:curveFlatnessFactor:interpolationQuality:")]
-		UIImage ExportAsUIImage(SVGKImage image, bool shouldAntialias, nfloat multiplyFlatness, CGInterpolationQuality interpolationQuality);
-	}
-
-	// @interface SVGKImageView : UIView
-	[BaseType(typeof(UIView))]
-	interface SVGKImageView
-	{
-		// @property (nonatomic, strong) SVGKImage * image;
-		[Export("image", ArgumentSemantic.Strong)]
-		SVGKImage Image { get; set; }
-
-		// @property (nonatomic) BOOL showBorder;
-		[Export("showBorder")]
-		bool ShowBorder { get; set; }
-
-		// @property (readonly, nonatomic) NSTimeInterval timeIntervalForLastReRenderOfSVGFromMemory;
-		[Export("timeIntervalForLastReRenderOfSVGFromMemory")]
-		double TimeIntervalForLastReRenderOfSVGFromMemory { get; }
-
-		// -(id)initWithSVGKImage:(SVGKImage *)im;
-		[Export("initWithSVGKImage:")]
-		IntPtr Constructor(SVGKImage im);
-	}
-
-	// @interface SVGLineElement : BaseClassForAllSVGBasicShapes
-	[BaseType(typeof(BaseClassForAllSVGBasicShapes))]
-	interface SVGLineElement
-	{
-		// @property (readonly, nonatomic) CGFloat x1;
-		[Export("x1")]
-		nfloat X1 { get; }
-
-		// @property (readonly, nonatomic) CGFloat y1;
-		[Export("y1")]
-		nfloat Y1 { get; }
-
-		// @property (readonly, nonatomic) CGFloat x2;
-		[Export("x2")]
-		nfloat X2 { get; }
-
-		// @property (readonly, nonatomic) CGFloat y2;
-		[Export("y2")]
-		nfloat Y2 { get; }
-	}
-
-	// @interface SVGPathElement : BaseClassForAllSVGBasicShapes
-	[BaseType(typeof(BaseClassForAllSVGBasicShapes))]
-	interface SVGPathElement
-	{
-	}
-
-	// @interface SVGPolygonElement : BaseClassForAllSVGBasicShapes
-	[BaseType(typeof(BaseClassForAllSVGBasicShapes))]
-	interface SVGPolygonElement
-	{
-	}
-
-	// @interface SVGPolylineElement : BaseClassForAllSVGBasicShapes
-	[BaseType(typeof(BaseClassForAllSVGBasicShapes))]
-	interface SVGPolylineElement
-	{
-	}
-
-	// @interface SVGRectElement : BaseClassForAllSVGBasicShapes <SVGStylable, SVGTransformable>
-	[BaseType(typeof(BaseClassForAllSVGBasicShapes))]
-	interface SVGRectElement : ISVGStylable, ISVGTransformable
-	{
-		// @property (readonly, nonatomic, strong) SVGLength * x;
-		[Export("x", ArgumentSemantic.Strong)]
-		SVGLength X { get; }
-
-		// @property (readonly, nonatomic, strong) SVGLength * y;
-		[Export("y", ArgumentSemantic.Strong)]
-		SVGLength Y { get; }
-
-		// @property (readonly, nonatomic, strong) SVGLength * width;
-		[Export("width", ArgumentSemantic.Strong)]
-		SVGLength Width { get; }
-
-		// @property (readonly, nonatomic, strong) SVGLength * height;
-		[Export("height", ArgumentSemantic.Strong)]
-		SVGLength Height { get; }
-
-		// @property (readonly, nonatomic, strong) SVGLength * rx;
-		[Export("rx", ArgumentSemantic.Strong)]
-		SVGLength Rx { get; }
-
-		// @property (readonly, nonatomic, strong) SVGLength * ry;
-		[Export("ry", ArgumentSemantic.Strong)]
-		SVGLength Ry { get; }
-	}
-
-	// @interface SVGTitleElement : SVGElement
-	[BaseType(typeof(SVGElement))]
-	interface SVGTitleElement
-	{
-	}
-
-	// @interface SVGKPattern : NSObject
-	[BaseType(typeof(NSObject))]
-	interface SVGKPattern
-	{
-		// +(SVGKPattern *)patternWithUIColor:(UIColor *)color;
-		[Static]
-		[Export("patternWithUIColor:")]
-		SVGKPattern PatternWithUIColor(UIColor color);
-
-		// +(SVGKPattern *)patternWithImage:(UIImage *)image;
-		[Static]
-		[Export("patternWithImage:")]
-		SVGKPattern PatternWithImage(UIImage image);
-
-		// @property (readwrite, nonatomic, strong) UIColor * color;
-		[Export("color", ArgumentSemantic.Strong)]
-		UIColor Color { get; set; }
-
-		// -(CGColorRef)CGColor;
-		[Export("CGColor")]
-		//[Verify (MethodToProperty)]
-		unsafe CGColor CGColor { get; }
-	}
-
-	// @interface SVGKLayeredImageView : SVGKImageView
-	[BaseType(typeof(SVGKImageView))]
-	interface SVGKLayeredImageView
-	{
-	}
-
-	// @interface SVGKLayer : CALayer
-	[BaseType(typeof(CALayer))]
-	interface SVGKLayer
-	{
-		// @property (nonatomic, strong) SVGKImage * SVGImage;
-		[Export("SVGImage", ArgumentSemantic.Strong)]
-		SVGKImage SVGImage { get; set; }
-
-		// @property (nonatomic) BOOL showBorder;
-		[Export("showBorder")]
-		bool ShowBorder { get; set; }
-
-		// @property (nonatomic, strong) NSDate * startRenderTime;
-		[Export("startRenderTime", ArgumentSemantic.Strong)]
-		NSDate StartRenderTime { get; set; }
-
-		// @property (nonatomic, strong) NSDate * endRenderTime;
-		[Export("endRenderTime", ArgumentSemantic.Strong)]
-		NSDate EndRenderTime { get; set; }
-	}
-
-	// @interface SVGTextContentElement : SVGElement <SVGStylable>
-	[BaseType(typeof(SVGElement))]
-	interface SVGTextContentElement : ISVGStylable
-	{
-		// @property (readonly, nonatomic, weak) SVGLength * textLength;
-		[Export("textLength", ArgumentSemantic.Weak)]
-		SVGLength TextLength { get; }
-	}
-
-	// @interface SVGTextPositioningElement : SVGTextContentElement
-	[BaseType(typeof(SVGTextContentElement))]
-	interface SVGTextPositioningElement
-	{
-		// @property (readonly, nonatomic, strong) SVGLength * x;
-		[Export("x", ArgumentSemantic.Strong)]
-		SVGLength X { get; }
-
-		// @property (readonly, nonatomic, strong) SVGLength * y;
-		[Export("y", ArgumentSemantic.Strong)]
-		SVGLength Y { get; }
-
-		// @property (readonly, nonatomic, strong) SVGLength * dx;
-		[Export("dx", ArgumentSemantic.Strong)]
-		SVGLength Dx { get; }
-
-		// @property (readonly, nonatomic, strong) SVGLength * dy;
-		[Export("dy", ArgumentSemantic.Strong)]
-		SVGLength Dy { get; }
-
-		// @property (readonly, nonatomic, strong) SVGLength * rotate;
-		[Export("rotate", ArgumentSemantic.Strong)]
-		SVGLength Rotate { get; }
-	}
-
-	// @interface SVGTextElement : SVGTextPositioningElement <SVGTransformable, ConverterSVGToCALayer>
-	[BaseType(typeof(SVGTextPositioningElement))]
-	interface SVGTextElement : ISVGTransformable, IConverterSVGToCALayer
-	{
-	}
-
-	// @interface TinySVGTextAreaElement : SVGTextElement
-	[BaseType(typeof(SVGTextElement))]
-	interface TinySVGTextAreaElement
-	{
-		// @property (readonly, nonatomic, strong) SVGLength * width;
-		[Export("width", ArgumentSemantic.Strong)]
-		SVGLength Width { get; }
-
-		// @property (readonly, nonatomic, strong) SVGLength * height;
-		[Export("height", ArgumentSemantic.Strong)]
-		SVGLength Height { get; }
-	}
-
-	// @interface SVGKit : NSObject
-	[BaseType(typeof(NSObject))]
-	interface SVGKit
-	{
-		// +(void)enableLogging;
-		[Static]
-		[Export("enableLogging")]
-		void EnableLogging();
-	}
-
-	[Static]
-	//[Verify (ConstantsInterfaceAssociation)]
-	partial interface Constants
-	{
-		// extern double SVGKitFramework_VersionNumber;
-		[Field("SVGKitFramework_VersionNumber", "__Internal")]
-		double SVGKitFramework_VersionNumber { get; }
-
-		// extern const unsigned char [] SVGKitFramework_VersionString;
-		[Field("SVGKitFramework_VersionString", "__Internal")]
-		IntPtr SVGKitFramework_VersionString { get; }
-	}
-
-	// @interface  (StyleSheetList)
-	[Category]
-	[BaseType(typeof(StyleSheetList))]
-	interface StyleSheetList_
-	{
-		// @property (nonatomic, strong) NSMutableArray * internalArray;
-		[Export("internalArray", ArgumentSemantic.Strong)]
-		NSMutableArray InternalArray { get; set; }
-	}
-
-	// @interface  (SVGSVGElement)
-	[Category]
-	[BaseType(typeof(SVGSVGElement))]
-	interface SVGSVGElement_
-	{
-		// @property (readwrite, nonatomic, strong) SVGLength * x;
-		[Export("x", ArgumentSemantic.Strong)]
-		SVGLength X { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGLength * y;
-		[Export("y", ArgumentSemantic.Strong)]
-		SVGLength Y { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGLength * width;
-		[Export("width", ArgumentSemantic.Strong)]
-		SVGLength Width { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGLength * height;
-		[Export("height", ArgumentSemantic.Strong)]
-		SVGLength Height { get; set; }
-
-		// @property (readwrite, nonatomic, strong) NSString * contentScriptType;
-		[Export("contentScriptType", ArgumentSemantic.Strong)]
-		string ContentScriptType { get; set; }
-
-		// @property (readwrite, nonatomic, strong) NSString * contentStyleType;
-		[Export("contentStyleType", ArgumentSemantic.Strong)]
-		string ContentStyleType { get; set; }
-
-		// @property (readwrite, nonatomic) SVGRect viewport;
-		[Export("viewport", ArgumentSemantic.Assign)]
-		SVGRect Viewport { get; set; }
-
-		// @property (readwrite, nonatomic) float pixelUnitToMillimeterX;
-		[Export("pixelUnitToMillimeterX")]
-		float PixelUnitToMillimeterX { get; set; }
-
-		// @property (readwrite, nonatomic) float pixelUnitToMillimeterY;
-		[Export("pixelUnitToMillimeterY")]
-		float PixelUnitToMillimeterY { get; set; }
-
-		// @property (readwrite, nonatomic) float screenPixelToMillimeterX;
-		[Export("screenPixelToMillimeterX")]
-		float ScreenPixelToMillimeterX { get; set; }
-
-		// @property (readwrite, nonatomic) float screenPixelToMillimeterY;
-		[Export("screenPixelToMillimeterY")]
-		float ScreenPixelToMillimeterY { get; set; }
-
-		// @property (readwrite, nonatomic) BOOL useCurrentView;
-		[Export("useCurrentView")]
-		bool UseCurrentView { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGViewSpec * currentView;
-		[Export("currentView", ArgumentSemantic.Strong)]
-		SVGViewSpec CurrentView { get; set; }
-
-		// @property (readwrite, nonatomic) float currentScale;
-		[Export("currentScale")]
-		float CurrentScale { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGPoint * currentTranslate;
-		[Export("currentTranslate", ArgumentSemantic.Strong)]
-		SVGPoint CurrentTranslate { get; set; }
-	}
-
-	// @interface  (SVGUseElement)
-	[Category]
-	[BaseType(typeof(SVGUseElement))]
-	interface SVGUseElement_
-	{
-		// @property (readwrite, nonatomic, strong) SVGLength * x;
-		[Export("x", ArgumentSemantic.Strong)]
-		SVGLength X { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGLength * y;
-		[Export("y", ArgumentSemantic.Strong)]
-		SVGLength Y { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGLength * width;
-		[Export("width", ArgumentSemantic.Strong)]
-		SVGLength Width { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGLength * height;
-		[Export("height", ArgumentSemantic.Strong)]
-		SVGLength Height { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGElementInstance * instanceRoot;
-		[Export("instanceRoot", ArgumentSemantic.Strong)]
-		SVGElementInstance InstanceRoot { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGElementInstance * animatedInstanceRoot;
-		[Export("animatedInstanceRoot", ArgumentSemantic.Strong)]
-		SVGElementInstance AnimatedInstanceRoot { get; set; }
-	}
-
-	// @interface  (SVGTextPositioningElement)
-	[Category]
-	[BaseType(typeof(SVGTextPositioningElement))]
-	interface SVGTextPositioningElement_
-	{
-		// @property (readwrite, nonatomic, strong) SVGLength * x;
-		[Export("x", ArgumentSemantic.Strong)]
-		SVGLength X { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGLength * y;
-		[Export("y", ArgumentSemantic.Strong)]
-		SVGLength Y { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGLength * dx;
-		[Export("dx", ArgumentSemantic.Strong)]
-		SVGLength Dx { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGLength * dy;
-		[Export("dy", ArgumentSemantic.Strong)]
-		SVGLength Dy { get; set; }
-
-		// @property (readwrite, nonatomic, strong) SVGLength * rotate;
-		[Export("rotate", ArgumentSemantic.Strong)]
-		SVGLength Rotate { get; set; }
-	}
-
-	// @protocol SVGStyleCatcher <NSObject>
-	[Protocol, Model]
-	[BaseType(typeof(NSObject))]
-	interface SVGStyleCatcher
-	{
-		// @required -(void)styleCatchLayer:(CALayer *)styledLayer forClass:(NSString *)colorIndex;
-		[Abstract]
-		[Export("styleCatchLayer:forClass:")]
-		void StyleCatchLayer(CALayer styledLayer, string colorIndex);
-
-		// @required -(UIColor *)styleCatchOverrideFill:(NSString *)fillClassName;
-		[Abstract]
-		[Export("styleCatchOverrideFill:")]
-		UIColor StyleCatchOverrideFill(string fillClassName);
-	}
-
-	// @interface SVGStyleElement : SVGElement
-	[BaseType(typeof(SVGElement))]
-	interface SVGStyleElement
-	{
-	}
-
-	// @interface CGContext (SVGKImage)
-	[Category]
-	[BaseType(typeof(SVGKImage))]
-	interface SVGKImage_CGContext
-	{
-		// -(CGContextRef)newCGContextAutosizedToFit;
-		[Export("newCGContextAutosizedToFit")]
-		//[Verify (MethodToProperty)]
-		unsafe CGContext NewCGContextAutosizedToFit { get; }
-
-		// -(void)renderInContext:(CGContextRef)ctx;
-		[Export("renderInContext:")]
-		unsafe void RenderInContext(CGContext ctx);
-
-		// -(void)renderToContext:(CGContextRef)context antiAliased:(BOOL)shouldAntialias curveFlatnessFactor:(CGFloat)multiplyFlatness interpolationQuality:(CGInterpolationQuality)interpolationQuality flipYaxis:(BOOL)flipYaxis;
-		[Export("renderToContext:antiAliased:curveFlatnessFactor:interpolationQuality:flipYaxis:")]
-		unsafe void RenderToContext(CGContext context, bool shouldAntialias, nfloat multiplyFlatness, CGInterpolationQuality interpolationQuality, bool flipYaxis);
-	}
-
-	// @interface SVGKSourceLocalFile : SVGKSource
-	[BaseType(typeof(SVGKSource))]
-	interface SVGKSourceLocalFile
-	{
-		// @property (nonatomic, strong) NSString * filePath;
-		[Export("filePath", ArgumentSemantic.Strong)]
-		string FilePath { get; set; }
-
-		// @property (readonly, nonatomic) BOOL wasRelative;
-		[Export("wasRelative")]
-		bool WasRelative { get; }
-
-		// +(SVGKSourceLocalFile *)sourceFromFilename:(NSString *)p;
-		[Static]
-		[Export("sourceFromFilename:")]
-		SVGKSourceLocalFile SourceFromFilename(string p);
-
-		// +(SVGKSourceLocalFile *)internalSourceAnywhereInBundleUsingName:(NSString *)name;
-		[Static]
-		[Export("internalSourceAnywhereInBundleUsingName:")]
-		SVGKSourceLocalFile InternalSourceAnywhereInBundleUsingName(string name);
-
-		// +(SVGKSourceLocalFile *)internalSourceAnywhereInBundle:(NSBundle *)bundle usingName:(NSString *)name;
-		[Static]
-		[Export("internalSourceAnywhereInBundle:usingName:")]
-		SVGKSourceLocalFile InternalSourceAnywhereInBundle(NSBundle bundle, string name);
-	}
-
-	// @interface SVGKSourceString : SVGKSource
-	[BaseType(typeof(SVGKSource))]
-	interface SVGKSourceString
-	{
-		// @property (nonatomic, strong) NSString * rawString;
-		[Export("rawString", ArgumentSemantic.Strong)]
-		string RawString { get; set; }
-
-		// +(SVGKSource *)sourceFromContentsOfString:(NSString *)rawString;
-		[Static]
-		[Export("sourceFromContentsOfString:")]
-		SVGKSource SourceFromContentsOfString(string rawString);
-	}
-
-	// @interface SVGKSourceURL : SVGKSource
-	[BaseType(typeof(SVGKSource))]
-	interface SVGKSourceURL
-	{
-		// @property (nonatomic, strong) NSURL * URL;
-		[Export("URL", ArgumentSemantic.Strong)]
-		NSUrl URL { get; set; }
-
-		// +(SVGKSource *)sourceFromURL:(NSURL *)u;
-		[Static]
-		[Export("sourceFromURL:")]
-		SVGKSource SourceFromURL(NSUrl u);
-	}
-
-	// @interface SVGKParserDefsAndUse : NSObject <SVGKParserExtension>
-	[BaseType(typeof(NSObject))]
-	interface SVGKParserDefsAndUse : SVGKParserExtension
-	{
-	}
-
-	// @interface SVGKParserDOM : NSObject <SVGKParserExtension>
-	[BaseType(typeof(NSObject))]
-	interface SVGKParserDOM : SVGKParserExtension
-	{
-	}
-
-	// @interface SVGKParserSVG : NSObject <SVGKParserExtension>
-	[BaseType(typeof(NSObject))]
-	interface SVGKParserSVG : SVGKParserExtension
-	{
-	}
-
-	// @interface SVGKParserGradient : SVGKParserSVG
-	[BaseType(typeof(SVGKParserSVG))]
-	interface SVGKParserGradient
-	{
-	}
-
-	// @interface SVGKParserPatternsAndGradients : NSObject <SVGKParserExtension>
-	[BaseType(typeof(NSObject))]
-	interface SVGKParserPatternsAndGradients : SVGKParserExtension
-	{
-	}
-
-	// @interface SVGKParserStyles : NSObject <SVGKParserExtension>
-	[BaseType(typeof(NSObject))]
-	interface SVGKParserStyles : SVGKParserExtension
-	{
-	}
-
-	// @interface SVGKPointsAndPathsParser : NSObject
-	[BaseType(typeof(NSObject))]
-	interface SVGKPointsAndPathsParser
-	{
-		// +(void)readWhitespace:(NSString *)scanner;
-		[Static]
-		[Export("readWhitespace:")]
-		void ReadWhitespace(NSString scanner);
-
-		// +(void)readCommaAndWhitespace:(NSString *)scanner;
-		[Static]
-		[Export("readCommaAndWhitespace:")]
-		void ReadCommaAndWhitespace(NSString scanner);
-
-		// +(void)readCoordinate:(NSString *)scanner intoFloat:(CGFloat *)floatPointer;
-		[Static]
-		[Export("readCoordinate:intoFloat:")]
-		unsafe void ReadCoordinate(NSString scanner, nfloat floatPointer);
-
-		// +(CGPoint)readCoordinatePair:(NSString *)scanner;
-		[Static]
-		[Export("readCoordinatePair:")]
-		CGPoint ReadCoordinatePair(NSString scanner);
-
-		// +(CGPoint)readMovetoDrawtoCommandGroups:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
-		[Static]
-		[Export("readMovetoDrawtoCommandGroups:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadMovetoDrawtoCommandGroups(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
-
-		// +(CGPoint)readMovetoDrawto:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
-		[Static]
-		[Export("readMovetoDrawto:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadMovetoDrawto(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
-
-		// +(CGPoint)readMoveto:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
-		[Static]
-		[Export("readMoveto:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadMoveto(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
-
-		// +(CGPoint)readMovetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
-		[Static]
-		[Export("readMovetoArgumentSequence:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadMovetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
-
-		// +(CGPoint)readLinetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
-		[Static]
-		[Export("readLinetoCommand:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadLinetoCommand(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
-
-		// +(CGPoint)readLinetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
-		[Static]
-		[Export("readLinetoArgumentSequence:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadLinetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
-
-		// +(CGPoint)readVerticalLinetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
-		[Static]
-		[Export("readVerticalLinetoCommand:path:relativeTo:")]
-		unsafe CGPoint ReadVerticalLinetoCommand(NSString scanner, CGPath path, CGPoint origin);
-
-		// +(CGPoint)readVerticalLinetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
-		[Static]
-		[Export("readVerticalLinetoArgumentSequence:path:relativeTo:")]
-		unsafe CGPoint ReadVerticalLinetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin);
-
-		// +(CGPoint)readHorizontalLinetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
-		[Static]
-		[Export("readHorizontalLinetoArgumentSequence:path:relativeTo:")]
-		unsafe CGPoint ReadHorizontalLinetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin);
-
-		// +(CGPoint)readHorizontalLinetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
-		[Static]
-		[Export("readHorizontalLinetoCommand:path:relativeTo:")]
-		unsafe CGPoint ReadHorizontalLinetoCommand(NSString scanner, CGPath path, CGPoint origin);
-
-		// +(SVGCurve)readQuadraticCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
-		[Static]
-		[Export("readQuadraticCurvetoCommand:path:relativeTo:isRelative:")]
-		unsafe SVGCurve ReadQuadraticCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
-
-		// +(SVGCurve)readQuadraticCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
-		[Static]
-		[Export("readQuadraticCurvetoArgumentSequence:path:relativeTo:isRelative:")]
-		unsafe SVGCurve ReadQuadraticCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
-
-		// +(SVGCurve)readQuadraticCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
-		[Static]
-		[Export("readQuadraticCurvetoArgument:path:relativeTo:")]
-		unsafe SVGCurve ReadQuadraticCurvetoArgument(NSString scanner, CGPath path, CGPoint origin);
-
-		// +(SVGCurve)readSmoothQuadraticCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
-		[Static]
-		[Export("readSmoothQuadraticCurvetoCommand:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothQuadraticCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
-
-		// +(SVGCurve)readSmoothQuadraticCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
-		[Static]
-		[Export("readSmoothQuadraticCurvetoArgumentSequence:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothQuadraticCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
-
-		// +(SVGCurve)readSmoothQuadraticCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
-		[Static]
-		[Export("readSmoothQuadraticCurvetoArgument:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothQuadraticCurvetoArgument(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
-
-		// +(SVGCurve)readCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
-		[Static]
-		[Export("readCurvetoCommand:path:relativeTo:isRelative:")]
-		unsafe SVGCurve ReadCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
-
-		// +(SVGCurve)readCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
-		[Static]
-		[Export("readCurvetoArgumentSequence:path:relativeTo:isRelative:")]
-		unsafe SVGCurve ReadCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
-
-		// +(SVGCurve)readCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
-		[Static]
-		[Export("readCurvetoArgument:path:relativeTo:")]
-		unsafe SVGCurve ReadCurvetoArgument(NSString scanner, CGPath path, CGPoint origin);
-
-		// +(SVGCurve)readSmoothCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
-		[Static]
-		[Export("readSmoothCurvetoCommand:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
-
-		// +(SVGCurve)readSmoothCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
-		[Static]
-		[Export("readSmoothCurvetoArgumentSequence:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
-
-		// +(SVGCurve)readSmoothCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
-		[Static]
-		[Export("readSmoothCurvetoArgument:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothCurvetoArgument(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
-
-		// +(SVGCurve)readEllipticalArcArguments:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
-		[Static]
-		[Export("readEllipticalArcArguments:path:relativeTo:")]
-		unsafe SVGCurve ReadEllipticalArcArguments(NSString scanner, CGPath path, CGPoint origin);
-
-		// +(CGPoint)readCloseCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
-		[Static]
-		[Export("readCloseCommand:path:relativeTo:")]
-		unsafe CGPoint ReadCloseCommand(NSString scanner, CGPath path, CGPoint origin);
-	}
-
-	// @interface SVGKSourceNSData : SVGKSource
-	[BaseType(typeof(SVGKSource))]
-	interface SVGKSourceNSData
-	{
-		// @property (nonatomic, strong) NSData * rawData;
-		[Export("rawData", ArgumentSemantic.Strong)]
-		NSData RawData { get; set; }
-
-		// @property (nonatomic, strong) NSURL * effectiveURL;
-		[Export("effectiveURL", ArgumentSemantic.Strong)]
-		NSUrl EffectiveURL { get; set; }
-
-		// +(SVGKSource *)sourceFromData:(NSData *)data URLForRelativeLinks:(NSURL *)url;
-		[Static]
-		[Export("sourceFromData:URLForRelativeLinks:")]
-		SVGKSource SourceFromData(NSData data, NSUrl url);
-	}
-
-	// @interface SVGSwitchElement : SVGElement <ConverterSVGToCALayer>
-	[BaseType(typeof(SVGElement))]
-	interface SVGSwitchElement : IConverterSVGToCALayer
-	{
-		// @property (readonly, nonatomic, strong) NodeList * visibleChildNodes;
-		[Export("visibleChildNodes", ArgumentSemantic.Strong)]
-		NodeList VisibleChildNodes { get; }
-	}
-
-	// @interface SVGKFastImageView : SVGKImageView
-	[BaseType(typeof(SVGKImageView))]
-	interface SVGKFastImageView
-	{
-		// @property (nonatomic) CGSize tileRatio;
-		[Export("tileRatio", ArgumentSemantic.Assign)]
-		CGSize TileRatio { get; set; }
-
-		// @property (nonatomic) BOOL disableAutoRedrawAtHighestResolution;
-		[Export("disableAutoRedrawAtHighestResolution")]
-		bool DisableAutoRedrawAtHighestResolution { get; set; }
-
-		// +(BOOL)svgImageHasNoGradients:(SVGKImage *)image;
-		[Static]
-		[Export("svgImageHasNoGradients:")]
-		bool SvgImageHasNoGradients(SVGKImage image);
-
-		// +(BOOL)svgElementAndDescendentsHaveNoGradients:(SVGElement *)element;
-		[Static]
-		[Export("svgElementAndDescendentsHaveNoGradients:")]
-		bool SvgElementAndDescendentsHaveNoGradients(SVGElement element);
-	}
+*/
+    // @interface SVGKImage : NSObject
+    [BaseType(typeof(NSObject))]
+    interface SVGKImage
+    {
+        // @property (readonly, nonatomic, weak) UIImage * UIImage;
+        [Export("UIImage", ArgumentSemantic.Weak)]
+        UIImage UIImage { get; }
+
+        // @property (readonly, nonatomic, strong) SVGKSource * source;
+        [Export("source", ArgumentSemantic.Strong)]
+        SVGKSource Source { get; }
+
+        // @property (readonly, nonatomic, strong) SVGKParseResult * parseErrorsAndWarnings;
+        [Export("parseErrorsAndWarnings", ArgumentSemantic.Strong)]
+        SVGKParseResult ParseErrorsAndWarnings { get; }
+
+        // @property (readonly, nonatomic, strong) SVGDocument * DOMDocument;
+        [Export("DOMDocument", ArgumentSemantic.Strong)]
+        SVGDocument DOMDocument { get; }
+
+        // @property (readonly, nonatomic, strong) SVGSVGElement * DOMTree;
+        [Export("DOMTree", ArgumentSemantic.Strong)]
+        SVGSVGElement DOMTree { get; }
+
+        // @property (readonly, nonatomic, strong) CALayer * CALayerTree;
+        [Export("CALayerTree", ArgumentSemantic.Strong)]
+        CALayer CALayerTree { get; }
+
+        // @property (readonly, nonatomic, strong) NSString * nameUsedToInstantiate;
+        [Export("nameUsedToInstantiate", ArgumentSemantic.Strong)]
+        string NameUsedToInstantiate { get; }
+
+        // +(SVGKImage *)imageNamed:(NSString *)name;
+        [Static]
+        [Export("imageNamed:")]
+        SVGKImage ImageNamed(string name);
+
+        // +(SVGKImage *)imageNamed:(NSString *)name inBundle:(NSBundle *)bundle;
+        [Static]
+        [Export("imageNamed:inBundle:")]
+        SVGKImage ImageNamed(string name, NSBundle bundle);
+
+        // +(SVGKParser *)imageAsynchronouslyNamed:(NSString *)name onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
+        [Static]
+        [Export("imageAsynchronouslyNamed:onCompletion:")]
+        SVGKParser ImageAsynchronouslyNamed(string name, SVGKImageAsynchronousLoadingDelegate blockCompleted);
+
+        // +(SVGKImage *)imageWithContentsOfFile:(NSString *)path;
+        [Static]
+        [Export("imageWithContentsOfFile:")]
+        SVGKImage ImageWithContentsOfFile(string path);
+
+        // +(SVGKImage *)imageWithContentsOfFileAsynchronously:(NSString *)aPath onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
+        [Static]
+        [Export("imageWithContentsOfFileAsynchronously:onCompletion:")]
+        SVGKImage ImageWithContentsOfFileAsynchronously(string aPath, SVGKImageAsynchronousLoadingDelegate blockCompleted);
+
+        // +(SVGKImage *)imageWithData:(NSData *)newNSData;
+        [Static]
+        [Export("imageWithData:")]
+        SVGKImage ImageWithData(NSData newNSData);
+
+        // +(SVGKImage *)imageWithDataAsynchronously:(NSData *)newNSData onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
+        [Static]
+        [Export("imageWithDataAsynchronously:onCompletion:")]
+        SVGKImage ImageWithDataAsynchronously(NSData newNSData, SVGKImageAsynchronousLoadingDelegate blockCompleted);
+
+        // +(SVGKImage *)imageWithSource:(SVGKSource *)newSource;
+        [Static]
+        [Export("imageWithSource:")]
+        SVGKImage ImageWithSource(SVGKSource newSource);
+
+        // +(SVGKParser *)imageWithSource:(SVGKSource *)source onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
+        [Static]
+        [Export("imageWithSource:onCompletion:")]
+        SVGKParser ImageWithSource(SVGKSource source, SVGKImageAsynchronousLoadingDelegate blockCompleted);
+
+        // -(id)initWithContentsOfFile:(NSString *)path;
+        [Export("initWithContentsOfFile:")]
+        IntPtr Constructor(string path);
+
+        // -(id)initWithData:(NSData *)data;
+        [Export("initWithData:")]
+        IntPtr Constructor(NSData data);
+
+        // -(BOOL)hasSize;
+        [Export("hasSize")]
+        //[Verify (MethodToProperty)]
+        bool HasSize { get; }
+
+        // @property (nonatomic) CGSize size;
+        [Export("size", ArgumentSemantic.Assign)]
+        CGSize Size { get; set; }
+
+        // -(void)drawAtPoint:(CGPoint)point;
+        [Export("drawAtPoint:")]
+        void DrawAtPoint(CGPoint point);
+
+        // @property (nonatomic) CGFloat scale;
+        [Export("scale")]
+        nfloat Scale { get; set; }
+
+        // -(void)drawAtPoint:(CGPoint)point blendMode:(CGBlendMode)blendMode alpha:(CGFloat)alpha;
+        [Export("drawAtPoint:blendMode:alpha:")]
+        void DrawAtPoint(CGPoint point, CGBlendMode blendMode, nfloat alpha);
+
+        // -(void)drawInRect:(CGRect)rect;
+        [Export("drawInRect:")]
+        void DrawInRect(CGRect rect);
+
+        // -(void)drawInRect:(CGRect)rect blendMode:(CGBlendMode)blendMode alpha:(CGFloat)alpha;
+        [Export("drawInRect:blendMode:alpha:")]
+        void DrawInRect(CGRect rect, CGBlendMode blendMode, nfloat alpha);
+
+        // -(void)drawAsPatternInRect:(CGRect)rect;
+        [Export("drawAsPatternInRect:")]
+        void DrawAsPatternInRect(CGRect rect);
+
+        // +(UIImage *)animatedImageNamed:(NSString *)name duration:(NSTimeInterval)duration;
+        [Static]
+        [Export("animatedImageNamed:duration:")]
+        UIImage AnimatedImageNamed(string name, double duration);
+
+        // +(UIImage *)animatedResizableImageNamed:(NSString *)name capInsets:(UIEdgeInsets)capInsets duration:(NSTimeInterval)duration;
+        [Static]
+        [Export("animatedResizableImageNamed:capInsets:duration:")]
+        UIImage AnimatedResizableImageNamed(string name, UIEdgeInsets capInsets, double duration);
+
+        // +(UIImage *)animatedImageWithImages:(NSArray *)images duration:(NSTimeInterval)duration;
+        [Static]
+        [Export("animatedImageWithImages:duration:")]
+        //[Verify (StronglyTypedNSArray)]
+        UIImage AnimatedImageWithImages(NSObject[] images, double duration);
+
+        // +(SVGKImage *)imageWithContentsOfURL:(NSURL *)url;
+        [Static]
+        [Export("imageWithContentsOfURL:")]
+        SVGKImage ImageWithContentsOfURL(NSUrl url);
+
+        // -(id)initWithSource:(SVGKSource *)source;
+        [Export("initWithSource:")]
+        IntPtr Constructor(SVGKSource source);
+
+        // -(id)initWithParsedSVG:(SVGKParseResult *)parseResult fromSource:(SVGKSource *)parseSource;
+        [Export("initWithParsedSVG:fromSource:")]
+        IntPtr Constructor(SVGKParseResult parseResult, SVGKSource parseSource);
+
+        // -(CALayer *)newCALayerTree;
+        [Export("newCALayerTree")]
+        //[Verify (MethodToProperty)]
+        CALayer NewCALayerTree { get; }
+
+        // -(CALayer *)layerWithIdentifier:(NSString *)identifier;
+        [Export("layerWithIdentifier:")]
+        CALayer LayerWithIdentifier(string identifier);
+
+        // -(CALayer *)layerWithIdentifier:(NSString *)identifier layer:(CALayer *)layer;
+        [Export("layerWithIdentifier:layer:")]
+        CALayer LayerWithIdentifier(string identifier, CALayer layer);
+
+        // -(CALayer *)newCopyPositionedAbsoluteLayerWithIdentifier:(NSString *)identifier;
+        [Export("newCopyPositionedAbsoluteLayerWithIdentifier:")]
+        CALayer NewCopyPositionedAbsoluteLayerWithIdentifier(string identifier);
+
+        // -(CALayer *)newCopyPositionedAbsoluteOfLayer:(CALayer *)originalLayer;
+        [Export("newCopyPositionedAbsoluteOfLayer:")]
+        CALayer NewCopyPositionedAbsoluteOfLayer(CALayer originalLayer);
+
+        // -(CALayer *)newCopyPositionedAbsoluteOfLayer:(CALayer *)originalLayer withSubLayers:(BOOL)recursive;
+        [Export("newCopyPositionedAbsoluteOfLayer:withSubLayers:")]
+        CALayer NewCopyPositionedAbsoluteOfLayer(CALayer originalLayer, bool recursive);
+
+        // -(NSDictionary *)dictionaryOfLayers;
+        [Export("dictionaryOfLayers")]
+        //[Verify (MethodToProperty)]
+        NSDictionary DictionaryOfLayers { get; }
+
+        // -(void)scaleToFitInside:(CGSize)maxSize;
+        [Export("scaleToFitInside:")]
+        void ScaleToFitInside(CGSize maxSize);
+    }
+    /*
+    // @interface SVGKExporterNSData : NSObject
+    [BaseType(typeof(NSObject))]
+    interface SVGKExporterNSData
+    {
+        // +(NSData *)exportAsNSData:(SVGKImage *)image;
+        [Static]
+        [Export("exportAsNSData:")]
+        NSData ExportAsNSData(SVGKImage image);
+
+        // +(NSData *)exportAsNSData:(SVGKImage *)image flipYaxis:(BOOL)flipYaxis;
+        [Static]
+        [Export("exportAsNSData:flipYaxis:")]
+        NSData ExportAsNSData(SVGKImage image, bool flipYaxis);
+
+        // +(NSData *)exportAsNSData:(SVGKImage *)image antiAliased:(BOOL)shouldAntialias curveFlatnessFactor:(CGFloat)multiplyFlatness interpolationQuality:(CGInterpolationQuality)interpolationQuality flipYaxis:(BOOL)flipYaxis;
+        [Static]
+        [Export("exportAsNSData:antiAliased:curveFlatnessFactor:interpolationQuality:flipYaxis:")]
+        NSData ExportAsNSData(SVGKImage image, bool shouldAntialias, nfloat multiplyFlatness, CGInterpolationQuality interpolationQuality, bool flipYaxis);
+    }
+
+    // @interface SVGKExporterUIImage : NSObject
+    [BaseType(typeof(NSObject))]
+    interface SVGKExporterUIImage
+    {
+        // +(UIImage *)exportAsUIImage:(SVGKImage *)image;
+        [Static]
+        [Export("exportAsUIImage:")]
+        UIImage ExportAsUIImage(SVGKImage image);
+
+        // +(UIImage *)exportAsUIImage:(SVGKImage *)image antiAliased:(BOOL)shouldAntialias curveFlatnessFactor:(CGFloat)multiplyFlatness interpolationQuality:(CGInterpolationQuality)interpolationQuality;
+        [Static]
+        [Export("exportAsUIImage:antiAliased:curveFlatnessFactor:interpolationQuality:")]
+        UIImage ExportAsUIImage(SVGKImage image, bool shouldAntialias, nfloat multiplyFlatness, CGInterpolationQuality interpolationQuality);
+    }
+    */
+    // @interface SVGKImageView : UIView
+    [BaseType(typeof(UIView))]
+    interface SVGKImageView
+    {
+        // @property (nonatomic, strong) SVGKImage * image;
+        [Export("image", ArgumentSemantic.Strong)]
+        SVGKImage Image { get; set; }
+
+        // @property (nonatomic) BOOL showBorder;
+        [Export("showBorder")]
+        bool ShowBorder { get; set; }
+
+        // @property (readonly, nonatomic) NSTimeInterval timeIntervalForLastReRenderOfSVGFromMemory;
+        [Export("timeIntervalForLastReRenderOfSVGFromMemory")]
+        double TimeIntervalForLastReRenderOfSVGFromMemory { get; }
+
+        // -(id)initWithSVGKImage:(SVGKImage *)im;
+        [Export("initWithSVGKImage:")]
+        IntPtr Constructor(SVGKImage im);
+    }
+    /*
+    // @interface SVGLineElement : BaseClassForAllSVGBasicShapes
+    [BaseType(typeof(BaseClassForAllSVGBasicShapes))]
+    interface SVGLineElement
+    {
+        // @property (readonly, nonatomic) CGFloat x1;
+        [Export("x1")]
+        nfloat X1 { get; }
+
+        // @property (readonly, nonatomic) CGFloat y1;
+        [Export("y1")]
+        nfloat Y1 { get; }
+
+        // @property (readonly, nonatomic) CGFloat x2;
+        [Export("x2")]
+        nfloat X2 { get; }
+
+        // @property (readonly, nonatomic) CGFloat y2;
+        [Export("y2")]
+        nfloat Y2 { get; }
+    }
+
+    // @interface SVGPathElement : BaseClassForAllSVGBasicShapes
+    [BaseType(typeof(BaseClassForAllSVGBasicShapes))]
+    interface SVGPathElement
+    {
+    }
+
+    // @interface SVGPolygonElement : BaseClassForAllSVGBasicShapes
+    [BaseType(typeof(BaseClassForAllSVGBasicShapes))]
+    interface SVGPolygonElement
+    {
+    }
+
+    // @interface SVGPolylineElement : BaseClassForAllSVGBasicShapes
+    [BaseType(typeof(BaseClassForAllSVGBasicShapes))]
+    interface SVGPolylineElement
+    {
+    }
+
+    // @interface SVGRectElement : BaseClassForAllSVGBasicShapes <SVGStylable, SVGTransformable>
+    [BaseType(typeof(BaseClassForAllSVGBasicShapes))]
+    interface SVGRectElement : ISVGStylable, ISVGTransformable
+    {
+        // @property (readonly, nonatomic, strong) SVGLength * x;
+        [Export("x", ArgumentSemantic.Strong)]
+        SVGLength X { get; }
+
+        // @property (readonly, nonatomic, strong) SVGLength * y;
+        [Export("y", ArgumentSemantic.Strong)]
+        SVGLength Y { get; }
+
+        // @property (readonly, nonatomic, strong) SVGLength * width;
+        [Export("width", ArgumentSemantic.Strong)]
+        SVGLength Width { get; }
+
+        // @property (readonly, nonatomic, strong) SVGLength * height;
+        [Export("height", ArgumentSemantic.Strong)]
+        SVGLength Height { get; }
+
+        // @property (readonly, nonatomic, strong) SVGLength * rx;
+        [Export("rx", ArgumentSemantic.Strong)]
+        SVGLength Rx { get; }
+
+        // @property (readonly, nonatomic, strong) SVGLength * ry;
+        [Export("ry", ArgumentSemantic.Strong)]
+        SVGLength Ry { get; }
+    }
+
+    // @interface SVGTitleElement : SVGElement
+    [BaseType(typeof(SVGElement))]
+    interface SVGTitleElement
+    {
+    }
+
+    // @interface SVGKPattern : NSObject
+    [BaseType(typeof(NSObject))]
+    interface SVGKPattern
+    {
+        // +(SVGKPattern *)patternWithUIColor:(UIColor *)color;
+        [Static]
+        [Export("patternWithUIColor:")]
+        SVGKPattern PatternWithUIColor(UIColor color);
+
+        // +(SVGKPattern *)patternWithImage:(UIImage *)image;
+        [Static]
+        [Export("patternWithImage:")]
+        SVGKPattern PatternWithImage(UIImage image);
+
+        // @property (readwrite, nonatomic, strong) UIColor * color;
+        [Export("color", ArgumentSemantic.Strong)]
+        UIColor Color { get; set; }
+
+        // -(CGColorRef)CGColor;
+        [Export("CGColor")]
+        //[Verify (MethodToProperty)]
+        unsafe CGColor CGColor { get; }
+    }
+
+    // @interface SVGKLayeredImageView : SVGKImageView
+    [BaseType(typeof(SVGKImageView))]
+    interface SVGKLayeredImageView
+    {
+    }
+
+    // @interface SVGKLayer : CALayer
+    [BaseType(typeof(CALayer))]
+    interface SVGKLayer
+    {
+        // @property (nonatomic, strong) SVGKImage * SVGImage;
+        [Export("SVGImage", ArgumentSemantic.Strong)]
+        SVGKImage SVGImage { get; set; }
+
+        // @property (nonatomic) BOOL showBorder;
+        [Export("showBorder")]
+        bool ShowBorder { get; set; }
+
+        // @property (nonatomic, strong) NSDate * startRenderTime;
+        [Export("startRenderTime", ArgumentSemantic.Strong)]
+        NSDate StartRenderTime { get; set; }
+
+        // @property (nonatomic, strong) NSDate * endRenderTime;
+        [Export("endRenderTime", ArgumentSemantic.Strong)]
+        NSDate EndRenderTime { get; set; }
+    }
+
+    // @interface SVGTextContentElement : SVGElement <SVGStylable>
+    [BaseType(typeof(SVGElement))]
+    interface SVGTextContentElement : ISVGStylable
+    {
+        // @property (readonly, nonatomic, weak) SVGLength * textLength;
+        [Export("textLength", ArgumentSemantic.Weak)]
+        SVGLength TextLength { get; }
+    }
+
+    // @interface SVGTextPositioningElement : SVGTextContentElement
+    [BaseType(typeof(SVGTextContentElement))]
+    interface SVGTextPositioningElement
+    {
+        // @property (readonly, nonatomic, strong) SVGLength * x;
+        [Export("x", ArgumentSemantic.Strong)]
+        SVGLength X { get; }
+
+        // @property (readonly, nonatomic, strong) SVGLength * y;
+        [Export("y", ArgumentSemantic.Strong)]
+        SVGLength Y { get; }
+
+        // @property (readonly, nonatomic, strong) SVGLength * dx;
+        [Export("dx", ArgumentSemantic.Strong)]
+        SVGLength Dx { get; }
+
+        // @property (readonly, nonatomic, strong) SVGLength * dy;
+        [Export("dy", ArgumentSemantic.Strong)]
+        SVGLength Dy { get; }
+
+        // @property (readonly, nonatomic, strong) SVGLength * rotate;
+        [Export("rotate", ArgumentSemantic.Strong)]
+        SVGLength Rotate { get; }
+    }
+
+    // @interface SVGTextElement : SVGTextPositioningElement <SVGTransformable, ConverterSVGToCALayer>
+    [BaseType(typeof(SVGTextPositioningElement))]
+    interface SVGTextElement : ISVGTransformable, IConverterSVGToCALayer
+    {
+    }
+
+    // @interface TinySVGTextAreaElement : SVGTextElement
+    [BaseType(typeof(SVGTextElement))]
+    interface TinySVGTextAreaElement
+    {
+        // @property (readonly, nonatomic, strong) SVGLength * width;
+        [Export("width", ArgumentSemantic.Strong)]
+        SVGLength Width { get; }
+
+        // @property (readonly, nonatomic, strong) SVGLength * height;
+        [Export("height", ArgumentSemantic.Strong)]
+        SVGLength Height { get; }
+    }
+
+    // @interface SVGKit : NSObject
+    [BaseType(typeof(NSObject))]
+    interface SVGKit
+    {
+        // +(void)enableLogging;
+        [Static]
+        [Export("enableLogging")]
+        void EnableLogging();
+    }
+
+    [Static]
+    //[Verify (ConstantsInterfaceAssociation)]
+    partial interface Constants
+    {
+        // extern double SVGKitFramework_VersionNumber;
+        [Field("SVGKitFramework_VersionNumber", "__Internal")]
+        double SVGKitFramework_VersionNumber { get; }
+
+        // extern const unsigned char [] SVGKitFramework_VersionString;
+        [Field("SVGKitFramework_VersionString", "__Internal")]
+        IntPtr SVGKitFramework_VersionString { get; }
+    }
+
+    // @interface  (StyleSheetList)
+    [Category]
+    [BaseType(typeof(StyleSheetList))]
+    interface StyleSheetList_
+    {
+        // @property (nonatomic, strong) NSMutableArray * internalArray;
+        [Export("internalArray", ArgumentSemantic.Strong)]
+        NSMutableArray InternalArray { get; set; }
+    }
+
+    // @interface  (SVGSVGElement)
+    [Category]
+    [BaseType(typeof(SVGSVGElement))]
+    interface SVGSVGElement_
+    {
+        // @property (readwrite, nonatomic, strong) SVGLength * x;
+        [Export("x", ArgumentSemantic.Strong)]
+        SVGLength X { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGLength * y;
+        [Export("y", ArgumentSemantic.Strong)]
+        SVGLength Y { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGLength * width;
+        [Export("width", ArgumentSemantic.Strong)]
+        SVGLength Width { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGLength * height;
+        [Export("height", ArgumentSemantic.Strong)]
+        SVGLength Height { get; set; }
+
+        // @property (readwrite, nonatomic, strong) NSString * contentScriptType;
+        [Export("contentScriptType", ArgumentSemantic.Strong)]
+        string ContentScriptType { get; set; }
+
+        // @property (readwrite, nonatomic, strong) NSString * contentStyleType;
+        [Export("contentStyleType", ArgumentSemantic.Strong)]
+        string ContentStyleType { get; set; }
+
+        // @property (readwrite, nonatomic) SVGRect viewport;
+        [Export("viewport", ArgumentSemantic.Assign)]
+        SVGRect Viewport { get; set; }
+
+        // @property (readwrite, nonatomic) float pixelUnitToMillimeterX;
+        [Export("pixelUnitToMillimeterX")]
+        float PixelUnitToMillimeterX { get; set; }
+
+        // @property (readwrite, nonatomic) float pixelUnitToMillimeterY;
+        [Export("pixelUnitToMillimeterY")]
+        float PixelUnitToMillimeterY { get; set; }
+
+        // @property (readwrite, nonatomic) float screenPixelToMillimeterX;
+        [Export("screenPixelToMillimeterX")]
+        float ScreenPixelToMillimeterX { get; set; }
+
+        // @property (readwrite, nonatomic) float screenPixelToMillimeterY;
+        [Export("screenPixelToMillimeterY")]
+        float ScreenPixelToMillimeterY { get; set; }
+
+        // @property (readwrite, nonatomic) BOOL useCurrentView;
+        [Export("useCurrentView")]
+        bool UseCurrentView { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGViewSpec * currentView;
+        [Export("currentView", ArgumentSemantic.Strong)]
+        SVGViewSpec CurrentView { get; set; }
+
+        // @property (readwrite, nonatomic) float currentScale;
+        [Export("currentScale")]
+        float CurrentScale { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGPoint * currentTranslate;
+        [Export("currentTranslate", ArgumentSemantic.Strong)]
+        SVGPoint CurrentTranslate { get; set; }
+    }
+
+    // @interface  (SVGUseElement)
+    [Category]
+    [BaseType(typeof(SVGUseElement))]
+    interface SVGUseElement_
+    {
+        // @property (readwrite, nonatomic, strong) SVGLength * x;
+        [Export("x", ArgumentSemantic.Strong)]
+        SVGLength X { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGLength * y;
+        [Export("y", ArgumentSemantic.Strong)]
+        SVGLength Y { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGLength * width;
+        [Export("width", ArgumentSemantic.Strong)]
+        SVGLength Width { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGLength * height;
+        [Export("height", ArgumentSemantic.Strong)]
+        SVGLength Height { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGElementInstance * instanceRoot;
+        [Export("instanceRoot", ArgumentSemantic.Strong)]
+        SVGElementInstance InstanceRoot { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGElementInstance * animatedInstanceRoot;
+        [Export("animatedInstanceRoot", ArgumentSemantic.Strong)]
+        SVGElementInstance AnimatedInstanceRoot { get; set; }
+    }
+
+    // @interface  (SVGTextPositioningElement)
+    [Category]
+    [BaseType(typeof(SVGTextPositioningElement))]
+    interface SVGTextPositioningElement_
+    {
+        // @property (readwrite, nonatomic, strong) SVGLength * x;
+        [Export("x", ArgumentSemantic.Strong)]
+        SVGLength X { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGLength * y;
+        [Export("y", ArgumentSemantic.Strong)]
+        SVGLength Y { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGLength * dx;
+        [Export("dx", ArgumentSemantic.Strong)]
+        SVGLength Dx { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGLength * dy;
+        [Export("dy", ArgumentSemantic.Strong)]
+        SVGLength Dy { get; set; }
+
+        // @property (readwrite, nonatomic, strong) SVGLength * rotate;
+        [Export("rotate", ArgumentSemantic.Strong)]
+        SVGLength Rotate { get; set; }
+    }
+
+    // @protocol SVGStyleCatcher <NSObject>
+    [Protocol, Model]
+    [BaseType(typeof(NSObject))]
+    interface SVGStyleCatcher
+    {
+        // @required -(void)styleCatchLayer:(CALayer *)styledLayer forClass:(NSString *)colorIndex;
+        [Abstract]
+        [Export("styleCatchLayer:forClass:")]
+        void StyleCatchLayer(CALayer styledLayer, string colorIndex);
+
+        // @required -(UIColor *)styleCatchOverrideFill:(NSString *)fillClassName;
+        [Abstract]
+        [Export("styleCatchOverrideFill:")]
+        UIColor StyleCatchOverrideFill(string fillClassName);
+    }
+
+    // @interface SVGStyleElement : SVGElement
+    [BaseType(typeof(SVGElement))]
+    interface SVGStyleElement
+    {
+    }
+
+    // @interface CGContext (SVGKImage)
+    [Category]
+    [BaseType(typeof(SVGKImage))]
+    interface SVGKImage_CGContext
+    {
+        // -(CGContextRef)newCGContextAutosizedToFit;
+        [Export("newCGContextAutosizedToFit")]
+        //[Verify (MethodToProperty)]
+        unsafe CGContext NewCGContextAutosizedToFit { get; }
+
+        // -(void)renderInContext:(CGContextRef)ctx;
+        [Export("renderInContext:")]
+        unsafe void RenderInContext(CGContext ctx);
+
+        // -(void)renderToContext:(CGContextRef)context antiAliased:(BOOL)shouldAntialias curveFlatnessFactor:(CGFloat)multiplyFlatness interpolationQuality:(CGInterpolationQuality)interpolationQuality flipYaxis:(BOOL)flipYaxis;
+        [Export("renderToContext:antiAliased:curveFlatnessFactor:interpolationQuality:flipYaxis:")]
+        unsafe void RenderToContext(CGContext context, bool shouldAntialias, nfloat multiplyFlatness, CGInterpolationQuality interpolationQuality, bool flipYaxis);
+    }
+
+    // @interface SVGKSourceLocalFile : SVGKSource
+    [BaseType(typeof(SVGKSource))]
+    interface SVGKSourceLocalFile
+    {
+        // @property (nonatomic, strong) NSString * filePath;
+        [Export("filePath", ArgumentSemantic.Strong)]
+        string FilePath { get; set; }
+
+        // @property (readonly, nonatomic) BOOL wasRelative;
+        [Export("wasRelative")]
+        bool WasRelative { get; }
+
+        // +(SVGKSourceLocalFile *)sourceFromFilename:(NSString *)p;
+        [Static]
+        [Export("sourceFromFilename:")]
+        SVGKSourceLocalFile SourceFromFilename(string p);
+
+        // +(SVGKSourceLocalFile *)internalSourceAnywhereInBundleUsingName:(NSString *)name;
+        [Static]
+        [Export("internalSourceAnywhereInBundleUsingName:")]
+        SVGKSourceLocalFile InternalSourceAnywhereInBundleUsingName(string name);
+
+        // +(SVGKSourceLocalFile *)internalSourceAnywhereInBundle:(NSBundle *)bundle usingName:(NSString *)name;
+        [Static]
+        [Export("internalSourceAnywhereInBundle:usingName:")]
+        SVGKSourceLocalFile InternalSourceAnywhereInBundle(NSBundle bundle, string name);
+    }
+
+    // @interface SVGKSourceString : SVGKSource
+    [BaseType(typeof(SVGKSource))]
+    interface SVGKSourceString
+    {
+        // @property (nonatomic, strong) NSString * rawString;
+        [Export("rawString", ArgumentSemantic.Strong)]
+        string RawString { get; set; }
+
+        // +(SVGKSource *)sourceFromContentsOfString:(NSString *)rawString;
+        [Static]
+        [Export("sourceFromContentsOfString:")]
+        SVGKSource SourceFromContentsOfString(string rawString);
+    }
+
+    // @interface SVGKSourceURL : SVGKSource
+    [BaseType(typeof(SVGKSource))]
+    interface SVGKSourceURL
+    {
+        // @property (nonatomic, strong) NSURL * URL;
+        [Export("URL", ArgumentSemantic.Strong)]
+        NSUrl URL { get; set; }
+
+        // +(SVGKSource *)sourceFromURL:(NSURL *)u;
+        [Static]
+        [Export("sourceFromURL:")]
+        SVGKSource SourceFromURL(NSUrl u);
+    }
+
+    // @interface SVGKParserDefsAndUse : NSObject <SVGKParserExtension>
+    [BaseType(typeof(NSObject))]
+    interface SVGKParserDefsAndUse : SVGKParserExtension
+    {
+    }
+
+    // @interface SVGKParserDOM : NSObject <SVGKParserExtension>
+    [BaseType(typeof(NSObject))]
+    interface SVGKParserDOM : SVGKParserExtension
+    {
+    }
+
+    // @interface SVGKParserSVG : NSObject <SVGKParserExtension>
+    [BaseType(typeof(NSObject))]
+    interface SVGKParserSVG : SVGKParserExtension
+    {
+    }
+
+    // @interface SVGKParserGradient : SVGKParserSVG
+    [BaseType(typeof(SVGKParserSVG))]
+    interface SVGKParserGradient
+    {
+    }
+
+    // @interface SVGKParserPatternsAndGradients : NSObject <SVGKParserExtension>
+    [BaseType(typeof(NSObject))]
+    interface SVGKParserPatternsAndGradients : SVGKParserExtension
+    {
+    }
+
+    // @interface SVGKParserStyles : NSObject <SVGKParserExtension>
+    [BaseType(typeof(NSObject))]
+    interface SVGKParserStyles : SVGKParserExtension
+    {
+    }
+
+    // @interface SVGKPointsAndPathsParser : NSObject
+    [BaseType(typeof(NSObject))]
+    interface SVGKPointsAndPathsParser
+    {
+        // +(void)readWhitespace:(NSString *)scanner;
+        [Static]
+        [Export("readWhitespace:")]
+        void ReadWhitespace(NSString scanner);
+
+        // +(void)readCommaAndWhitespace:(NSString *)scanner;
+        [Static]
+        [Export("readCommaAndWhitespace:")]
+        void ReadCommaAndWhitespace(NSString scanner);
+
+        // +(void)readCoordinate:(NSString *)scanner intoFloat:(CGFloat *)floatPointer;
+        [Static]
+        [Export("readCoordinate:intoFloat:")]
+        unsafe void ReadCoordinate(NSString scanner, nfloat floatPointer);
+
+        // +(CGPoint)readCoordinatePair:(NSString *)scanner;
+        [Static]
+        [Export("readCoordinatePair:")]
+        CGPoint ReadCoordinatePair(NSString scanner);
+
+        // +(CGPoint)readMovetoDrawtoCommandGroups:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+        [Static]
+        [Export("readMovetoDrawtoCommandGroups:path:relativeTo:isRelative:")]
+        unsafe CGPoint ReadMovetoDrawtoCommandGroups(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
+
+        // +(CGPoint)readMovetoDrawto:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+        [Static]
+        [Export("readMovetoDrawto:path:relativeTo:isRelative:")]
+        unsafe CGPoint ReadMovetoDrawto(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
+
+        // +(CGPoint)readMoveto:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+        [Static]
+        [Export("readMoveto:path:relativeTo:isRelative:")]
+        unsafe CGPoint ReadMoveto(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
+
+        // +(CGPoint)readMovetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+        [Static]
+        [Export("readMovetoArgumentSequence:path:relativeTo:isRelative:")]
+        unsafe CGPoint ReadMovetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
+
+        // +(CGPoint)readLinetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+        [Static]
+        [Export("readLinetoCommand:path:relativeTo:isRelative:")]
+        unsafe CGPoint ReadLinetoCommand(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
+
+        // +(CGPoint)readLinetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+        [Static]
+        [Export("readLinetoArgumentSequence:path:relativeTo:isRelative:")]
+        unsafe CGPoint ReadLinetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
+
+        // +(CGPoint)readVerticalLinetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+        [Static]
+        [Export("readVerticalLinetoCommand:path:relativeTo:")]
+        unsafe CGPoint ReadVerticalLinetoCommand(NSString scanner, CGPath path, CGPoint origin);
+
+        // +(CGPoint)readVerticalLinetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+        [Static]
+        [Export("readVerticalLinetoArgumentSequence:path:relativeTo:")]
+        unsafe CGPoint ReadVerticalLinetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin);
+
+        // +(CGPoint)readHorizontalLinetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+        [Static]
+        [Export("readHorizontalLinetoArgumentSequence:path:relativeTo:")]
+        unsafe CGPoint ReadHorizontalLinetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin);
+
+        // +(CGPoint)readHorizontalLinetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+        [Static]
+        [Export("readHorizontalLinetoCommand:path:relativeTo:")]
+        unsafe CGPoint ReadHorizontalLinetoCommand(NSString scanner, CGPath path, CGPoint origin);
+
+        // +(SVGCurve)readQuadraticCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+        [Static]
+        [Export("readQuadraticCurvetoCommand:path:relativeTo:isRelative:")]
+        unsafe SVGCurve ReadQuadraticCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
+
+        // +(SVGCurve)readQuadraticCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+        [Static]
+        [Export("readQuadraticCurvetoArgumentSequence:path:relativeTo:isRelative:")]
+        unsafe SVGCurve ReadQuadraticCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
+
+        // +(SVGCurve)readQuadraticCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+        [Static]
+        [Export("readQuadraticCurvetoArgument:path:relativeTo:")]
+        unsafe SVGCurve ReadQuadraticCurvetoArgument(NSString scanner, CGPath path, CGPoint origin);
+
+        // +(SVGCurve)readSmoothQuadraticCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+        [Static]
+        [Export("readSmoothQuadraticCurvetoCommand:path:relativeTo:withPrevCurve:")]
+        unsafe SVGCurve ReadSmoothQuadraticCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
+
+        // +(SVGCurve)readSmoothQuadraticCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+        [Static]
+        [Export("readSmoothQuadraticCurvetoArgumentSequence:path:relativeTo:withPrevCurve:")]
+        unsafe SVGCurve ReadSmoothQuadraticCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
+
+        // +(SVGCurve)readSmoothQuadraticCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+        [Static]
+        [Export("readSmoothQuadraticCurvetoArgument:path:relativeTo:withPrevCurve:")]
+        unsafe SVGCurve ReadSmoothQuadraticCurvetoArgument(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
+
+        // +(SVGCurve)readCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+        [Static]
+        [Export("readCurvetoCommand:path:relativeTo:isRelative:")]
+        unsafe SVGCurve ReadCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
+
+        // +(SVGCurve)readCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+        [Static]
+        [Export("readCurvetoArgumentSequence:path:relativeTo:isRelative:")]
+        unsafe SVGCurve ReadCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
+
+        // +(SVGCurve)readCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+        [Static]
+        [Export("readCurvetoArgument:path:relativeTo:")]
+        unsafe SVGCurve ReadCurvetoArgument(NSString scanner, CGPath path, CGPoint origin);
+
+        // +(SVGCurve)readSmoothCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+        [Static]
+        [Export("readSmoothCurvetoCommand:path:relativeTo:withPrevCurve:")]
+        unsafe SVGCurve ReadSmoothCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
+
+        // +(SVGCurve)readSmoothCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+        [Static]
+        [Export("readSmoothCurvetoArgumentSequence:path:relativeTo:withPrevCurve:")]
+        unsafe SVGCurve ReadSmoothCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
+
+        // +(SVGCurve)readSmoothCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+        [Static]
+        [Export("readSmoothCurvetoArgument:path:relativeTo:withPrevCurve:")]
+        unsafe SVGCurve ReadSmoothCurvetoArgument(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
+
+        // +(SVGCurve)readEllipticalArcArguments:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+        [Static]
+        [Export("readEllipticalArcArguments:path:relativeTo:")]
+        unsafe SVGCurve ReadEllipticalArcArguments(NSString scanner, CGPath path, CGPoint origin);
+
+        // +(CGPoint)readCloseCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+        [Static]
+        [Export("readCloseCommand:path:relativeTo:")]
+        unsafe CGPoint ReadCloseCommand(NSString scanner, CGPath path, CGPoint origin);
+    }
+
+    // @interface SVGKSourceNSData : SVGKSource
+    [BaseType(typeof(SVGKSource))]
+    interface SVGKSourceNSData
+    {
+        // @property (nonatomic, strong) NSData * rawData;
+        [Export("rawData", ArgumentSemantic.Strong)]
+        NSData RawData { get; set; }
+
+        // @property (nonatomic, strong) NSURL * effectiveURL;
+        [Export("effectiveURL", ArgumentSemantic.Strong)]
+        NSUrl EffectiveURL { get; set; }
+
+        // +(SVGKSource *)sourceFromData:(NSData *)data URLForRelativeLinks:(NSURL *)url;
+        [Static]
+        [Export("sourceFromData:URLForRelativeLinks:")]
+        SVGKSource SourceFromData(NSData data, NSUrl url);
+    }
+
+    // @interface SVGSwitchElement : SVGElement <ConverterSVGToCALayer>
+    [BaseType(typeof(SVGElement))]
+    interface SVGSwitchElement : IConverterSVGToCALayer
+    {
+        // @property (readonly, nonatomic, strong) NodeList * visibleChildNodes;
+        [Export("visibleChildNodes", ArgumentSemantic.Strong)]
+        NodeList VisibleChildNodes { get; }
+    }
+    */
+    // @interface SVGKFastImageView : SVGKImageView
+    [BaseType(typeof(SVGKImageView))]
+    interface SVGKFastImageView
+    {
+        // @property (nonatomic) CGSize tileRatio;
+        [Export("tileRatio", ArgumentSemantic.Assign)]
+        CGSize TileRatio { get; set; }
+
+        // @property (nonatomic) BOOL disableAutoRedrawAtHighestResolution;
+        [Export("disableAutoRedrawAtHighestResolution")]
+        bool DisableAutoRedrawAtHighestResolution { get; set; }
+
+        // +(BOOL)svgImageHasNoGradients:(SVGKImage *)image;
+        [Static]
+        [Export("svgImageHasNoGradients:")]
+        bool SvgImageHasNoGradients(SVGKImage image);
+
+        // +(BOOL)svgElementAndDescendentsHaveNoGradients:(SVGElement *)element;
+        [Static]
+        [Export("svgElementAndDescendentsHaveNoGradients:")]
+        bool SvgElementAndDescendentsHaveNoGradients(SVGElement element);
+    }
 }
