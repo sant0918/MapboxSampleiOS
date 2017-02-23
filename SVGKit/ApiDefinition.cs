@@ -392,6 +392,7 @@ namespace SVGKit
 		// @property (nonatomic) CSSUnitType cssValueType;
 		[Export("cssValueType", ArgumentSemantic.Assign)]
 		CSSUnitType CssValueType { get; set; }
+
 	}
 
 	// @interface CSSRule : NSObject
@@ -849,14 +850,14 @@ namespace SVGKit
 	}
 
 	// @interface  (CSSValue)
-	[Category]
-	[BaseType(typeof(CSSValue))]
-	interface CSSValue_
-	{
+	//[Category]
+	//[BaseType(typeof(CSSValue))]
+	//interface CSSValue_
+	//{
 		// -(id)initWithUnitType:(CSSUnitType)t;
-		[Export("initWithUnitType:")]
-		IntPtr Constructor(CSSUnitType t);
-	}
+	//	[Export("initWithUnitType:")]
+	//	IntPtr Constructor();
+	//}
 
 	// @interface Comment : CharacterData
 	[BaseType(typeof(CharacterData))]
@@ -1160,11 +1161,11 @@ namespace SVGKit
 	{
 		// @property (nonatomic) SVG_PRESERVEASPECTRATIO align;
 		[Export("align", ArgumentSemantic.Assign)]
-		SvgPreserveaspectratio Align { get; set; }
+		SVG_PRESERVEASPECTRATIO Align { get; set; }
 
 		// @property (nonatomic) SVG_MEETORSLICE meetOrSlice;
 		[Export("meetOrSlice", ArgumentSemantic.Assign)]
-		SvgMeetorsliceE MeetOrSlice { get; set; }
+		SVG_MEETORSLICE MeetOrSlice { get; set; }
 	}
 
 	// @interface SVGAnimatedPreserveAspectRatio : NSObject
@@ -2024,12 +2025,12 @@ namespace SVGKit
 		// +(CGColorRef)parseFillForElement:(SVGElement *)svgElement;
 		[Static]
 		[Export("parseFillForElement:")]
-		unsafe CGColorRef* ParseFillForElement(SVGElement svgElement);
+		unsafe CGColor ParseFillForElement(SVGElement svgElement);
 
 		// +(void)parsePreserveAspectRatioFor:(Element<SVGFitToViewBox> *)element;
 		[Static]
 		[Export("parsePreserveAspectRatioFor:")]
-		void ParsePreserveAspectRatioFor(SVGFitToViewBox element);
+		void ParsePreserveAspectRatioFor(ISVGFitToViewBox element);
 	}
 
 	// @interface SVGImageElement : SVGElement <SVGTransformable, SVGStylable, ConverterSVGToCALayer, SVGFitToViewBox>
@@ -2455,7 +2456,7 @@ namespace SVGKit
 		// -(CGColorRef)CGColor;
 		[Export("CGColor")]
 		//[Verify (MethodToProperty)]
-		unsafe CGColorRef* CGColor { get; }
+		unsafe CGColor CGColor { get; }
 	}
 
 	// @interface SVGKLayeredImageView : SVGKImageView
@@ -2558,7 +2559,7 @@ namespace SVGKit
 
 		// extern const unsigned char [] SVGKitFramework_VersionString;
 		[Field("SVGKitFramework_VersionString", "__Internal")]
-		byte[] SVGKitFramework_VersionString { get; }
+		IntPtr SVGKitFramework_VersionString { get; }
 	}
 
 	// @interface  (StyleSheetList)
@@ -2723,15 +2724,15 @@ namespace SVGKit
 		// -(CGContextRef)newCGContextAutosizedToFit;
 		[Export("newCGContextAutosizedToFit")]
 		//[Verify (MethodToProperty)]
-		unsafe CGContextRef* NewCGContextAutosizedToFit { get; }
+		unsafe CGContext NewCGContextAutosizedToFit { get; }
 
 		// -(void)renderInContext:(CGContextRef)ctx;
 		[Export("renderInContext:")]
-		unsafe void RenderInContext(CGContextRef* ctx);
+		unsafe void RenderInContext(CGContext ctx);
 
 		// -(void)renderToContext:(CGContextRef)context antiAliased:(BOOL)shouldAntialias curveFlatnessFactor:(CGFloat)multiplyFlatness interpolationQuality:(CGInterpolationQuality)interpolationQuality flipYaxis:(BOOL)flipYaxis;
 		[Export("renderToContext:antiAliased:curveFlatnessFactor:interpolationQuality:flipYaxis:")]
-		unsafe void RenderToContext(CGContextRef* context, bool shouldAntialias, nfloat multiplyFlatness, CGInterpolationQuality interpolationQuality, bool flipYaxis);
+		unsafe void RenderToContext(CGContext context, bool shouldAntialias, nfloat multiplyFlatness, CGInterpolationQuality interpolationQuality, bool flipYaxis);
 	}
 
 	// @interface SVGKSourceLocalFile : SVGKSource
@@ -2830,145 +2831,145 @@ namespace SVGKit
 	[BaseType(typeof(NSObject))]
 	interface SVGKPointsAndPathsParser
 	{
-		// +(void)readWhitespace:(NSScanner *)scanner;
+		// +(void)readWhitespace:(NSString *)scanner;
 		[Static]
 		[Export("readWhitespace:")]
-		void ReadWhitespace(NSScanner scanner);
+		void ReadWhitespace(NSString scanner);
 
-		// +(void)readCommaAndWhitespace:(NSScanner *)scanner;
+		// +(void)readCommaAndWhitespace:(NSString *)scanner;
 		[Static]
 		[Export("readCommaAndWhitespace:")]
-		void ReadCommaAndWhitespace(NSScanner scanner);
+		void ReadCommaAndWhitespace(NSString scanner);
 
-		// +(void)readCoordinate:(NSScanner *)scanner intoFloat:(CGFloat *)floatPointer;
+		// +(void)readCoordinate:(NSString *)scanner intoFloat:(CGFloat *)floatPointer;
 		[Static]
 		[Export("readCoordinate:intoFloat:")]
-		unsafe void ReadCoordinate(NSScanner scanner, nfloat* floatPointer);
+		unsafe void ReadCoordinate(NSString scanner, nfloat floatPointer);
 
-		// +(CGPoint)readCoordinatePair:(NSScanner *)scanner;
+		// +(CGPoint)readCoordinatePair:(NSString *)scanner;
 		[Static]
 		[Export("readCoordinatePair:")]
-		CGPoint ReadCoordinatePair(NSScanner scanner);
+		CGPoint ReadCoordinatePair(NSString scanner);
 
-		// +(CGPoint)readMovetoDrawtoCommandGroups:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+		// +(CGPoint)readMovetoDrawtoCommandGroups:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
 		[Static]
 		[Export("readMovetoDrawtoCommandGroups:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadMovetoDrawtoCommandGroups(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, bool isRelative);
+		unsafe CGPoint ReadMovetoDrawtoCommandGroups(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
 
-		// +(CGPoint)readMovetoDrawto:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+		// +(CGPoint)readMovetoDrawto:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
 		[Static]
 		[Export("readMovetoDrawto:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadMovetoDrawto(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, bool isRelative);
+		unsafe CGPoint ReadMovetoDrawto(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
 
-		// +(CGPoint)readMoveto:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+		// +(CGPoint)readMoveto:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
 		[Static]
 		[Export("readMoveto:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadMoveto(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, bool isRelative);
+		unsafe CGPoint ReadMoveto(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
 
-		// +(CGPoint)readMovetoArgumentSequence:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+		// +(CGPoint)readMovetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
 		[Static]
 		[Export("readMovetoArgumentSequence:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadMovetoArgumentSequence(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, bool isRelative);
+		unsafe CGPoint ReadMovetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
 
-		// +(CGPoint)readLinetoCommand:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+		// +(CGPoint)readLinetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
 		[Static]
 		[Export("readLinetoCommand:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadLinetoCommand(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, bool isRelative);
+		unsafe CGPoint ReadLinetoCommand(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
 
-		// +(CGPoint)readLinetoArgumentSequence:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+		// +(CGPoint)readLinetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
 		[Static]
 		[Export("readLinetoArgumentSequence:path:relativeTo:isRelative:")]
-		unsafe CGPoint ReadLinetoArgumentSequence(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, bool isRelative);
+		unsafe CGPoint ReadLinetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
 
-		// +(CGPoint)readVerticalLinetoCommand:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+		// +(CGPoint)readVerticalLinetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
 		[Static]
 		[Export("readVerticalLinetoCommand:path:relativeTo:")]
-		unsafe CGPoint ReadVerticalLinetoCommand(NSScanner scanner, CGMutablePathRef* path, CGPoint origin);
+		unsafe CGPoint ReadVerticalLinetoCommand(NSString scanner, CGPath path, CGPoint origin);
 
-		// +(CGPoint)readVerticalLinetoArgumentSequence:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+		// +(CGPoint)readVerticalLinetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
 		[Static]
 		[Export("readVerticalLinetoArgumentSequence:path:relativeTo:")]
-		unsafe CGPoint ReadVerticalLinetoArgumentSequence(NSScanner scanner, CGMutablePathRef* path, CGPoint origin);
+		unsafe CGPoint ReadVerticalLinetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin);
 
-		// +(CGPoint)readHorizontalLinetoArgumentSequence:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+		// +(CGPoint)readHorizontalLinetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
 		[Static]
 		[Export("readHorizontalLinetoArgumentSequence:path:relativeTo:")]
-		unsafe CGPoint ReadHorizontalLinetoArgumentSequence(NSScanner scanner, CGMutablePathRef* path, CGPoint origin);
+		unsafe CGPoint ReadHorizontalLinetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin);
 
-		// +(CGPoint)readHorizontalLinetoCommand:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+		// +(CGPoint)readHorizontalLinetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
 		[Static]
 		[Export("readHorizontalLinetoCommand:path:relativeTo:")]
-		unsafe CGPoint ReadHorizontalLinetoCommand(NSScanner scanner, CGMutablePathRef* path, CGPoint origin);
+		unsafe CGPoint ReadHorizontalLinetoCommand(NSString scanner, CGPath path, CGPoint origin);
 
-		// +(SVGCurve)readQuadraticCurvetoCommand:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+		// +(SVGCurve)readQuadraticCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
 		[Static]
 		[Export("readQuadraticCurvetoCommand:path:relativeTo:isRelative:")]
-		unsafe SVGCurve ReadQuadraticCurvetoCommand(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, bool isRelative);
+		unsafe SVGCurve ReadQuadraticCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
 
-		// +(SVGCurve)readQuadraticCurvetoArgumentSequence:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+		// +(SVGCurve)readQuadraticCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
 		[Static]
 		[Export("readQuadraticCurvetoArgumentSequence:path:relativeTo:isRelative:")]
-		unsafe SVGCurve ReadQuadraticCurvetoArgumentSequence(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, bool isRelative);
+		unsafe SVGCurve ReadQuadraticCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
 
-		// +(SVGCurve)readQuadraticCurvetoArgument:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+		// +(SVGCurve)readQuadraticCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
 		[Static]
 		[Export("readQuadraticCurvetoArgument:path:relativeTo:")]
-		unsafe SVGCurve ReadQuadraticCurvetoArgument(NSScanner scanner, CGMutablePathRef* path, CGPoint origin);
+		unsafe SVGCurve ReadQuadraticCurvetoArgument(NSString scanner, CGPath path, CGPoint origin);
 
-		// +(SVGCurve)readSmoothQuadraticCurvetoCommand:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+		// +(SVGCurve)readSmoothQuadraticCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
 		[Static]
 		[Export("readSmoothQuadraticCurvetoCommand:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothQuadraticCurvetoCommand(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, SVGCurve prevCurve);
+		unsafe SVGCurve ReadSmoothQuadraticCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
 
-		// +(SVGCurve)readSmoothQuadraticCurvetoArgumentSequence:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+		// +(SVGCurve)readSmoothQuadraticCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
 		[Static]
 		[Export("readSmoothQuadraticCurvetoArgumentSequence:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothQuadraticCurvetoArgumentSequence(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, SVGCurve prevCurve);
+		unsafe SVGCurve ReadSmoothQuadraticCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
 
-		// +(SVGCurve)readSmoothQuadraticCurvetoArgument:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+		// +(SVGCurve)readSmoothQuadraticCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
 		[Static]
 		[Export("readSmoothQuadraticCurvetoArgument:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothQuadraticCurvetoArgument(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, SVGCurve prevCurve);
+		unsafe SVGCurve ReadSmoothQuadraticCurvetoArgument(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
 
-		// +(SVGCurve)readCurvetoCommand:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+		// +(SVGCurve)readCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
 		[Static]
 		[Export("readCurvetoCommand:path:relativeTo:isRelative:")]
-		unsafe SVGCurve ReadCurvetoCommand(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, bool isRelative);
+		unsafe SVGCurve ReadCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
 
-		// +(SVGCurve)readCurvetoArgumentSequence:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
+		// +(SVGCurve)readCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin isRelative:(BOOL)isRelative;
 		[Static]
 		[Export("readCurvetoArgumentSequence:path:relativeTo:isRelative:")]
-		unsafe SVGCurve ReadCurvetoArgumentSequence(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, bool isRelative);
+		unsafe SVGCurve ReadCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, bool isRelative);
 
-		// +(SVGCurve)readCurvetoArgument:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+		// +(SVGCurve)readCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
 		[Static]
 		[Export("readCurvetoArgument:path:relativeTo:")]
-		unsafe SVGCurve ReadCurvetoArgument(NSScanner scanner, CGMutablePathRef* path, CGPoint origin);
+		unsafe SVGCurve ReadCurvetoArgument(NSString scanner, CGPath path, CGPoint origin);
 
-		// +(SVGCurve)readSmoothCurvetoCommand:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+		// +(SVGCurve)readSmoothCurvetoCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
 		[Static]
 		[Export("readSmoothCurvetoCommand:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothCurvetoCommand(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, SVGCurve prevCurve);
+		unsafe SVGCurve ReadSmoothCurvetoCommand(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
 
-		// +(SVGCurve)readSmoothCurvetoArgumentSequence:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+		// +(SVGCurve)readSmoothCurvetoArgumentSequence:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
 		[Static]
 		[Export("readSmoothCurvetoArgumentSequence:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothCurvetoArgumentSequence(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, SVGCurve prevCurve);
+		unsafe SVGCurve ReadSmoothCurvetoArgumentSequence(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
 
-		// +(SVGCurve)readSmoothCurvetoArgument:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
+		// +(SVGCurve)readSmoothCurvetoArgument:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin withPrevCurve:(SVGCurve)prevCurve;
 		[Static]
 		[Export("readSmoothCurvetoArgument:path:relativeTo:withPrevCurve:")]
-		unsafe SVGCurve ReadSmoothCurvetoArgument(NSScanner scanner, CGMutablePathRef* path, CGPoint origin, SVGCurve prevCurve);
+		unsafe SVGCurve ReadSmoothCurvetoArgument(NSString scanner, CGPath path, CGPoint origin, SVGCurve prevCurve);
 
-		// +(SVGCurve)readEllipticalArcArguments:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+		// +(SVGCurve)readEllipticalArcArguments:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
 		[Static]
 		[Export("readEllipticalArcArguments:path:relativeTo:")]
-		unsafe SVGCurve ReadEllipticalArcArguments(NSScanner scanner, CGMutablePathRef* path, CGPoint origin);
+		unsafe SVGCurve ReadEllipticalArcArguments(NSString scanner, CGPath path, CGPoint origin);
 
-		// +(CGPoint)readCloseCommand:(NSScanner *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
+		// +(CGPoint)readCloseCommand:(NSString *)scanner path:(CGMutablePathRef)path relativeTo:(CGPoint)origin;
 		[Static]
 		[Export("readCloseCommand:path:relativeTo:")]
-		unsafe CGPoint ReadCloseCommand(NSScanner scanner, CGMutablePathRef* path, CGPoint origin);
+		unsafe CGPoint ReadCloseCommand(NSString scanner, CGPath path, CGPoint origin);
 	}
 
 	// @interface SVGKSourceNSData : SVGKSource
