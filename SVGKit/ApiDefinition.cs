@@ -214,7 +214,7 @@ namespace SVGKit
 		[Export("createDocument:qualifiedName:doctype:")]
 		Document CreateDocument(string namespaceURI, string qualifiedName, DocumentType doctype);
 	}
-
+    
 	// @interface Attr : Node
 	[BaseType(typeof(Node))]
 	interface Attr
@@ -1631,8 +1631,8 @@ namespace SVGKit
         //[Verify (MethodToProperty)]
         NSMutableDictionary AllPrefixesByNamespaceNormalized { get; }
     }
-    
-	// @protocol SVGKParserExtension <NSObject>
+    */
+	/*// @protocol SVGKParserExtension <NSObject>
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
 	interface SVGKParserExtension
@@ -1660,9 +1660,9 @@ namespace SVGKit
 		void HandleEndElement(Node newNode, SVGKSource document, SVGKParseResult parseResult);
 	}
     
-    */
+    
         // @interface SVGKParseResult : NSObject
-    [BaseType(typeof(NSObject))]
+   */ [BaseType(typeof(NSObject))]
     interface SVGKParseResult
     {
        /* // @property (nonatomic, strong) NSMutableArray * warnings;
@@ -2059,7 +2059,7 @@ namespace SVGKit
 		string Href { get; }
 	}
     */
-    // @interface SVGKParser : NSObject
+   /* // @interface SVGKParser : NSObject
     [BaseType(typeof(NSObject))]
     interface SVGKParser
     {
