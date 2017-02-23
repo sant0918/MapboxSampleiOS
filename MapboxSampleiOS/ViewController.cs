@@ -8,7 +8,7 @@ using CoreLocation;
 using CoreGraphics;
 using Foundation;
 using ImageIO;
-
+using SVGKit;
 
 
 namespace MapBoxSampleiOS
@@ -51,7 +51,11 @@ namespace MapBoxSampleiOS
                 imagen.Frame = new CGRect(10, 10, imagen.Image.CGImage.Width, imagen.Image.CGImage.Height);
 
              }
-
+			SVGKImage im = SVGKImage.ImageNamed("file.svg");
+			CGSize originalSize = im.Size;
+			double half = 1.0 / 2.0;
+			SVGKImageView iv = new SVGKImageView(im);
+			View.AddSubview(iv);
             /*
             // adds maps to view
             image = new ImageTileView(View.Bounds);
