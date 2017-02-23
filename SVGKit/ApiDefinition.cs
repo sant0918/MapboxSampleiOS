@@ -127,7 +127,7 @@ namespace SVGKit
 		[Export("appendXMLToString:availableNamespaces:activeNamespaces:")]
 		void AppendXMLToString(NSMutableString outputString, NSDictionary prefixesByKNOWNNamespace, NSMutableDictionary prefixesByACTIVENamespace);
 	}
-
+    /*
 	// @interface NamedNodeMap : NSObject <NSCopying>
 	[BaseType(typeof(NSObject))]
 	interface NamedNodeMap : INSCopying
@@ -243,8 +243,8 @@ namespace SVGKit
 		[Export("initWithNamespace:qualifiedName:value:")]
 		IntPtr Constructor(string ns, string qn, string v);
 	}
-
-	// @interface NodeList : NSObject <NSFastEnumeration>
+    */
+	/*// @interface NodeList : NSObject <NSFastEnumeration>
 	[BaseType(typeof(NSObject))]
 	interface NodeList //: INSFastEnumeration 
 	{
@@ -257,7 +257,7 @@ namespace SVGKit
 		[Export("item:")]
 		Node Item(nuint index);
 	}
-
+    
 	// @interface Element : Node
 	[BaseType(typeof(Node))]
 	interface Element
@@ -334,7 +334,7 @@ namespace SVGKit
 		[Export("initWithQualifiedName:inNameSpaceURI:attributes:")]
 		IntPtr Constructor(string n, string nsURI, NSMutableDictionary attributes);
 	}
-
+    /*
 	// @interface  (Node)
 	[Category]
 	[BaseType(typeof(Node))]
@@ -477,8 +477,8 @@ namespace SVGKit
 		[Export("getPresentationAttribute:")]
 		CSSValue GetPresentationAttribute(string name);
 	}
-
-	// @interface SVGLength : NSObject
+    */
+	/*// @interface SVGLength : NSObject
 	[BaseType(typeof(NSObject))]
 	interface SVGLength
 	{
@@ -531,7 +531,7 @@ namespace SVGKit
 		//[Verify (MethodToProperty)]
 		float NumberValue { get; }
 	}
-
+    
 	// @interface SVGElement : Element <SVGStylable>
 	[BaseType(typeof(Element))]
 	interface SVGElement : ISVGStylable
@@ -576,7 +576,7 @@ namespace SVGKit
 		[Export("cascadedValueForStylableProperty:inherit:")]
 		string CascadedValueForStylableProperty(string stylableProperty, bool inherit);
 	}
-
+    /*
 	// @protocol ConverterSVGToCALayer <NSObject>
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
@@ -1125,8 +1125,8 @@ namespace SVGKit
 		[Export("internalArray", ArgumentSemantic.Strong)]
 		NSMutableArray InternalArray { get; set; }
 	}
-
-	// @interface SVGAngle : NSObject
+    */
+	/*// @interface SVGAngle : NSObject
 	[BaseType(typeof(NSObject))]
 	interface SVGAngle
 	{
@@ -1154,7 +1154,7 @@ namespace SVGKit
 		[Export("convertToSpecifiedUnits:")]
 		void ConvertToSpecifiedUnits(SVGKAngleType unitType);
 	}
-
+    /*
 	// @interface SVGPreserveAspectRatio : NSObject
 	[BaseType(typeof(NSObject))]
 	interface SVGPreserveAspectRatio
@@ -1226,8 +1226,8 @@ namespace SVGKit
 		[Export("preserveAspectRatio", ArgumentSemantic.Retain)]
 		SVGAnimatedPreserveAspectRatio PreserveAspectRatio { get; set; }
 	}
-
-	// @interface SVGViewSpec : NSObject
+    */
+	/*// @interface SVGViewSpec : NSObject
 	[BaseType(typeof(NSObject))]
 	interface SVGViewSpec
 	{
@@ -1251,7 +1251,7 @@ namespace SVGKit
 		[Export("viewTargetString")]
 		string ViewTargetString { get; }
 	}
-
+    
 	// @interface SVGMatrix : NSObject
 	[BaseType(typeof(NSObject))]
 	interface SVGMatrix
@@ -1327,7 +1327,7 @@ namespace SVGKit
 		[Export("skewY:")]
 		SVGMatrix SkewY(float angle);
 	}
-
+    
 	// @interface SVGPoint : NSObject
 	[BaseType(typeof(NSObject))]
 	interface SVGPoint
@@ -1344,7 +1344,7 @@ namespace SVGKit
 		[Export("matrixTransform:")]
 		SVGPoint MatrixTransform(SVGMatrix matrix);
 	}
-
+    
 	// @interface SVGTransform : NSObject
 	[BaseType(typeof(NSObject))]
 	interface SVGTransform
@@ -1410,7 +1410,7 @@ namespace SVGKit
         [Export("sourceFromRelativePath:")]
         SVGKSource SourceFromRelativePath(string path);
     }
-
+    /*
     // @interface SVGSVGElement : SVGElement <DocumentCSS, SVGFitToViewBox, ConverterSVGToCALayer>
     [BaseType(typeof(SVGElement))]
     interface SVGSVGElement : IDocumentCSS, ISVGFitToViewBox, IConverterSVGToCALayer
@@ -1631,7 +1631,7 @@ namespace SVGKit
         //[Verify (MethodToProperty)]
         NSMutableDictionary AllPrefixesByNamespaceNormalized { get; }
     }
-    /*
+    
 	// @protocol SVGKParserExtension <NSObject>
 	[Protocol, Model]
 	[BaseType(typeof(NSObject))]
@@ -1659,12 +1659,13 @@ namespace SVGKit
 		[Export("handleEndElement:document:parseResult:")]
 		void HandleEndElement(Node newNode, SVGKSource document, SVGKParseResult parseResult);
 	}
+    
     */
-    // @interface SVGKParseResult : NSObject
+        // @interface SVGKParseResult : NSObject
     [BaseType(typeof(NSObject))]
     interface SVGKParseResult
     {
-        // @property (nonatomic, strong) NSMutableArray * warnings;
+       /* // @property (nonatomic, strong) NSMutableArray * warnings;
         [Export("warnings", ArgumentSemantic.Strong)]
         NSMutableArray Warnings { get; set; }
 
@@ -1714,7 +1715,7 @@ namespace SVGKit
 
         // -(void)addSAXError:(NSError *)saxError;
         [Export("addSAXError:")]
-        void AddSAXError(NSError saxError);
+        void AddSAXError(NSError saxError);*/
     }
     /*
 	// @interface  (SVGElement)
@@ -2127,6 +2128,7 @@ namespace SVGKit
     [BaseType(typeof(NSObject))]
     interface SVGKImage
     {
+        /*
         // @property (readonly, nonatomic, weak) UIImage * UIImage;
         [Export("UIImage", ArgumentSemantic.Weak)]
         UIImage UIImage { get; }
@@ -2154,7 +2156,7 @@ namespace SVGKit
         // @property (readonly, nonatomic, strong) NSString * nameUsedToInstantiate;
         [Export("nameUsedToInstantiate", ArgumentSemantic.Strong)]
         string NameUsedToInstantiate { get; }
-
+        */
         // +(SVGKImage *)imageNamed:(NSString *)name;
         [Static]
         [Export("imageNamed:")]
@@ -2164,7 +2166,7 @@ namespace SVGKit
         [Static]
         [Export("imageNamed:inBundle:")]
         SVGKImage ImageNamed(string name, NSBundle bundle);
-
+        /*
         // +(SVGKParser *)imageAsynchronouslyNamed:(NSString *)name onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
         [Static]
         [Export("imageAsynchronouslyNamed:onCompletion:")]
@@ -2212,11 +2214,11 @@ namespace SVGKit
         [Export("hasSize")]
         //[Verify (MethodToProperty)]
         bool HasSize { get; }
-
+        */
         // @property (nonatomic) CGSize size;
         [Export("size", ArgumentSemantic.Assign)]
         CGSize Size { get; set; }
-
+        /*
         // -(void)drawAtPoint:(CGPoint)point;
         [Export("drawAtPoint:")]
         void DrawAtPoint(CGPoint point);
@@ -2261,7 +2263,7 @@ namespace SVGKit
         [Static]
         [Export("imageWithContentsOfURL:")]
         SVGKImage ImageWithContentsOfURL(NSUrl url);
-
+        */
         // -(id)initWithSource:(SVGKSource *)source;
         [Export("initWithSource:")]
         IntPtr Constructor(SVGKSource source);
@@ -2269,7 +2271,7 @@ namespace SVGKit
         // -(id)initWithParsedSVG:(SVGKParseResult *)parseResult fromSource:(SVGKSource *)parseSource;
         [Export("initWithParsedSVG:fromSource:")]
         IntPtr Constructor(SVGKParseResult parseResult, SVGKSource parseSource);
-
+        /*
         // -(CALayer *)newCALayerTree;
         [Export("newCALayerTree")]
         //[Verify (MethodToProperty)]
@@ -2302,7 +2304,7 @@ namespace SVGKit
 
         // -(void)scaleToFitInside:(CGSize)maxSize;
         [Export("scaleToFitInside:")]
-        void ScaleToFitInside(CGSize maxSize);
+        void ScaleToFitInside(CGSize maxSize);*/
     }
     /*
     // @interface SVGKExporterNSData : NSObject
@@ -3006,7 +3008,7 @@ namespace SVGKit
         // @property (nonatomic) CGSize tileRatio;
         [Export("tileRatio", ArgumentSemantic.Assign)]
         CGSize TileRatio { get; set; }
-
+        /*
         // @property (nonatomic) BOOL disableAutoRedrawAtHighestResolution;
         [Export("disableAutoRedrawAtHighestResolution")]
         bool DisableAutoRedrawAtHighestResolution { get; set; }
@@ -3019,6 +3021,6 @@ namespace SVGKit
         // +(BOOL)svgElementAndDescendentsHaveNoGradients:(SVGElement *)element;
         [Static]
         [Export("svgElementAndDescendentsHaveNoGradients:")]
-        bool SvgElementAndDescendentsHaveNoGradients(SVGElement element);
+        bool SvgElementAndDescendentsHaveNoGradients(SVGElement element);*/
     }
 }
