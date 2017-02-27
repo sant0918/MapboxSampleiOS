@@ -41,7 +41,7 @@ namespace MapBoxSampleiOS
             //testView.Layer.ShadowOpacity = 1.0f;
             //testView.Layer.ShadowOffset = new SizeF(0, 4);
             //testView.BackgroundColor = UIColor.Black;
-
+			/*
             UIImage pictura;
             using (UIImage foto = UIImage.FromBundle("mapserv.png"))
              {
@@ -50,7 +50,7 @@ namespace MapBoxSampleiOS
                 View.AddSubview(imagen);
                 imagen.Frame = new CGRect(10, 10, imagen.Image.CGImage.Width, imagen.Image.CGImage.Height);
 
-             }
+             }*/
 			SVGKImage im = SVGKImage.ImageNamed("file.svg");
 			CGSize originalSize = im.Size;
 			double half = 1.0 / 2.0;
