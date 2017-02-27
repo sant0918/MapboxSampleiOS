@@ -51,17 +51,17 @@ namespace MapBoxSampleiOS
                 imagen.Frame = new CGRect(10, 10, imagen.Image.CGImage.Width, imagen.Image.CGImage.Height);
 
              }*/
-			SVGKImage im = SVGKImage.ImageNamed("file.svg");
+			SVGKImage im = SVGKImage.ImageNamed("newyork.svg");
 			CGSize originalSize = im.Size;
 			double half = 1.0 / 2.0;
-			SVGKImageView iv = new SVGKImageView(im);
+			SVGKImageView iv = new SVGKFastImageView(im);
 			View.AddSubview(iv);
             /*
             // adds maps to view
             image = new ImageTileView(View.Bounds);
             image.UserInteractionEnabled = true;
             View.AddSubview(image);
-            */
+            
 
             rotateGesture = new UIRotationGestureRecognizer(() =>
             {
@@ -98,7 +98,7 @@ namespace MapBoxSampleiOS
             });
             
             image.AddGestureRecognizer(panGesture);
-            image.AddGestureRecognizer(rotateGesture);
+            image.AddGestureRecognizer(rotateGesture);*/
            
         }
 
