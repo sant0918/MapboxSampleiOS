@@ -53,6 +53,15 @@ namespace MapBoxSampleiOS
             }
         }
 
+		public SVGKImage getTile(int zoom, int col, int row)
+		{
+			string path = "tiles/";
+
+			string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + ".png");
+
+			return SVGKImage.FromFile(pngFilename);
+		}
+
         public SVGKImage getTile(int zoom)
         {
             Tuple<double, double> metersXY = gmt.LatLonToMeters(loc.Coordinate.Latitude, loc.Coordinate.Longitude);
