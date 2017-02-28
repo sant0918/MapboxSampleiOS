@@ -3008,6 +3008,10 @@ namespace SVGKit
         // @property (nonatomic) CGSize tileRatio;
         [Export("tileRatio", ArgumentSemantic.Assign)]
         CGSize TileRatio { get; set; }
+        // -(id)initWithSVGKImage:(SVGKImage *)im;
+
+        [Export("initWithSVGKImage:")]
+        IntPtr Constructor(SVGKImage im);
         /*
         // @property (nonatomic) BOOL disableAutoRedrawAtHighestResolution;
         [Export("disableAutoRedrawAtHighestResolution")]
