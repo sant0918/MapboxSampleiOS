@@ -56,9 +56,11 @@ namespace MapBoxSampleiOS
             im.Size = new CGSize(View.Bounds.GetMaxX(), View.Bounds.GetMaxY());
 			double half = 1.0 / 2.0;
 			SVGKImageView iv = new SVGKFastImageView(im);
-			View.AddSubview(iv);
+            iv.Frame = new CGRect(0, 0, 256, 256);
+            View.AddSubview(iv);
 
 
+            /*
             svgImage = new SVGKFastTileView(View.Bounds);
             svgImage.UserInteractionEnabled = true;
             View.AddSubview(svgImage);
@@ -102,7 +104,7 @@ namespace MapBoxSampleiOS
 
             svgImage.AddGestureRecognizer(panGesture);
             svgImage.AddGestureRecognizer(rotateGesture);
-            /*
+            
             // adds maps to view
             image = new ImageTileView(View.Bounds);
             image.UserInteractionEnabled = true;
