@@ -12,8 +12,9 @@ using UIKit;
 
 namespace MapBoxSampleiOS
 {
-    public class SVGKTileView : SVGKFastImageView
+    public class SVGKFastTileView : SVGKFastImageView
     {
+		CLLocation loc;
         GlobalMapTiles gmt;
         SVGKTileView(SVGKImage svgImage) : base (svgImage)
         {
@@ -57,9 +58,9 @@ namespace MapBoxSampleiOS
 		{
 			string path = "tiles/";
 
-			string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + ".png");
+			string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + ".svg");
 
-			return SVGKImage.FromFile(pngFilename);
+			return SVGKImage.ImageNamed(pngFilename);
 		}
 
         public SVGKImage getTile(int zoom)
@@ -82,7 +83,7 @@ namespace MapBoxSampleiOS
 
             string pngFilename = Path.Combine(path, zoom.ToString());
 
-            return SVGKImage.FromFile(pngFilename);
+            return SVGKImage.ImageNamed(pngFilename);
         }
 
     }

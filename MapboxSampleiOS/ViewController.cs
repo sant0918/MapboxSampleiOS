@@ -52,7 +52,7 @@ namespace MapBoxSampleiOS
 
              }*/
 			SVGKImage im = SVGKImage.ImageNamed("newyork.svg");
-			CGSize originalSize = im.Size;
+			im.Size = new CGSize(430, 380);
 			double half = 1.0 / 2.0;
 			SVGKImageView iv = new SVGKFastImageView(im);
 			View.AddSubview(iv);
