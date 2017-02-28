@@ -15,7 +15,7 @@ namespace MapBoxSampleiOS
     public class SVGKTileView : SVGKFastImageView
     {
         GlobalMapTiles gmt;
-        SVGKTileView(SVGKImageView svgImage) : base (svgImage)
+        SVGKTileView(SVGKImage svgImage) : base (svgImage)
         {
 
         }
