@@ -163,4 +163,7 @@
       <Name>SVGKit</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\tiles\16\" />
+  </ItemGroup>
 </Project>

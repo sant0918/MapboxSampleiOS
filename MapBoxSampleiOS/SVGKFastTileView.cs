@@ -29,7 +29,7 @@ namespace MapBoxSampleiOS
         public override void Draw(CGRect area)
         {
             base.Draw(area);
-            const int ZOOM = 4;
+            const int ZOOM = 16;
 
             var context = UIGraphics.GetCurrentContext();
 
@@ -40,23 +40,27 @@ namespace MapBoxSampleiOS
             int firstRow = (int)Math.Floor(area.GetMinY() / tileSize.Height);
             int lastRow = (int)Math.Floor((area.GetMaxY() - 1) / tileSize.Height);
 
-            for (int row = firstRow; row <= lastRow; row++)
-            {
-                for (int col = firstCol; col <= lastCol; col++)
-                {
-                    SVGKImage tile = getTile(ZOOM, col, row);
+            SVGKImage tileBL = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
+            SVGKImage tileBR = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BR-NY.svg"));
+            SVGKImage tileTL = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "TL-NY.svg"));
+            SVGKImage tileTR = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "TR-NY.svg"));
 
-                    CGRect tileRect = new CGRect(tileSize.Width * col,
-                                                tileSize.Height * row,
-                                                tileSize.Width,
-                                                tileSize.Height);
-                    tileRect.Intersect(tileRect);
+            CGRect tileRectBL = new CGRect(tileSize.Width * 0,tileSize.Height * 0,tileSize.Width,tileSize.Height);
+            CGRect tileRectBR = new CGRect(tileSize.Width * 0, tileSize.Height * 1, tileSize.Width, tileSize.Height);
+            CGRect tileRectTL = new CGRect(tileSize.Width * 1, tileSize.Height * 0, tileSize.Width, tileSize.Height);
+            CGRect tileRectTR = new CGRect(tileSize.Width * 1, tileSize.Height * 1, tileSize.Width, tileSize.Height);
 
-                    tile.DrawAsPatternInRect(tileRect);
+            tileRectBL.Intersect(tileRectBL);
+            tileRectBR.Intersect(tileRectBR);
+            tileRectTL.Intersect(tileRectTL);
+            tileRectTR.Intersect(tileRectTR);
 
-                }
+            tileBL.DrawAsPatternInRect(tileRectBL);
+            tileBR.DrawAsPatternInRect(tileRectBL);
+            tileTL.DrawAsPatternInRect(tileRectBL);
+            tileTR.DrawAsPatternInRect(tileRectBL);
 
-            }
+
         }
 
 		public SVGKImage getTile(int zoom, int col, int row)
