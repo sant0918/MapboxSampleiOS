@@ -52,13 +52,18 @@ namespace MapBoxSampleiOS
                 imagen.Frame = new CGRect(10, 10, imagen.Image.CGImage.Width, imagen.Image.CGImage.Height);
 
              }*/
-			SVGKImage im = SVGKImage.ImageNamed("newyork.svg");
+			SVGKImage im = SVGKImage.ImageNamed("tiles/16/TL-NY.svg");
             im.Size = new CGSize(View.Bounds.GetMaxX(), View.Bounds.GetMaxY());
 			double half = 1.0 / 2.0;
 			SVGKImageView iv = new SVGKFastImageView(im);
             iv.Frame = new CGRect(0, 0, 256, 256);
             View.AddSubview(iv);
 
+            SVGKImage im2 = SVGKImage.ImageNamed("tiles/16/TR-NY.svg");
+            im2.Size = new CGSize(View.Bounds.GetMaxX(), View.Bounds.GetMaxY());            
+            SVGKImageView iv2 = new SVGKFastImageView(im2);
+            iv2.Frame = new CGRect(256, 0, 256, 256);
+            View.AddSubview(iv2);
 
             /*
             svgImage = new SVGKFastTileView(View.Bounds);
