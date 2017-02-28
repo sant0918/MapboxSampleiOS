@@ -137,6 +137,10 @@
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
     <BundleResource Include="Settings.bundle\Root.plist" />
+    <BundleResource Include="Resources\tiles\16\BL-NY.svg" />
+    <BundleResource Include="Resources\tiles\16\BR-NY.svg" />
+    <BundleResource Include="Resources\tiles\16\TL-NY.svg" />
+    <BundleResource Include="Resources\tiles\16\TR-NY.svg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -152,10 +156,6 @@
     <Content Include="newyork.svg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <BundleResource Include="Resources\tiles\BL-NY.svg" />
-    <BundleResource Include="Resources\tiles\BR-NY.svg" />
-    <BundleResource Include="Resources\tiles\TL-NY.svg" />
-    <BundleResource Include="Resources\tiles\TR-NY.svg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SVGKit\SVGKit.csproj">
