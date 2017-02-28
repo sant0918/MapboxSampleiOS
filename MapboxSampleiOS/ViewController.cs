@@ -84,13 +84,13 @@ namespace MapBoxSampleiOS
                     var p0 = panGesture.LocationInView(View);
 
                     if (dx == 0)
-                        dx = p0.X - image.Center.X;
+                        dx = p0.X - svgImage.Center.X;
 
                     if (dy == 0)
-                        dy = p0.Y - image.Center.Y;
+                        dy = p0.Y - svgImage.Center.Y;
 
                     var p1 = new CGPoint(p0.X - dx, p0.Y - dy);
-                    image.Center = p1;
+                    svgImage.Center = p1;
                 }
                 else if (panGesture.State == UIGestureRecognizerState.Ended)
                 {
@@ -100,8 +100,8 @@ namespace MapBoxSampleiOS
 
             });
 
-            image.AddGestureRecognizer(panGesture);
-            image.AddGestureRecognizer(rotateGesture)
+            svgImage.AddGestureRecognizer(panGesture);
+            svgImage.AddGestureRecognizer(rotateGesture);
             /*
             // adds maps to view
             image = new ImageTileView(View.Bounds);
