@@ -2238,11 +2238,12 @@ namespace SVGKit
         // -(void)drawInRect:(CGRect)rect blendMode:(CGBlendMode)blendMode alpha:(CGFloat)alpha;
         [Export("drawInRect:blendMode:alpha:")]
         void DrawInRect(CGRect rect, CGBlendMode blendMode, nfloat alpha);
-
+        */
         // -(void)drawAsPatternInRect:(CGRect)rect;
         [Export("drawAsPatternInRect:")]
         void DrawAsPatternInRect(CGRect rect);
 
+        /*
         // +(UIImage *)animatedImageNamed:(NSString *)name duration:(NSTimeInterval)duration;
         [Static]
         [Export("animatedImageNamed:duration:")]
