@@ -16,12 +16,12 @@ namespace MapBoxSampleiOS
     {
 		CLLocation loc;
         GlobalMapTiles gmt;
-        SVGKFastTileView(SVGKImage svgImage) : base (svgImage)
+        public SVGKFastTileView(SVGKImage svgImage) : base (svgImage)
         {
 
         }
 
-        SVGKFastTileView(CGRect frame) : base (frame)
+        public SVGKFastTileView(CGRect frame) : base (frame)
         {
 
         }
