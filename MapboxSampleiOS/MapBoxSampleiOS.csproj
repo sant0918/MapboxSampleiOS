@@ -59,7 +59,8 @@
     <MtouchUseRefCounting>true</MtouchUseRefCounting>
     <MtouchSdkVersion>10.2</MtouchSdkVersion>
     <MtouchLink>SdkOnly</MtouchLink>
-    <MtouchExtraArgs></MtouchExtraArgs>
+    <MtouchExtraArgs>
+    </MtouchExtraArgs>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
     <DebugType>full</DebugType>
@@ -127,6 +128,7 @@
     <Compile Include="Models\Distance.cs" />
     <Compile Include="Models\GeoCoordinates.cs" />
     <Compile Include="Models\Pixels.cs" />
+    <Compile Include="SVGKTileView.cs" />
     <Compile Include="ViewController.cs" />
     <Compile Include="ViewController.designer.cs">
       <DependentUpon>ViewController.cs</DependentUpon>
