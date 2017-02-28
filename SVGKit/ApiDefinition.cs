@@ -3013,6 +3013,8 @@ namespace SVGKit
 
         [Export("initWithSVGKImage:")]
         IntPtr Constructor(SVGKImage im);
+        [Export("initWithFrame:")]
+        IntPtr Constructor(CGRect frame);
         /*
         // @property (nonatomic) BOOL disableAutoRedrawAtHighestResolution;
         [Export("disableAutoRedrawAtHighestResolution")]

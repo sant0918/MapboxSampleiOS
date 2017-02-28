@@ -21,6 +21,11 @@ namespace MapBoxSampleiOS
 
         }
 
+        SVGKFastTileView(CGRect frame) : base (frame)
+        {
+
+        }
+
         public override void Draw(CGRect area)
         {
             base.Draw(area);
