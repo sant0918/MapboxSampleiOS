@@ -24,11 +24,12 @@ namespace MapBoxSampleiOS
         public SVGKFastTileView(SVGKImage svgImage) : base (svgImage)
         {
             this.svgImage = svgImage;
+			this.SetGestures();
         }
 
         public SVGKFastTileView(CGRect frame) : base (frame)
         {
-
+			this.SetGestures();
         }
 
         public override void Draw(CGRect area)
@@ -74,7 +75,7 @@ namespace MapBoxSampleiOS
             this.svgImage.CALayerTree.RenderInContext(context);
 
             context.RestoreState();
-            SetGestures();
+            
         }
 
         public SVGKImage getTile(int zoom, int col, int row)
@@ -132,7 +133,7 @@ namespace MapBoxSampleiOS
                 if ((panGesture.State == UIGestureRecognizerState.Began || panGesture.State == UIGestureRecognizerState.Changed)
                  && panGesture.NumberOfTouches == 1)
                 {
-                    var p0 = panGesture.LocationInView(View);
+                    var p0 = panGesture.LocationInView(this);
 
                     if (dx == 0)
                         dx = p0.X - this.Center.X;
@@ -150,6 +151,9 @@ namespace MapBoxSampleiOS
                 }
 
             });
+
+			this.AddGestureRecognizer(panGesture);
+			this.AddGestureRecognizer(rotateGesture);
         }
 
     }
