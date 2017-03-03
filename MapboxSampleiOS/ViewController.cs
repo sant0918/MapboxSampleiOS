@@ -48,7 +48,6 @@ namespace MapBoxSampleiOS
 			//iv.Frame = new CGRect(0, 0, 256, 256);
 			View.AddSubview(iv);
          
-
             
             rotateGesture = new UIRotationGestureRecognizer(() =>
             {
