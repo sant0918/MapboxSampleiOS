@@ -19,7 +19,7 @@ namespace MapBoxSampleiOS
         GlobalMapTiles gmt;
         public ImageTileView(CGRect frame) : base (frame)
         {
-
+            
         }
 
         /*
