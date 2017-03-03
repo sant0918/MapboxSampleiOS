@@ -42,16 +42,16 @@ namespace MapBoxSampleiOS
 
             context.TranslateCTM(tileSize.Width, tileSize.Height);
             context.ScaleCTM(svgImage.Size.Width, svgImage.Size.Height);
-            
-            
 
+            
             int firstCol = (int)Math.Floor(area.GetMinX() / tileSize.Width);
             int lastCol = (int)Math.Floor((area.GetMaxX() - 1) / tileSize.Width);
             int firstRow = (int)Math.Floor(area.GetMinY() / tileSize.Height);
             int lastRow = (int)Math.Floor((area.GetMaxY() - 1) / tileSize.Height);
 
-            this.Layer.AddSublayer(SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg")).CALayerTree); 
-            
+            this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
+            this.Layer.AddSublayer(svgImage.CALayerTree); 
+            this.svgImage.CALayerTree.RenderInContext(context);
 
 
         }
