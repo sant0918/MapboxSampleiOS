@@ -33,7 +33,7 @@ namespace MapBoxSampleiOS
             nfloat dx = 0;
             nfloat dy = 0;
 
-            
+       
             // Add base map
             using (UIImage foto = UIImage.FromBundle("mapserv.png"))
              {
@@ -44,10 +44,10 @@ namespace MapBoxSampleiOS
 
              }
 		
-            
-            SVGKImageView iv = new SVGKFastTileView(View.Bounds);
-            //iv.Frame = new CGRect(0, 0, 256, 256);
-            View.AddSubview(iv);
+                    SVGKImageView iv = new SVGKFastTileView(View.Bounds);
+			//iv.Frame = new CGRect(0, 0, 256, 256);
+			View.AddSubview(iv);
+         
 
             
             rotateGesture = new UIRotationGestureRecognizer(() =>
