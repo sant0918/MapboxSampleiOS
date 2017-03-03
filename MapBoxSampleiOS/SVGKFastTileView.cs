@@ -56,6 +56,21 @@ namespace MapBoxSampleiOS
             this.svgImage.CALayerTree.RenderInContext(context);
 
 			context.RestoreState();
+
+            this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BR-NY.svg"));
+
+            
+            context = UIGraphics.GetCurrentContext();
+            context.SaveState();
+
+            
+            this.svgImage.Size = tileSize;
+            context.TranslateCTM(256, 0);
+            //context.ScaleCTM(-10, -10);
+
+            this.svgImage.CALayerTree.RenderInContext(context);
+
+            context.RestoreState();
         }
 
         public SVGKImage getTile(int zoom, int col, int row)
