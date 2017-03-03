@@ -28,20 +28,22 @@ namespace MapBoxSampleiOS
 
         }
 
-        public override void DrawRect(CGRect area, UIViewPrintFormatter formatter)
+        public override void Draw(CGRect area)
         {
-            base.DrawRect(area, formatter);
+            base.Draw(area);
+			const int ZOOM = 16;
+			this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
 
             CGRect imageBounds = new CGRect(0, 0, this.svgImage.Size.Width, this.svgImage.Size.Height);
-            const int ZOOM = 16;
+            
 
             var context = UIGraphics.GetCurrentContext();
             context.SaveState();
             
             CGSize tileSize = new CGSize(256, 256);
-
-            context.TranslateCTM(tileSize.Width, tileSize.Height);
-            context.ScaleCTM(svgImage.Size.Width, svgImage.Size.Height);
+			this.svgImage.Size = tileSize;
+            context.TranslateCTM(0, 0);
+			//context.ScaleCTM(-10, -10);
 
             
             int firstCol = (int)Math.Floor(area.GetMinX() / tileSize.Width);
@@ -49,11 +51,11 @@ namespace MapBoxSampleiOS
             int firstRow = (int)Math.Floor(area.GetMinY() / tileSize.Height);
             int lastRow = (int)Math.Floor((area.GetMaxY() - 1) / tileSize.Height);
 
-            this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
-            this.Layer.AddSublayer(svgImage.CALayerTree); 
+            
+            //this.Layer.AddSublayer(svgImage.CALayerTree); 
             this.svgImage.CALayerTree.RenderInContext(context);
 
-
+			context.RestoreState();
         }
 
         public SVGKImage getTile(int zoom, int col, int row)
