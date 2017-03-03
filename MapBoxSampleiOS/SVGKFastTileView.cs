@@ -50,10 +50,8 @@ namespace MapBoxSampleiOS
             int firstRow = (int)Math.Floor(area.GetMinY() / tileSize.Height);
             int lastRow = (int)Math.Floor((area.GetMaxY() - 1) / tileSize.Height);
 
-            CALayer layer = new CALayer();
-            layer.Frame = new CGRect(0, 0, this.svgImage.Size.Width, this.svgImage.Size.Height);
-            layer.Contents = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg")).CGImage;
-            layer.RenderInContext(context);
+            this.Layer.AddSublayer(SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg")).CALayerTree); 
+            
 
 
         }
