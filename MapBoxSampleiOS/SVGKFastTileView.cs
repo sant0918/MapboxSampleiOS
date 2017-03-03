@@ -9,6 +9,7 @@ using CoreGraphics;
 using CoreLocation;
 using System.IO;
 using UIKit;
+using CoreAnimation;
 
 namespace MapBoxSampleiOS
 {
@@ -29,7 +30,7 @@ namespace MapBoxSampleiOS
 
         public override void DrawRect(CGRect area, UIViewPrintFormatter formatter)
         {
-            base.Draw(area, formatter);
+            base.DrawRect(area, formatter);
 
             CGRect imageBounds = new CGRect(0, 0, this.svgImage.Size.Width, this.svgImage.Size.Height);
             const int ZOOM = 16;

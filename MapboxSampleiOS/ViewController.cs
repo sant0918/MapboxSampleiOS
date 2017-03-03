@@ -17,6 +17,7 @@ namespace MapBoxSampleiOS
     { 
         public ViewController (IntPtr handle) : base (handle)
         {
+			
         }
 
        

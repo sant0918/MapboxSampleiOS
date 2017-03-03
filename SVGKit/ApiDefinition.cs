@@ -2149,14 +2149,16 @@ namespace SVGKit
         [Export("DOMTree", ArgumentSemantic.Strong)]
         SVGSVGElement DOMTree { get; }
 
-        // @property (readonly, nonatomic, strong) CALayer * CALayerTree;
-        [Export("CALayerTree", ArgumentSemantic.Strong)]
-        CALayer CALayerTree { get; }
+       
 
         // @property (readonly, nonatomic, strong) NSString * nameUsedToInstantiate;
         [Export("nameUsedToInstantiate", ArgumentSemantic.Strong)]
         string NameUsedToInstantiate { get; }
         */
+		 // @property (readonly, nonatomic, strong) CALayer * CALayerTree;
+        [Export("CALayerTree", ArgumentSemantic.Strong)]
+		CALayer CALayerTree { get; }
+
         // +(SVGKImage *)imageNamed:(NSString *)name;
         [Static]
         [Export("imageNamed:")]
