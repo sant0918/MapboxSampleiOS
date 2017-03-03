@@ -19,11 +19,9 @@ namespace MapBoxSampleiOS
         {
 			
         }
-
-       
-        ImageTileView image;
-        SVGKFastTileView svgImage;
-        UIImageView imagen;        
+        
+        
+        UIImageView image;        
         UIRotationGestureRecognizer rotateGesture;
         UIPanGestureRecognizer panGesture;
 
@@ -35,52 +33,29 @@ namespace MapBoxSampleiOS
             nfloat dx = 0;
             nfloat dy = 0;
 
-            //testView = new t_UIView(View.Bounds);
-            //View.AddSubview(testView);
-
-            //testView.Layer.CornerRadius = 4;
-            //testView.Layer.ShadowColor = new CGColor(1, 0, 0);
-            //testView.Layer.ShadowOpacity = 1.0f;
-            //testView.Layer.ShadowOffset = new SizeF(0, 4);
-            //testView.BackgroundColor = UIColor.Black;
-            /*
-            UIImage pictura;
+            
+            // Add base map
             using (UIImage foto = UIImage.FromBundle("mapserv.png"))
              {
-                imagen = new UIImageView(foto);
-                imagen.UserInteractionEnabled = true;
-                View.AddSubview(imagen);
-                imagen.Frame = new CGRect(10, 10, imagen.Image.CGImage.Width, imagen.Image.CGImage.Height);
+                image = new UIImageView(foto);
+                image.UserInteractionEnabled = true;
+                View.AddSubview(image);
+                image.Frame = new CGRect(10, 10, image.Image.CGImage.Width, image.Image.CGImage.Height);
 
              }
-			SVGKImage im = SVGKImage.ImageNamed("tiles/16/TL-NY.svg");
-            im.Size = new CGSize(View.Bounds.GetMaxX(), View.Bounds.GetMaxY());
-			double half = 1.0 / 2.0;
-			SVGKImageView iv = new SVGKFastImageView(im);
-            iv.Frame = new CGRect(0, 0, 256, 256);
-            View.AddSubview(iv);
-
-            SVGKImage im2 = SVGKImage.ImageNamed("tiles/16/TR-NY.svg");
-            im2.Size = new CGSize(View.Bounds.GetMaxX(), View.Bounds.GetMaxY());            
-            SVGKImageView iv2 = new SVGKFastImageView(im2);
-            iv2.Frame = new CGRect(256, 0, 256, 256);
-            View.AddSubview(iv2);
-            */
+		
+            
             SVGKImageView iv = new SVGKFastTileView(View.Bounds);
             //iv.Frame = new CGRect(0, 0, 256, 256);
             View.AddSubview(iv);
 
-            /*
-            svgImage = new SVGKFastTileView(View.Bounds);
-            svgImage.UserInteractionEnabled = true;
-            View.AddSubview(svgImage);
-
+            
             rotateGesture = new UIRotationGestureRecognizer(() =>
             {
                 if ((rotateGesture.State == UIGestureRecognizerState.Began || rotateGesture.State == UIGestureRecognizerState.Changed)
                 && rotateGesture.NumberOfTouches == 2)
                 {
-                    svgImage.Transform = CGAffineTransform.MakeRotation(rotateGesture.Rotation + r);
+                    image.Transform = CGAffineTransform.MakeRotation(rotateGesture.Rotation + r);
                 }
                 else if (rotateGesture.State == UIGestureRecognizerState.Ended)
                 {
@@ -96,13 +71,13 @@ namespace MapBoxSampleiOS
                     var p0 = panGesture.LocationInView(View);
 
                     if (dx == 0)
-                        dx = p0.X - svgImage.Center.X;
+                        dx = p0.X - image.Center.X;
 
                     if (dy == 0)
-                        dy = p0.Y - svgImage.Center.Y;
+                        dy = p0.Y - image.Center.Y;
 
                     var p1 = new CGPoint(p0.X - dx, p0.Y - dy);
-                    svgImage.Center = p1;
+                    image.Center = p1;
                 }
                 else if (panGesture.State == UIGestureRecognizerState.Ended)
                 {
@@ -112,51 +87,9 @@ namespace MapBoxSampleiOS
 
             });
 
-            svgImage.AddGestureRecognizer(panGesture);
-            svgImage.AddGestureRecognizer(rotateGesture);
-            
-            // adds maps to view
-            image = new ImageTileView(View.Bounds);
-            image.UserInteractionEnabled = true;
-            View.AddSubview(image);
-            
-
-            rotateGesture = new UIRotationGestureRecognizer(() =>
-            {
-                if((rotateGesture.State == UIGestureRecognizerState.Began || rotateGesture.State == UIGestureRecognizerState.Changed) 
-                && rotateGesture.NumberOfTouches == 2)
-                {
-                    image.Transform = CGAffineTransform.MakeRotation(rotateGesture.Rotation + r);
-                } else if ( rotateGesture.State == UIGestureRecognizerState.Ended){
-                    r += rotateGesture.Rotation;
-                }
-            });
-
-            panGesture = new UIPanGestureRecognizer(() =>
-            {
-                if((panGesture.State == UIGestureRecognizerState.Began || panGesture.State == UIGestureRecognizerState.Changed) 
-                 && panGesture.NumberOfTouches == 1)
-                {
-                    var p0 = panGesture.LocationInView(View);
-
-                    if (dx == 0)
-                        dx = p0.X - image.Center.X;
-
-                    if (dy == 0)
-                        dy = p0.Y - image.Center.Y;
-                    
-                    var p1 = new CGPoint(p0.X- dx, p0.Y - dy);
-                    image.Center = p1;
-                } else if (panGesture.State == UIGestureRecognizerState.Ended)
-                {
-                    dx = 0;
-                    dy = 0;
-                }
-
-            });
-            
             image.AddGestureRecognizer(panGesture);
-            image.AddGestureRecognizer(rotateGesture);*/
+            image.AddGestureRecognizer(rotateGesture);
+            
 
         }
 
