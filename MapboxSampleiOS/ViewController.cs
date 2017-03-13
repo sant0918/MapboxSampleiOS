@@ -44,7 +44,7 @@ namespace MapBoxSampleiOS
 
              }
 		
-                    SVGKImageView iv = new SVGKFastTileView(View.Bounds);
+            SVGKImageView iv = new SVGKFastTileView(View.Bounds);
 			//iv.Frame = new CGRect(0, 0, 256, 256);
 			View.AddSubview(iv);
          

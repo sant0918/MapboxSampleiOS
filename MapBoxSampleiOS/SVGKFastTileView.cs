@@ -20,60 +20,63 @@ namespace MapBoxSampleiOS
         SVGKImage svgImage;
         UIRotationGestureRecognizer rotateGesture;
         UIPanGestureRecognizer panGesture;
+        CGSize tileSize;
 
         public SVGKFastTileView(SVGKImage svgImage) : base (svgImage)
         {
             this.svgImage = svgImage;
-			this.SetGestures();
+            tileSize = tileSize = new CGSize(256, 256);
+            this.svgImage.Size = tileSize;
+            this.SetGestures();
+
         }
 
         public SVGKFastTileView(CGRect frame) : base (frame)
         {
 			this.SetGestures();
+            tileSize = new CGSize(256, 256);
         }
 
         public override void Draw(CGRect area)
         {
             base.Draw(area);
-			const int ZOOM = 16;
-			this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
+			const int ZOOM = 3;
+			//this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
 
-            CGRect imageBounds = new CGRect(0, 0, this.svgImage.Size.Width, this.svgImage.Size.Height);
+            //CGRect imageBounds = new CGRect(0, 0, this.svgImage.Size.Width, this.svgImage.Size.Height);
             
 
             var context = UIGraphics.GetCurrentContext();
             context.SaveState();
-            
-            CGSize tileSize = new CGSize(256, 256);
-			this.svgImage.Size = tileSize;
             context.TranslateCTM(0, 0);
-			//context.ScaleCTM(-10, -10);
+            //context.ScaleCTM(-10, -10);
 
-            
-            int firstCol = (int)Math.Floor(area.GetMinX() / tileSize.Width);
-            int lastCol = (int)Math.Floor((area.GetMaxX() - 1) / tileSize.Width);
-            int firstRow = (int)Math.Floor(area.GetMinY() / tileSize.Height);
-            int lastRow = (int)Math.Floor((area.GetMaxY() - 1) / tileSize.Height);
-
+            // TODO : replace with coordinate location
+            int firstCol = 35;
+            int lastCol = 38;
+            int firstRow = 46;
+            int lastRow = 48;
             
             //this.Layer.AddSublayer(svgImage.CALayerTree); 
             this.svgImage.CALayerTree.RenderInContext(context);
-
-			context.RestoreState();
-
-            this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BR-NY.svg"));
-
             
-            context = UIGraphics.GetCurrentContext();
-            context.SaveState();
+            for (int row = firstRow; row <= lastRow; row++)
+            {
+                for (int col = firstCol; col <= lastCol; col++)
+                {
+                    this.svgImage = getTile(ZOOM, col, row);
+                    this.svgImage.Size = tileSize;
+                    CGRect tileRect = new CGRect(tileSize.Width * col,
+                                                tileSize.Height * row,
+                                                tileSize.Width,
+                                                tileSize.Height);
+                    tileRect.Intersect(tileRect);
 
-            
-            this.svgImage.Size = tileSize;
-            context.TranslateCTM(256, 0);
-            //context.ScaleCTM(-10, -10);
+                    this.svgImage.CALayerTree.RenderInContext(context);
 
-            this.svgImage.CALayerTree.RenderInContext(context);
+                }
 
+            }
             context.RestoreState();
             
         }
@@ -82,7 +85,7 @@ namespace MapBoxSampleiOS
 		{
 			string path = "tiles/";
 
-			string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + ".svg");
+			string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + "tile.svg");
 
 			return SVGKImage.ImageNamed(pngFilename);
 		}
