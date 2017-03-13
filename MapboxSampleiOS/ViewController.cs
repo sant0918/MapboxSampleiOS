@@ -35,14 +35,14 @@ namespace MapBoxSampleiOS
 
        
             // Add base map
-            using (UIImage foto = UIImage.FromBundle("mapserv.png"))
+            /*using (UIImage foto = UIImage.FromBundle("mapserv.png"))
              {
                 image = new UIImageView(foto);
                 image.UserInteractionEnabled = true;
                 View.AddSubview(image);
                 image.Frame = new CGRect(10, 10, image.Image.CGImage.Width, image.Image.CGImage.Height);
 
-             }
+             }*/
 		
             SVGKImageView iv = new SVGKFastTileView(View.Bounds);
 			//iv.Frame = new CGRect(0, 0, 256, 256);

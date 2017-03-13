@@ -47,8 +47,7 @@ namespace MapBoxSampleiOS
             
 
             var context = UIGraphics.GetCurrentContext();
-            context.SaveState();
-            context.TranslateCTM(0, 0);
+           
             //context.ScaleCTM(-10, -10);
 
             // TODO : replace with coordinate location
@@ -56,28 +55,30 @@ namespace MapBoxSampleiOS
             int lastCol = 38;
             int firstRow = 46;
             int lastRow = 48;
-            
+            int c = 0;
+            int r = 0;
             //this.Layer.AddSublayer(svgImage.CALayerTree); 
-            this.svgImage.CALayerTree.RenderInContext(context);
+            //this.svgImage.CALayerTree.RenderInContext(context);
             
             for (int row = firstRow; row <= lastRow; row++)
             {
                 for (int col = firstCol; col <= lastCol; col++)
                 {
+                    context.SaveState();
+                    context.TranslateCTM(tileSize.Width * c, tileSize.Height * row);
                     this.svgImage = getTile(ZOOM, col, row);
                     this.svgImage.Size = tileSize;
-                    CGRect tileRect = new CGRect(tileSize.Width * col,
-                                                tileSize.Height * row,
-                                                tileSize.Width,
-                                                tileSize.Height);
-                    tileRect.Intersect(tileRect);
+                    
 
                     this.svgImage.CALayerTree.RenderInContext(context);
-
+                    context.RestoreState();
+                    c++;
+                    
                 }
+                r++;
 
             }
-            context.RestoreState();
+            
             
         }
 
