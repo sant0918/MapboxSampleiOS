@@ -40,7 +40,7 @@ namespace MapBoxSampleiOS
         public override void Draw(CGRect area)
         {
             base.Draw(area);
-			const int ZOOM = 3;
+			const int ZOOM = 7;
 			//this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
 
             //CGRect imageBounds = new CGRect(0, 0, this.svgImage.Size.Width, this.svgImage.Size.Height);
@@ -52,20 +52,21 @@ namespace MapBoxSampleiOS
 
             // TODO : replace with coordinate location
             int firstCol = 35;
-            int lastCol = 38;
+            int lastCol = 37;
             int firstRow = 46;
-            int lastRow = 48;
-            int c = 0;
-            int r = 0;
+            int lastRow = 47;
+			int c;
+			int r=0;
             //this.Layer.AddSublayer(svgImage.CALayerTree); 
             //this.svgImage.CALayerTree.RenderInContext(context);
             
             for (int row = firstRow; row <= lastRow; row++)
             {
+				c = 0;
                 for (int col = firstCol; col <= lastCol; col++)
                 {
                     context.SaveState();
-                    context.TranslateCTM(tileSize.Width * c, tileSize.Height * row);
+                    context.TranslateCTM(tileSize.Width * c, tileSize.Height * r);
                     this.svgImage = getTile(ZOOM, col, row);
                     this.svgImage.Size = tileSize;
                     
@@ -86,7 +87,7 @@ namespace MapBoxSampleiOS
 		{
 			string path = "tiles/";
 
-			string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + "tile.svg");
+			string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + "/tile.svg");
 
 			return SVGKImage.ImageNamed(pngFilename);
 		}
