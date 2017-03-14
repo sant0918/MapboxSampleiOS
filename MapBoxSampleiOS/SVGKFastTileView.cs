@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Foundation;
 using UIKit;
 using SVGKit;
@@ -40,14 +41,20 @@ namespace MapBoxSampleiOS
         public override void Draw(CGRect area)
         {
             base.Draw(area);
-			const int ZOOM = 7;
-			//this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
+            RenderSVgImages();
+
+        }
+
+        async void RenderSVgImages()
+        {
+            const int ZOOM = 7;
+            //this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
 
             //CGRect imageBounds = new CGRect(0, 0, this.svgImage.Size.Width, this.svgImage.Size.Height);
-            
+
 
             var context = UIGraphics.GetCurrentContext();
-           
+
             //context.ScaleCTM(-10, -10);
 
             // TODO : replace with coordinate location
@@ -55,33 +62,32 @@ namespace MapBoxSampleiOS
             int lastCol = 37;
             int firstRow = 46;
             int lastRow = 47;
-			int c;
-			int r=0;
+            int c;
+            int r = 0;
             //this.Layer.AddSublayer(svgImage.CALayerTree); 
             //this.svgImage.CALayerTree.RenderInContext(context);
-            
+
             for (int row = firstRow; row <= lastRow; row++)
             {
-				c = 0;
+                c = 0;
                 for (int col = firstCol; col <= lastCol; col++)
                 {
                     context.SaveState();
                     context.TranslateCTM(tileSize.Width * c, tileSize.Height * r);
-                    this.svgImage = getTile(ZOOM, col, row);
-                    this.svgImage.Size = tileSize;
                     
+                        this.svgImage = getTile(ZOOM, col, row);
+                    this.svgImage.Size = tileSize;
+                    await Task.Run(
+                    
+                        this.svgImage.CALayerTree.RenderInContext(context));
 
-                    this.svgImage.CALayerTree.RenderInContext(context);
                     context.RestoreState();
                     c++;
-                    
+
                 }
                 r++;
 
             }
-
-         
-
         }
 
         public SVGKImage getTile(int zoom, int col, int row)
