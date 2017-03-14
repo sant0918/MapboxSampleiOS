@@ -45,9 +45,9 @@ namespace MapBoxSampleiOS
 
         }
 
-        async void RenderSVgImages()
+        void RenderSVgImages()
         {
-            const int ZOOM = 7;
+            const int ZOOM = 9;
             //this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
 
             //CGRect imageBounds = new CGRect(0, 0, this.svgImage.Size.Width, this.svgImage.Size.Height);
@@ -58,10 +58,10 @@ namespace MapBoxSampleiOS
             //context.ScaleCTM(-10, -10);
 
             // TODO : replace with coordinate location
-            int firstCol = 35;
-            int lastCol = 37;
-            int firstRow = 46;
-            int lastRow = 47;
+            int firstCol = 148;
+            int lastCol = 148;
+            int firstRow = 189;
+            int lastRow = 189;
             int c;
             int r = 0;
             //this.Layer.AddSublayer(svgImage.CALayerTree); 
@@ -77,10 +77,9 @@ namespace MapBoxSampleiOS
                     
                         this.svgImage = getTile(ZOOM, col, row);
                     this.svgImage.Size = tileSize;
-                    await Task.Run(
-                    
-                        this.svgImage.CALayerTree.RenderInContext(context));
 
+						this.svgImage.CALayerTree.RenderInContext(context);
+					
                     context.RestoreState();
                     c++;
 
@@ -90,7 +89,7 @@ namespace MapBoxSampleiOS
             }
         }
 
-        public SVGKImage getTile(int zoom, int col, int row)
+        public static SVGKImage getTile(int zoom, int col, int row)
 		{
 			string path = "tiles/";
 
