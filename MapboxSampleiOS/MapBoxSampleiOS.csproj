@@ -121,6 +121,7 @@
     <None Include="Entitlements.plist" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Gestures.cs" />
     <Compile Include="GlobalMapTiles.cs" />
     <Compile Include="ImageTileView.cs" />
     <Compile Include="Main.cs" />
