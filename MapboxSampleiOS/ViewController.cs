@@ -19,8 +19,9 @@ namespace MapBoxSampleiOS
         {
 			
         }
-        
-        
+
+      
+
         UIImageView image;        
         UIRotationGestureRecognizer rotateGesture;
         UIPanGestureRecognizer panGesture;

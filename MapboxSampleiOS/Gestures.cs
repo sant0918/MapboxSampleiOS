@@ -4,15 +4,14 @@ using System.Linq;
 using UIKit;
 using Foundation;
 using ObjCRuntime;
-
+/*
 namespace MapboxSampleiOS
 {
     public partial class ViewController : UIViewController
 
     {
 
-
-
+        
         public ViewController(UIWindow window, string nibName, NSBundle bundle) : base(nibName, bundle)
 
         {
@@ -29,27 +28,9 @@ namespace MapboxSampleiOS
 
             base.Dispose(disposing);
 
+            
 
-
-            // Release images
-
-            firstImage.Dispose();
-
-            secondImage.Dispose();
-
-            thirdImage.Dispose();
-
-
-
-            // Release labels
-
-            touchInfoLabel.Dispose();
-
-            touchPhaseLabel.Dispose();
-
-            touchInstructionLabel.Dispose();
-
-            touchTrackingLabel.Dispose();
+            //TODO: Implement dispose.
 
         }
 
@@ -376,4 +357,4 @@ namespace MapboxSampleiOS
         #endregion
 
     }
-}
+}*/

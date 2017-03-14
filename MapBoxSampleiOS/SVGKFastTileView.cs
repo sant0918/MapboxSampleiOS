@@ -79,8 +79,9 @@ namespace MapBoxSampleiOS
                 r++;
 
             }
-            
-            
+
+         
+
         }
 
         public SVGKImage getTile(int zoom, int col, int row)
@@ -133,32 +134,83 @@ namespace MapBoxSampleiOS
                 }
             });
 
-            this.panGesture = new UIPanGestureRecognizer(() =>
-            {
-                if ((panGesture.State == UIGestureRecognizerState.Began || panGesture.State == UIGestureRecognizerState.Changed)
-                 && panGesture.NumberOfTouches == 1)
-                {
-                    var p0 = panGesture.LocationInView(this);
+            /* this.panGesture = new UIPanGestureRecognizer(() =>
+             {
+                 if ((panGesture.State == UIGestureRecognizerState.Began || panGesture.State == UIGestureRecognizerState.Changed)
+                  && panGesture.NumberOfTouches == 1)
+                 {
+                     var p0 = panGesture.LocationInView(this);
 
-                    if (dx == 0)
-                        dx = p0.X - this.Center.X;
+                     if (dx == 0)
+                         dx = p0.X - this.Center.X;
 
-                    if (dy == 0)
-                        dy = p0.Y - this.Center.Y;
+                     if (dy == 0)
+                         dy = p0.Y - this.Center.Y;
 
-                    var p1 = new CGPoint(p0.X - dx, p0.Y - dy);
-                    this.Center = p1;
-                }
-                else if (panGesture.State == UIGestureRecognizerState.Ended)
-                {
-                    dx = 0;
-                    dy = 0;
-                }
+                     var p1 = new CGPoint(p0.X - dx, p0.Y - dy);
+                     this.Center = p1;
+                 }
+                 else if (panGesture.State == UIGestureRecognizerState.Ended)
+                 {
+                     dx = 0;
+                     dy = 0;
+                 }
 
-            });
+             });*/
 
-			this.AddGestureRecognizer(panGesture);
+            var panGesture = new UIPanGestureRecognizer(PanImage);
+
+            panGesture.MaximumNumberOfTouches = 2;
+
+            //panGesture.Delegate = new GestureDelegate(this);
+            
+            this.AddGestureRecognizer(panGesture);
 			this.AddGestureRecognizer(rotateGesture);
+        }
+
+        void AdjustAnchorPointForGestureRecognizer(UIGestureRecognizer gestureRecognizer)
+
+        {
+
+            if (gestureRecognizer.State == UIGestureRecognizerState.Began)
+            {
+
+                var image = gestureRecognizer.View;
+
+                var locationInView = gestureRecognizer.LocationInView(image);
+
+                var locationInSuperview = gestureRecognizer.LocationInView(image.Superview);
+
+
+
+                image.Layer.AnchorPoint = new CGPoint(locationInView.X / image.Bounds.Size.Width, locationInView.Y / image.Bounds.Size.Height);
+
+                image.Center = locationInSuperview;
+
+            }
+
+        }
+        void PanImage(UIPanGestureRecognizer gestureRecognizer)
+
+        {
+
+            AdjustAnchorPointForGestureRecognizer(gestureRecognizer);
+
+            var image = gestureRecognizer.View;
+
+            if (gestureRecognizer.State == UIGestureRecognizerState.Began || gestureRecognizer.State == UIGestureRecognizerState.Changed)
+            {
+
+                var translation = gestureRecognizer.TranslationInView(this);
+
+                image.Center = new CGPoint(image.Center.X + translation.X, image.Center.Y + translation.Y);
+
+                // Reset the gesture recognizer's translation to {0, 0} - the next callback will get a delta from the current position.
+
+                gestureRecognizer.SetTranslation(CGPoint.Empty, image);
+
+            }
+
         }
 
     }
