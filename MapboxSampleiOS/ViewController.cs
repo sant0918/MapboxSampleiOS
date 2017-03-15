@@ -50,7 +50,7 @@ namespace MapBoxSampleiOS
         public override void ViewDidLayoutSubviews()
         {
             base.ViewDidLayoutSubviews();
-            SVGKImageView iv = new SVGKFastTileView(new CGRect(0, 0, 1024, 1024));
+            SVGKImageView iv = new SVGKFastTileView(new CGRect(-1000,0,3048,2048));
             //iv.Frame = new CGRect(0, 0, 256, 256);
             View.AddSubview(iv);
 
