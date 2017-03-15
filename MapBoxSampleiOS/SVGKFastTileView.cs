@@ -58,18 +58,18 @@ namespace MapBoxSampleiOS
 
             // TODO : replace with coordinate location
             int minX = 9646;
-            int maxX = 9647;
+            int maxX = 9652;
             int minY = 12314;
-            int maxY = 12315;
+            int maxY = 12320;
             int c;
             int r = 0;
             //this.Layer.AddSublayer(svgImage.CALayerTree); 
             //this.svgImage.CALayerTree.RenderInContext(context);
 
-            for (int row = minX; row <= maxX; row++)
+			for (int row = minY; row <= maxY; row++)
             {
                 c = 0;
-                for (int col = minY; col <= maxY; col++)
+                for (int col = minX; col <= maxX; col++)
                 {
 					context.SaveState();
 					context.TranslateCTM(tileSize.Width * c, tileSize.Height * r);
