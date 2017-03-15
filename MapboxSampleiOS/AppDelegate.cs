@@ -1,6 +1,8 @@
 ﻿using Foundation;
 using UIKit;
-
+using SVGKit;
+using System.IO;
+using CoreGraphics;
 
 namespace MapBoxSampleiOS
 {
@@ -16,16 +18,15 @@ namespace MapBoxSampleiOS
             set;
         }
 
-       
+        SVGKImage svgImage;
+        CGSize tileSize;
 
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
             
-
-            
-
             return true;
         }
+       
     }
 }
 

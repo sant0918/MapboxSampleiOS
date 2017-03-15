@@ -2,13 +2,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 using Foundation;
 using UIKit;
 using SVGKit;
 using CoreGraphics;
 using CoreLocation;
 using System.IO;
-using UIKit;
 using CoreAnimation;
 
 namespace MapBoxSampleiOS
@@ -20,69 +20,91 @@ namespace MapBoxSampleiOS
         SVGKImage svgImage;
         UIRotationGestureRecognizer rotateGesture;
         UIPanGestureRecognizer panGesture;
+        CGSize tileSize;
 
         public SVGKFastTileView(SVGKImage svgImage) : base (svgImage)
         {
             this.svgImage = svgImage;
-			this.SetGestures();
+            tileSize = tileSize = new CGSize(256, 256);
+            this.svgImage.Size = tileSize;
+            this.SetGestures();
+
         }
 
         public SVGKFastTileView(CGRect frame) : base (frame)
         {
 			this.SetGestures();
+            tileSize = new CGSize(256, 256);
         }
 
         public override void Draw(CGRect area)
         {
             base.Draw(area);
-			const int ZOOM = 16;
-			this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
+            RenderSVgImages();
 
-            CGRect imageBounds = new CGRect(0, 0, this.svgImage.Size.Width, this.svgImage.Size.Height);
-            
-
-            var context = UIGraphics.GetCurrentContext();
-            context.SaveState();
-            
-            CGSize tileSize = new CGSize(256, 256);
-			this.svgImage.Size = tileSize;
-            context.TranslateCTM(0, 0);
-			//context.ScaleCTM(-10, -10);
-
-            
-            int firstCol = (int)Math.Floor(area.GetMinX() / tileSize.Width);
-            int lastCol = (int)Math.Floor((area.GetMaxX() - 1) / tileSize.Width);
-            int firstRow = (int)Math.Floor(area.GetMinY() / tileSize.Height);
-            int lastRow = (int)Math.Floor((area.GetMaxY() - 1) / tileSize.Height);
-
-            
-            //this.Layer.AddSublayer(svgImage.CALayerTree); 
-            this.svgImage.CALayerTree.RenderInContext(context);
-
-			context.RestoreState();
-
-            this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BR-NY.svg"));
-
-            
-            context = UIGraphics.GetCurrentContext();
-            context.SaveState();
-
-            
-            this.svgImage.Size = tileSize;
-            context.TranslateCTM(256, 0);
-            //context.ScaleCTM(-10, -10);
-
-            this.svgImage.CALayerTree.RenderInContext(context);
-
-            context.RestoreState();
-            
         }
 
-        public SVGKImage getTile(int zoom, int col, int row)
+        public void RenderSVgImages()
+        {
+            const int ZOOM = 9;
+            //this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
+
+            //CGRect imageBounds = new CGRect(0, 0, this.svgImage.Size.Width, this.svgImage.Size.Height);
+
+
+            var context = UIGraphics.GetCurrentContext();
+
+            //context.ScaleCTM(-10, -10);
+
+            // TODO : replace with coordinate location
+            int firstCol = 148;
+            int lastCol = 149;
+            int firstRow = 189;
+            int lastRow = 190;
+            int c;
+            int r = 0;
+            //this.Layer.AddSublayer(svgImage.CALayerTree); 
+            //this.svgImage.CALayerTree.RenderInContext(context);
+
+            for (int row = firstRow; row <= lastRow; row++)
+            {
+                c = 0;
+                for (int col = firstCol; col <= lastCol; col++)
+                {
+					context.SaveState();
+					context.TranslateCTM(tileSize.Width * c, tileSize.Height * r);
+
+					  this.svgImage = getTile(ZOOM, col, row);
+					this.svgImage.Size = tileSize;
+
+					this.svgImage.CALayerTree.RenderInContext(context);
+
+					//
+
+					context.RestoreState();
+					//UIImage tile = getTile(ZOOM, col, row).UIImage;
+
+					//CGRect tileRect = new CGRect(tileSize.Width * c,
+					//							 tileSize.Height * r,
+					//							tileSize.Width,
+					//							 tileSize.Height);
+					//tileRect.Intersect(tileRect);
+					//tile.DrawAsPatternInRect(tileRect);
+
+					c++;
+
+                }
+                r++;
+
+            }
+
+        }
+
+        public static SVGKImage getTile(int zoom, int col, int row)
 		{
 			string path = "tiles/";
 
-			string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + ".svg");
+			string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + "/tile.svg");
 
 			return SVGKImage.ImageNamed(pngFilename);
 		}
@@ -128,32 +150,83 @@ namespace MapBoxSampleiOS
                 }
             });
 
-            this.panGesture = new UIPanGestureRecognizer(() =>
-            {
-                if ((panGesture.State == UIGestureRecognizerState.Began || panGesture.State == UIGestureRecognizerState.Changed)
-                 && panGesture.NumberOfTouches == 1)
-                {
-                    var p0 = panGesture.LocationInView(this);
+            /* this.panGesture = new UIPanGestureRecognizer(() =>
+             {
+                 if ((panGesture.State == UIGestureRecognizerState.Began || panGesture.State == UIGestureRecognizerState.Changed)
+                  && panGesture.NumberOfTouches == 1)
+                 {
+                     var p0 = panGesture.LocationInView(this);
 
-                    if (dx == 0)
-                        dx = p0.X - this.Center.X;
+                     if (dx == 0)
+                         dx = p0.X - this.Center.X;
 
-                    if (dy == 0)
-                        dy = p0.Y - this.Center.Y;
+                     if (dy == 0)
+                         dy = p0.Y - this.Center.Y;
 
-                    var p1 = new CGPoint(p0.X - dx, p0.Y - dy);
-                    this.Center = p1;
-                }
-                else if (panGesture.State == UIGestureRecognizerState.Ended)
-                {
-                    dx = 0;
-                    dy = 0;
-                }
+                     var p1 = new CGPoint(p0.X - dx, p0.Y - dy);
+                     this.Center = p1;
+                 }
+                 else if (panGesture.State == UIGestureRecognizerState.Ended)
+                 {
+                     dx = 0;
+                     dy = 0;
+                 }
 
-            });
+             });*/
 
-			this.AddGestureRecognizer(panGesture);
+            var panGesture = new UIPanGestureRecognizer(PanImage);
+
+            panGesture.MaximumNumberOfTouches = 2;
+
+            //panGesture.Delegate = new GestureDelegate(this);
+            
+            this.AddGestureRecognizer(panGesture);
 			this.AddGestureRecognizer(rotateGesture);
+        }
+
+        void AdjustAnchorPointForGestureRecognizer(UIGestureRecognizer gestureRecognizer)
+
+        {
+
+            if (gestureRecognizer.State == UIGestureRecognizerState.Began)
+            {
+
+                var image = gestureRecognizer.View;
+
+                var locationInView = gestureRecognizer.LocationInView(image);
+
+                var locationInSuperview = gestureRecognizer.LocationInView(image.Superview);
+
+
+
+                image.Layer.AnchorPoint = new CGPoint(locationInView.X / image.Bounds.Size.Width, locationInView.Y / image.Bounds.Size.Height);
+
+                image.Center = locationInSuperview;
+
+            }
+
+        }
+        void PanImage(UIPanGestureRecognizer gestureRecognizer)
+
+        {
+
+            AdjustAnchorPointForGestureRecognizer(gestureRecognizer);
+
+            var image = gestureRecognizer.View;
+
+            if (gestureRecognizer.State == UIGestureRecognizerState.Began || gestureRecognizer.State == UIGestureRecognizerState.Changed)
+            {
+
+                var translation = gestureRecognizer.TranslationInView(this);
+
+                image.Center = new CGPoint(image.Center.X + translation.X, image.Center.Y + translation.Y);
+
+                // Reset the gesture recognizer's translation to {0, 0} - the next callback will get a delta from the current position.
+
+                gestureRecognizer.SetTranslation(CGPoint.Empty, image);
+
+            }
+
         }
 
     }

@@ -1,0 +1,341 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
+    <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <ProjectGuid>{9FB6D2BF-B2D6-4BBB-8542-82011E45D3E6}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>MapboxSampleiOS</RootNamespace>
+    <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <AssemblyName>MapboxSampleiOS</AssemblyName>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchFastDev>true</MtouchFastDev>
+    <MtouchDebug>true</MtouchDebug>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignProvision>86e5ac27-f9e4-4441-869f-cde626b58426</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhone' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhone\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchFloat32>true</MtouchFloat32>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchSdkVersion>10.2</MtouchSdkVersion>
+    <MtouchLink>SdkOnly</MtouchLink>
+    <MtouchExtraArgs>
+    </MtouchExtraArgs>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|iPhoneSimulator' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\iPhoneSimulator\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>i386</MtouchArch>
+    <MtouchLink>None</MtouchLink>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <CodesignKey>iPhone Developer: Javier Santana (PDT75CP86S)</CodesignKey>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <CodesignProvision>86e5ac27-f9e4-4441-869f-cde626b58426</CodesignProvision>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhone' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\iPhone\Debug</OutputPath>
+    <DefineConstants>DEBUG;ENABLE_TEST_CLOUD;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <MtouchArch>ARMv7, ARM64</MtouchArch>
+    <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
+    <MtouchFloat32>true</MtouchFloat32>
+    <CodesignKey>iPhone Developer</CodesignKey>
+    <DeviceSpecificBuild>true</DeviceSpecificBuild>
+    <MtouchDebug>true</MtouchDebug>
+    <MtouchUseSGen>true</MtouchUseSGen>
+    <MtouchUseRefCounting>true</MtouchUseRefCounting>
+    <MtouchProfiling>true</MtouchProfiling>
+    <CodesignProvision>86e5ac27-f9e4-4441-869f-cde626b58426</CodesignProvision>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Windows\Microsoft.NET\Framework\v2.0.50727\System.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="System.XML">
+      <HintPath>..\..\..\..\..\..\..\..\..\..\Windows\Microsoft.NET\Framework\v2.0.50727\System.XML.dll</HintPath>
+    </Reference>
+    <Reference Include="Xamarin.iOS" />
+  </ItemGroup>
+  <ItemGroup>
+    <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json">
+      <InProject>false</InProject>
+    </ImageAsset>
+  </ItemGroup>
+  <ItemGroup>
+    <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
+    <InterfaceDefinition Include="Main.storyboard" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Info.plist" />
+    <None Include="Entitlements.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Gestures.cs" />
+    <Compile Include="GlobalMapTiles.cs" />
+    <Compile Include="ImageTileView.cs" />
+    <Compile Include="Main.cs" />
+    <Compile Include="AppDelegate.cs" />
+    <Compile Include="Models\Distance.cs" />
+    <Compile Include="Models\GeoCoordinates.cs" />
+    <Compile Include="Models\Pixels.cs" />
+    <Compile Include="SVGKFastTileView.cs" />
+    <Compile Include="ViewController.cs" />
+    <Compile Include="ViewController.designer.cs">
+      <DependentUpon>ViewController.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
+  <ItemGroup>
+    <BundleResource Include="Settings.bundle\Root.plist" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="mapserv.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="newyork.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <BundleResource Include="Resources\tiles\1\0\0\tile.svg" />
+    <BundleResource Include="Resources\tiles\2\1\1\tile.svg" />
+    <BundleResource Include="Resources\tiles\3\2\2\tile.svg" />
+    <BundleResource Include="Resources\tiles\3\2\3\tile.svg" />
+    <BundleResource Include="Resources\tiles\4\4\5\tile.svg" />
+    <BundleResource Include="Resources\tiles\4\4\6\tile.svg" />
+    <BundleResource Include="Resources\tiles\5\8\11\tile.svg" />
+    <BundleResource Include="Resources\tiles\5\8\12\tile.svg" />
+    <BundleResource Include="Resources\tiles\5\9\11\tile.svg" />
+    <BundleResource Include="Resources\tiles\5\9\12\tile.svg" />
+    <BundleResource Include="Resources\tiles\6\18\23\tile.svg" />
+    <BundleResource Include="Resources\tiles\6\18\24\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\35\46\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\35\47\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\35\48\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\36\46\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\36\47\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\36\48\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\37\46\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\37\47\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\37\48\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\38\46\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\38\47\tile.svg" />
+    <BundleResource Include="Resources\tiles\7\38\48\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\71\91\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\71\92\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\71\93\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\71\94\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\71\95\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\71\96\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\72\91\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\72\92\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\72\93\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\72\94\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\72\95\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\72\96\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\73\91\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\73\92\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\73\93\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\73\94\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\73\95\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\73\96\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\74\91\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\74\92\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\74\93\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\74\94\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\74\95\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\74\96\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\75\91\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\75\92\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\75\93\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\75\94\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\75\95\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\75\96\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\76\91\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\76\92\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\76\93\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\76\94\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\76\95\tile.svg" />
+    <BundleResource Include="Resources\tiles\8\76\96\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\141\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\141\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\141\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\141\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\141\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\141\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\141\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\141\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\141\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\142\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\142\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\142\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\142\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\142\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\142\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\142\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\142\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\142\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\143\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\143\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\143\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\143\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\143\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\143\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\143\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\143\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\143\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\144\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\144\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\144\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\144\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\144\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\144\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\144\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\144\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\144\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\145\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\145\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\145\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\145\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\145\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\145\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\145\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\145\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\145\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\146\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\146\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\146\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\146\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\146\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\146\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\146\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\146\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\146\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\147\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\147\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\147\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\147\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\147\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\147\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\147\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\147\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\147\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\148\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\148\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\148\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\148\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\148\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\148\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\148\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\148\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\148\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\149\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\149\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\149\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\149\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\149\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\149\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\149\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\149\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\149\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\150\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\150\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\150\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\150\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\150\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\150\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\150\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\150\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\150\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\151\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\151\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\151\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\151\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\151\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\151\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\151\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\151\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\151\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\152\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\152\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\152\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\152\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\152\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\152\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\152\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\152\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\152\192\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\153\184\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\153\185\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\153\186\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\153\187\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\153\188\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\153\189\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\153\190\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\153\191\tile.svg" />
+    <BundleResource Include="Resources\tiles\9\153\192\tile.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SVGKit\SVGKit.csproj">
+      <Project>{2D408D0B-B49F-4518-A40E-FA5D881FD2C9}</Project>
+      <Name>SVGKit</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+</Project>

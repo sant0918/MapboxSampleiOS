@@ -2128,11 +2128,12 @@ namespace SVGKit
     [BaseType(typeof(NSObject))]
     interface SVGKImage
     {
-        /*
+        
         // @property (readonly, nonatomic, weak) UIImage * UIImage;
         [Export("UIImage", ArgumentSemantic.Weak)]
         UIImage UIImage { get; }
 
+		/*
         // @property (readonly, nonatomic, strong) SVGKSource * source;
         [Export("source", ArgumentSemantic.Strong)]
         SVGKSource Source { get; }
