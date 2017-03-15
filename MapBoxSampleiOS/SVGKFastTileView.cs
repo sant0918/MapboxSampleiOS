@@ -40,7 +40,7 @@ namespace MapBoxSampleiOS
         public override void Draw(CGRect area)
         {
             base.Draw(area);
-          //  RenderSVgImages();
+            RenderSVgImages();
 
         }
 

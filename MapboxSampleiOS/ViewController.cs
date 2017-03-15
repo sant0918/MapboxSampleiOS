@@ -45,14 +45,20 @@ namespace MapBoxSampleiOS
 
              }*/
 		
-            SVGKImageView iv = new SVGKFastTileView(new CGRect(0, 0, 1024, 1024));
-			//iv.Frame = new CGRect(0, 0, 256, 256);
-			View.AddSubview(iv);
+           
          
             
 
         }
 
+        public override void ViewDidLayoutSubviews()
+        {
+            base.ViewDidLayoutSubviews();
+            SVGKImageView iv = new SVGKFastTileView(new CGRect(0, 0, 1024, 1024));
+            //iv.Frame = new CGRect(0, 0, 256, 256);
+            View.AddSubview(iv);
+
+        }
 
         public override void DidReceiveMemoryWarning ()
         {
