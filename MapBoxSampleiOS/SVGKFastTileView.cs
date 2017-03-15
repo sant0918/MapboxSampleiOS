@@ -137,42 +137,34 @@ namespace MapBoxSampleiOS
             nfloat r = 0;
             nfloat dx = 0;
             nfloat dy = 0;
-            this.rotateGesture = new UIRotationGestureRecognizer(() =>
-            {
-                if ((rotateGesture.State == UIGestureRecognizerState.Began || rotateGesture.State == UIGestureRecognizerState.Changed)
-                && rotateGesture.NumberOfTouches == 2)
-                {
-                    this.Transform = CGAffineTransform.MakeRotation(rotateGesture.Rotation + r);
-                }
-                else if (rotateGesture.State == UIGestureRecognizerState.Ended)
-                {
-                    r += rotateGesture.Rotation;
-                }
-            });
+            //this.rotateGesture = new UIRotationGestureRecognizer(() =>
+            //{
+            //    if ((rotateGesture.State == UIGestureRecognizerState.Began || rotateGesture.State == UIGestureRecognizerState.Changed)
+            //    && rotateGesture.NumberOfTouches == 2)
+            //    {
+            //        this.Transform = CGAffineTransform.MakeRotation(rotateGesture.Rotation + r);
+            //    }
+            //    else if (rotateGesture.State == UIGestureRecognizerState.Ended)
+            //    {
+            //        r += rotateGesture.Rotation;
+            //    }
+            //});
 
-            /* this.panGesture = new UIPanGestureRecognizer(() =>
-             {
-                 if ((panGesture.State == UIGestureRecognizerState.Began || panGesture.State == UIGestureRecognizerState.Changed)
-                  && panGesture.NumberOfTouches == 1)
-                 {
-                     var p0 = panGesture.LocationInView(this);
+            this.UserInteractionEnabled = true;
 
-                     if (dx == 0)
-                         dx = p0.X - this.Center.X;
 
-                     if (dy == 0)
-                         dy = p0.Y - this.Center.Y;
 
-                     var p1 = new CGPoint(p0.X - dx, p0.Y - dy);
-                     this.Center = p1;
-                 }
-                 else if (panGesture.State == UIGestureRecognizerState.Ended)
-                 {
-                     dx = 0;
-                     dy = 0;
-                 }
+            var rotationGesture = new UIRotationGestureRecognizer(RotateImage);
 
-             });*/
+            this.AddGestureRecognizer(rotationGesture);
+
+
+
+            var pinchGesture = new UIPinchGestureRecognizer(ScaleImage);
+
+            pinchGesture.Delegate = new GestureDelegate(this);
+
+            this.AddGestureRecognizer(pinchGesture);
 
             var panGesture = new UIPanGestureRecognizer(PanImage);
 
@@ -228,6 +220,47 @@ namespace MapBoxSampleiOS
             }
 
         }
+        // Scales the image by the current scale
+
+        void ScaleImage(UIPinchGestureRecognizer gestureRecognizer)
+
+        {
+
+            AdjustAnchorPointForGestureRecognizer(gestureRecognizer);
+
+            if (gestureRecognizer.State == UIGestureRecognizerState.Began || gestureRecognizer.State == UIGestureRecognizerState.Changed)
+            {
+
+                gestureRecognizer.View.Transform *= CGAffineTransform.MakeScale(gestureRecognizer.Scale, gestureRecognizer.Scale);
+
+                // Reset the gesture recognizer's scale - the next callback will get a delta from the current scale.
+
+                gestureRecognizer.Scale = 1;
+
+            }
+
+        }
+        // Rotates the image by the current rotation
+
+        void RotateImage(UIRotationGestureRecognizer gestureRecognizer)
+
+        {
+
+            AdjustAnchorPointForGestureRecognizer(gestureRecognizer);
+
+            if (gestureRecognizer.State == UIGestureRecognizerState.Began || gestureRecognizer.State == UIGestureRecognizerState.Changed)
+            {
+
+                gestureRecognizer.View.Transform *= CGAffineTransform.MakeRotation(gestureRecognizer.Rotation);
+
+                // Reset the gesture recognizer's rotation - the next callback will get a delta from the current rotation.
+
+                gestureRecognizer.Rotation = 0;
+
+            }
+
+        }
+
 
     }
 }

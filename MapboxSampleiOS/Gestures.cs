@@ -4,7 +4,7 @@ using System.Linq;
 using UIKit;
 using Foundation;
 using ObjCRuntime;
-/*
+
 namespace MapboxSampleiOS
 {
     public partial class ViewController : UIViewController
@@ -50,7 +50,7 @@ namespace MapboxSampleiOS
             public GestureDelegate(ViewController controller)
 
             {
-
+                
                 this.controller = controller;
 
             }

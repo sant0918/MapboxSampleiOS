@@ -12,18 +12,17 @@ namespace MapBoxSampleiOS
     public class AppDelegate : UIApplicationDelegate
     {
         // class-level declarations
+        public static AppDelegate Self { get; private set; }
 
         public override UIWindow Window {
             get;
             set;
         }
 
-        SVGKImage svgImage;
-        CGSize tileSize;
-
+        
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
-            
+            AppDelegate.Self = this;
             return true;
         }
        
