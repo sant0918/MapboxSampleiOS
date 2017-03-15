@@ -9,7 +9,6 @@ using SVGKit;
 using CoreGraphics;
 using CoreLocation;
 using System.IO;
-using UIKit;
 using CoreAnimation;
 
 namespace MapBoxSampleiOS
@@ -41,11 +40,11 @@ namespace MapBoxSampleiOS
         public override void Draw(CGRect area)
         {
             base.Draw(area);
-            RenderSVgImages();
+          //  RenderSVgImages();
 
         }
 
-        void RenderSVgImages()
+        public void RenderSVgImages()
         {
             const int ZOOM = 9;
             //this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
