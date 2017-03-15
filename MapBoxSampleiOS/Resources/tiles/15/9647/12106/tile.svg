@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256pt" height="256pt" viewBox="0 0 256 256" version="1.1">
+<g id="surface2">
+<rect x="0" y="0" width="256" height="256" style="fill:rgb(94.901961%,93.72549%,91.372549%);fill-opacity:1;stroke:none;"/>
+<path style="fill:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(75.686275%,70.980392%,61.568627%);stroke-opacity:1;stroke-miterlimit:10;" d="M 6.933594 264 L 8.273438 261.589844 L 24.421875 240.902344 L 27.617188 237.898438 L 30.949219 235.785156 L 35.375 234.582031 L 40.78125 234.425781 L 46.863281 235.785156 L 64.59375 241.5 L 71.234375 244.40625 L 75.265625 247.28125 L 78.460938 250.027344 L 89.292969 260.453125 L 93.152344 264 "/>
+<path style="fill:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(75.686275%,70.980392%,61.568627%);stroke-opacity:1;stroke-miterlimit:10;" d="M -9 29.550781 L 42.433594 21.042969 L 68.394531 16.175781 L 74.941406 13.996094 L 84.355469 9.605469 L 118.097656 -9 "/>
+<path style="fill:none;stroke-width:9;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(75.686275%,70.980392%,61.568627%);stroke-opacity:1;stroke-miterlimit:10;" d="M 260.027344 265 L 263.335938 256.664063 L 265 251.535156 "/>
+<path style="fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 6.933594 264 L 8.273438 261.589844 L 24.421875 240.902344 L 27.617188 237.898438 L 30.949219 235.785156 L 35.375 234.582031 L 40.78125 234.425781 L 46.863281 235.785156 L 64.59375 241.5 L 71.234375 244.40625 L 75.265625 247.28125 L 78.460938 250.027344 L 89.292969 260.453125 L 93.152344 264 "/>
+<path style="fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,99.215686%,54.509804%);stroke-opacity:1;stroke-miterlimit:10;" d="M -9 29.550781 L 42.433594 21.042969 L 68.394531 16.175781 L 74.941406 13.996094 L 84.355469 9.605469 L 118.097656 -9 "/>
+</g>
+</svg>
+

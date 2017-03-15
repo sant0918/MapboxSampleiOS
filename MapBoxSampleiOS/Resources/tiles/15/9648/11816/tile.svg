@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256pt" height="256pt" viewBox="0 0 256 256" version="1.1">
+<g id="surface2">
+<rect x="0" y="0" width="256" height="256" style="fill:rgb(94.901961%,93.72549%,91.372549%);fill-opacity:1;stroke:none;"/>
+<path style="fill:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(75.686275%,70.980392%,61.568627%);stroke-opacity:1;stroke-miterlimit:10;" d="M 202.042969 198.25 L 204.28125 198.679688 L 210.292969 201.207031 L 211.785156 201.371094 L 213.90625 200.8125 L 220.21875 196.675781 L 227.210938 191.488281 L 230.03125 189.226563 L 234.992188 181.347656 L 238.835938 178.820313 L 257.433594 168.152344 L 260.972656 167.332031 L 263.09375 167.460938 L 264 167.648438 "/>
+<path style="fill:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(75.686275%,70.980392%,61.568627%);stroke-opacity:1;stroke-miterlimit:10;" d="M 188.179688 187.746094 L 193.84375 192.144531 "/>
+<path style="fill:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(75.686275%,70.980392%,61.568627%);stroke-opacity:1;stroke-miterlimit:10;" d="M 193.84375 192.144531 L 197.429688 195.855469 L 198.59375 196.839844 L 202.042969 198.25 "/>
+<path style="fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 202.042969 198.25 L 204.28125 198.679688 L 210.292969 201.207031 L 211.785156 201.371094 L 213.90625 200.8125 L 220.21875 196.675781 L 227.210938 191.488281 L 230.03125 189.226563 L 234.992188 181.347656 L 238.835938 178.820313 L 257.433594 168.152344 L 260.972656 167.332031 L 263.09375 167.460938 L 264 167.648438 "/>
+<path style="fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 188.179688 187.746094 L 193.84375 192.144531 "/>
+<path style="fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 193.84375 192.144531 L 197.429688 195.855469 L 198.59375 196.839844 L 202.042969 198.25 "/>
+</g>
+</svg>
+

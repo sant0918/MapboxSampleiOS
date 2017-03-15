@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256pt" height="256pt" viewBox="0 0 256 256" version="1.1">
+<g id="surface2">
+<rect x="0" y="0" width="256" height="256" style="fill:rgb(94.901961%,93.72549%,91.372549%);fill-opacity:1;stroke:none;"/>
+<path style="fill:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(75.686275%,70.980392%,61.568627%);stroke-opacity:1;stroke-miterlimit:10;" d="M 125.046875 -9 L 127.695313 -2.035156 L 130.609375 3.226563 L 137.855469 13.390625 "/>
+<path style="fill:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(75.686275%,70.980392%,61.568627%);stroke-opacity:1;stroke-miterlimit:10;" d="M 215.503906 -9 L 215.355469 -6.742188 L 215.195313 -3.867188 L 215.871094 -0.140625 L 216.429688 0.972656 L 221.320313 6.855469 L 233.042969 19.632813 L 236.679688 23.976563 L 239.3125 28.78125 L 240.523438 32.769531 L 241.105469 37.703125 L 241.734375 46.886719 L 242.550781 51.070313 L 243.296875 53.390625 L 244.601563 56.199219 L 245.53125 57.574219 L 247.1875 59.273438 L 250.191406 61.722656 L 253.128906 63.519531 L 259 68.03125 "/>
+<path style="fill:none;stroke-width:9;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(75.686275%,70.980392%,61.568627%);stroke-opacity:1;stroke-miterlimit:10;" d="M -10 11.539063 L -7.6875 4.335938 L -4.261719 -10 "/>
+<path style="fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 125.046875 -9 L 127.695313 -2.035156 L 130.609375 3.226563 L 137.855469 13.390625 "/>
+<path style="fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 215.503906 -9 L 215.355469 -6.742188 L 215.195313 -3.867188 L 215.871094 -0.140625 L 216.429688 0.972656 L 221.320313 6.855469 L 233.042969 19.632813 L 236.679688 23.976563 L 239.3125 28.78125 L 240.523438 32.769531 L 241.105469 37.703125 L 241.734375 46.886719 L 242.550781 51.070313 L 243.296875 53.390625 L 244.601563 56.199219 L 245.53125 57.574219 L 247.1875 59.273438 L 250.191406 61.722656 L 253.128906 63.519531 L 259 68.03125 "/>
+</g>
+</svg>
+

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256pt" height="256pt" viewBox="0 0 256 256" version="1.1">
+<g id="surface2">
+<rect x="0" y="0" width="256" height="256" style="fill:rgb(94.901961%,93.72549%,91.372549%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(60%,70.196078%,80%);fill-opacity:1;" d="M -4 259 L -4 -4 L 259 -4 L -4 -4 Z M -4 259 "/>
+<path style="fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(70.196078%,77.647059%,83.137255%);stroke-opacity:1;stroke-miterlimit:10;" d="M -4 259 L -4 -4 L 259 -4 L -4 -4 L -4 259 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(60%,70.196078%,80%);fill-opacity:1;" d="M -4 -4 L 259 -4 L 259 259 L 259 -4 L 259 259 L 259 -4 L 259 259 L 259 -4 L 259 259 L 259 -4 Z M -8239283.429688 5353021.242188 Z M -8239283.429688 5354277.675781 Z M -8239283.429688 5354277.675781 "/>
+<path style="fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(70.196078%,77.647059%,83.137255%);stroke-opacity:1;stroke-miterlimit:10;" d="M -4 -4 L 259 -4 L 259 259 L 259 -4 L 259 259 L 259 -4 L 259 259 L 259 -4 L 259 259 L 259 -4 L -4 -4 "/>
+<path style="fill:none;stroke-width:8;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(75.686275%,70.980392%,61.568627%);stroke-opacity:1;stroke-miterlimit:10;" d="M 264 247.769531 L 245.515625 240.5 L 240.273438 237.84375 L 236.5 235.316406 L 232.398438 230.675781 L 221.714844 211.117188 L 199.070313 213.5 L 172.351563 213.617188 L 156.691406 216.496094 L 150.914063 217.96875 L 138.980469 223.101563 L 133.273438 226.707031 L 113.027344 235.6875 L 84.679688 248.550781 L 72.53125 253.988281 L 67.972656 255.242188 L 26.339844 250.675781 L -9 246.472656 "/>
+<path style="fill:none;stroke-width:6;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-miterlimit:10;" d="M 264 247.769531 L 245.515625 240.5 L 240.273438 237.84375 L 236.5 235.316406 L 232.398438 230.675781 L 221.714844 211.117188 L 199.070313 213.5 L 172.351563 213.617188 L 156.691406 216.496094 L 150.914063 217.96875 L 138.980469 223.101563 L 133.273438 226.707031 L 113.027344 235.6875 L 84.679688 248.550781 L 72.53125 253.988281 L 67.972656 255.242188 L 26.339844 250.675781 L -9 246.472656 "/>
+</g>
+</svg>
+

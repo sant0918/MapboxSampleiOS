@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256pt" height="256pt" viewBox="0 0 256 256" version="1.1">
+<g id="surface2">
+<rect x="0" y="0" width="256" height="256" style="fill:rgb(94.901961%,93.72549%,91.372549%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(79.607843%,84.705882%,76.470588%);fill-opacity:1;" d="M -4 260 L 260 260 L 260 -4 L 260 260 L 260 -4 L 260 246.796875 L 242.09375 254.3125 L 239.480469 259.269531 L 234.042969 260 L 228.175781 260 L 188.046875 257.898438 L 176.953125 260 L 156.265625 260 L 155.789063 248.953125 L 135.46875 250.898438 L 138.082031 260 L 32.882813 260 L 30.195313 250.730469 L 21 251.574219 L -4 258.941406 Z M 260 260 Z M 260 -4 Z M 260 -4 Z M 260 -4 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(60%,70.196078%,80%);fill-opacity:1;" d="M -4 259 L -4 -4 L 259 -4 L -4 -4 Z M -4 259 L -4 -4 Z M -8236870.886719 5623336.015625 Z M -8236870.886719 5623336.015625 Z M -8236870.886719 5623336.015625 Z M -8236870.886719 5623336.015625 "/>
+<path style="fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(70.196078%,77.647059%,83.137255%);stroke-opacity:1;stroke-miterlimit:10;" d="M -4 259 L -4 -4 L 259 -4 L -4 -4 L -4 259 M -4 259 L -4 -4 L -4 259 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(60%,70.196078%,80%);fill-opacity:1;" d="M -4 259 L -4 -4 L 259 -4 L -4 -4 Z M -4 259 L -4 -4 Z M -8236870.886719 5623336.015625 Z M -8236870.886719 5623336.015625 Z M -8236870.886719 5623336.015625 Z M -8236870.886719 5623336.015625 "/>
+<path style="fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(70.196078%,77.647059%,83.137255%);stroke-opacity:1;stroke-miterlimit:10;" d="M -4 259 L -4 -4 L 259 -4 L -4 -4 L -4 259 M -4 259 L -4 -4 L -4 259 "/>
+<path style="fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(60%,70.196078%,80%);stroke-opacity:1;stroke-miterlimit:10;" d="M 258 253.839844 L 255.871094 254.433594 L 247.875 255.375 L 242.214844 258 M 190 258 L 188.046875 257.898438 L 187.507813 258 "/>
+</g>
+</svg>
+
