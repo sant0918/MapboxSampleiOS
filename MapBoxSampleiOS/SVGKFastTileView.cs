@@ -58,9 +58,9 @@ namespace MapBoxSampleiOS
 
             // TODO : replace with coordinate location
             int firstCol = 148;
-            int lastCol = 148;
+            int lastCol = 149;
             int firstRow = 189;
-            int lastRow = 189;
+            int lastRow = 190;
             int c;
             int r = 0;
             //this.Layer.AddSublayer(svgImage.CALayerTree); 
@@ -71,21 +71,33 @@ namespace MapBoxSampleiOS
                 c = 0;
                 for (int col = firstCol; col <= lastCol; col++)
                 {
-                    context.SaveState();
-                    context.TranslateCTM(tileSize.Width * c, tileSize.Height * r);
-                    
-                        this.svgImage = getTile(ZOOM, col, row);
-                    this.svgImage.Size = tileSize;
+					context.SaveState();
+					context.TranslateCTM(tileSize.Width * c, tileSize.Height * r);
 
-						this.svgImage.CALayerTree.RenderInContext(context);
-					
-                    context.RestoreState();
-                    c++;
+					  this.svgImage = getTile(ZOOM, col, row);
+					this.svgImage.Size = tileSize;
+
+					this.svgImage.CALayerTree.RenderInContext(context);
+
+					//
+
+					context.RestoreState();
+					//UIImage tile = getTile(ZOOM, col, row).UIImage;
+
+					//CGRect tileRect = new CGRect(tileSize.Width * c,
+					//							 tileSize.Height * r,
+					//							tileSize.Width,
+					//							 tileSize.Height);
+					//tileRect.Intersect(tileRect);
+					//tile.DrawAsPatternInRect(tileRect);
+
+					c++;
 
                 }
                 r++;
 
             }
+
         }
 
         public static SVGKImage getTile(int zoom, int col, int row)
