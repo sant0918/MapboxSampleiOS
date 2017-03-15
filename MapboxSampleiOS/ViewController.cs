@@ -30,11 +30,7 @@ namespace MapBoxSampleiOS
         {
             base.ViewDidLoad ();
             
-            nfloat r = 0;            
-            nfloat dx = 0;
-            nfloat dy = 0;
-
-       
+           
             // Add base map
             /*using (UIImage foto = UIImage.FromBundle("mapserv.png"))
              {
