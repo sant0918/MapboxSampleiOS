@@ -46,7 +46,7 @@ namespace MapBoxSampleiOS
 
         public void RenderSVgImages()
         {
-            const int ZOOM = 9;
+            const int ZOOM = 15;
             //this.svgImage = SVGKImage.ImageNamed(Path.Combine("tiles/", ZOOM.ToString() + "/" + "BL-NY.svg"));
 
             //CGRect imageBounds = new CGRect(0, 0, this.svgImage.Size.Width, this.svgImage.Size.Height);
@@ -57,19 +57,19 @@ namespace MapBoxSampleiOS
             //context.ScaleCTM(-10, -10);
 
             // TODO : replace with coordinate location
-            int firstCol = 148;
-            int lastCol = 149;
-            int firstRow = 189;
-            int lastRow = 190;
+            int minX = 9646;
+            int maxX = 9647;
+            int minY = 12314;
+            int maxY = 12315;
             int c;
             int r = 0;
             //this.Layer.AddSublayer(svgImage.CALayerTree); 
             //this.svgImage.CALayerTree.RenderInContext(context);
 
-            for (int row = firstRow; row <= lastRow; row++)
+            for (int row = minX; row <= maxX; row++)
             {
                 c = 0;
-                for (int col = firstCol; col <= lastCol; col++)
+                for (int col = minY; col <= maxY; col++)
                 {
 					context.SaveState();
 					context.TranslateCTM(tileSize.Width * c, tileSize.Height * r);
