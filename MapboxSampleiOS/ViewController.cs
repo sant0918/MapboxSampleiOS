@@ -9,27 +9,30 @@ using CoreGraphics;
 using Foundation;
 using ImageIO;
 using SVGKit;
+using StateMaps.Models;
 
-
-namespace MapBoxSampleiOS
+namespace StateMaps
 {
     public partial class ViewController : UIViewController
-    { 
+    {
+
+        UIImageView image;
+        public const string _url = "http://javier.nyc/cgi-bin/mapserv.exe?map=/ms4w/apps/osm/basemaps/osm-google.map&layers=all&mode=tile&tilemode=gmap&tile=";
+        public CLLocationCoordinate2D location;
+
+        MapView top;
+        MapView center;
+        MapView bottom;
         public ViewController (IntPtr handle) : base (handle)
         {
-			
+		    top = new MapView(_url, new CGRect(-1280, -2560, 2560, 2560), location = new CLLocationCoordinate2D()); // 
+            center = new MapView(_url, new CGRect(-1280, 0, 2560, 2560), location = new CLLocationCoordinate2D());
+            bottom = new MapView(_url, new CGRect(-1280, 2560, 2560, 2560), location = new CLLocationCoordinate2D());
         }
-
-      
-
-        UIImageView image;        
-        UIRotationGestureRecognizer rotateGesture;
-        UIPanGestureRecognizer panGesture;
-
+        
         public override void ViewDidLoad ()
         {
-            base.ViewDidLoad ();
-            
+            base.ViewDidLoad ();            
            
             // Add base map
             /*using (UIImage foto = UIImage.FromBundle("mapserv.png"))
@@ -40,11 +43,6 @@ namespace MapBoxSampleiOS
                 image.Frame = new CGRect(10, 10, image.Image.CGImage.Width, image.Image.CGImage.Height);
 
              }*/
-		
-           
-         
-            
-
         }
 
         public override void ViewDidLayoutSubviews()
@@ -55,6 +53,8 @@ namespace MapBoxSampleiOS
             View.AddSubview(iv);
             UIView v = AppDelegate.Self.Window.RootViewController.View;
         }
+
+        
 
         public override void DidReceiveMemoryWarning ()
         {

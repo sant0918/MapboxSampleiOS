@@ -11,7 +11,7 @@ using CoreLocation;
 using System.IO;
 using CoreAnimation;
 
-namespace MapBoxSampleiOS
+namespace StateMaps
 {
     public class SVGKFastTileView : SVGKFastImageView
     {
@@ -24,10 +24,7 @@ namespace MapBoxSampleiOS
 
         public SVGKFastTileView(SVGKImage svgImage) : base (svgImage)
         {
-            this.svgImage = svgImage;
-            tileSize = tileSize = new CGSize(256, 256);
-            this.svgImage.Size = tileSize;
-            this.SetGestures();
+            SetupImages(svgImage);
 
         }
 
@@ -37,6 +34,18 @@ namespace MapBoxSampleiOS
             tileSize = new CGSize(256, 256);
         }
 
+        public SVGKFastTileView(SVGKImage svgImage, CGRect frame) : base(frame)
+        {
+            SetupImages(svgImage);
+        }
+
+        private void SetupImages(SVGKImage svgImage)
+        {
+            this.svgImage = svgImage;
+            tileSize = tileSize = new CGSize(256, 256);
+            this.svgImage.Size = tileSize;
+            this.SetGestures();
+        }
         public override void Draw(CGRect area)
         {
             base.Draw(area);
@@ -82,14 +91,7 @@ namespace MapBoxSampleiOS
 					//
 
 					context.RestoreState();
-					//UIImage tile = getTile(ZOOM, col, row).UIImage;
-
-					//CGRect tileRect = new CGRect(tileSize.Width * c,
-					//							 tileSize.Height * r,
-					//							tileSize.Width,
-					//							 tileSize.Height);
-					//tileRect.Intersect(tileRect);
-					//tile.DrawAsPatternInRect(tileRect);
+					
 
 					c++;
 
@@ -99,35 +101,11 @@ namespace MapBoxSampleiOS
             }
 
         }
-
-        public static SVGKImage getTile(int zoom, int col, int row)
-		{
-			string path = "tiles/";
-
-			string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + "/tile.svg");
-
-			return SVGKImage.ImageNamed(pngFilename);
-		}
-
-        public SVGKImage getTile(int zoom)
+        private  static SVGKImage getTile(int zoom, int col, int row)
         {
-            Tuple<double, double> metersXY = gmt.LatLonToMeters(loc.Coordinate.Latitude, loc.Coordinate.Longitude);
-            Tuple<int, int> tilesMinXY = gmt.MetersToTile(metersXY.Item1, metersXY.Item2, zoom);
-            Tuple<int, int> tilesMaxXY = tilesMinXY;
-
-            for (int ty = tilesMinXY.Item2; ty <= tilesMaxXY.Item2; ty++)
-            {
-                for (int tx = tilesMinXY.Item1; tx <= tilesMaxXY.Item1; tx++)
-                {
-                    Tuple<int, int> googleTiles = gmt.GoogleTile(tx, ty, zoom);
-
-                    // TODO: fetch tiles from mapserver.
-                }
-            }
-
             string path = "tiles/";
 
-            string pngFilename = Path.Combine(path, zoom.ToString());
+            string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + "/tile.svg");
 
             return SVGKImage.ImageNamed(pngFilename);
         }

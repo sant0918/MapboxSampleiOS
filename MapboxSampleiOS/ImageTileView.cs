@@ -10,7 +10,7 @@ using System.Drawing;
 using UIKit;
 using GLKit;
 
-namespace MapBoxSampleiOS
+namespace StateMaps
 {
     public class ImageTileView : UIView
     {

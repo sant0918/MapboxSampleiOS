@@ -1,0 +1,80 @@
+---------------
+
+Copyright (c) 2008-2013 PhoneFactor, Inc.
+
+Permission is hereby granted, free of charge, to any person
+obtaining  a copy of this software and associated documentation
+files (the "Software"),  to deal in the Software without
+restriction, including without limitation the  rights to use,
+copy, modify, merge, publish, distribute, sublicense, and/or
+sell copies of the Software, and to permit persons to whom the
+Software is furnished to do so, subject to the following
+conditions:
+
+The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+NONINFRINGEMENT. IN NO EVENT  SHALL THE AUTHORS OR COPYRIGHT
+HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,  ARISING
+FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER  DEALINGS IN THE SOFTWARE.
+
+---------------
+
+Contents:
+	README: this file.
+	call_results.txt: a list of call_result id's and what they mean
+	example.aspx: an ASP.NET page showing the proper usage of the SDK
+	example.aspx.cs: the code-behind for the example 
+	pf/pf_auth.cs: the SDK for making Multi-Factor Authentications
+	pf/certs/cert_key.p12: the client certificate and key  used to
+	                       communicate with the Multi-Factor Authentication
+	                       backend.
+
+Installation:
+	1) If you don't have Microsoft Visual Studio installed, obtain a copy
+	   and install it.
+	2) Unzip/untar the Multi-Factor Authentication SDK into whatever
+	   directory you choose.
+
+Usage:
+	1) Add the pf/pf_auth.cs file to the App_Code folder of your ASP.NET
+	   project.
+	2) Copy the pf/certs/cert_key.p12 file to the location of your
+	   choice.  You'll need to reference this file in calls to the
+	   API.
+
+	See example.aspx and example.aspx.cs for an example of usage.  You may
+	add example.aspx to your ASP.NET project and modify the cert_file_path
+	argument to test.
+
+	If the Multi-Factor Authentication SDK is being used to create a new
+	website or application,	then integration will be very easy.  Just follow
+	steps 1 and 2 above to incorporate the API and reference the pf_auth
+	class wherever you need to use Multi-Factor Authentication.  The
+	application will need to provide primary authentication and will also
+	need to maintain a phone number for each user.
+
+	If the Multi-Factor Authentication SDK is being incorporated into an
+	existing application or website, then there are two steps necessary for
+	integration.  First, an	internal database of user's phone numbers will
+	need to be created and maintained if this doesn't already exist.
+	Depending on the existing user database, this may just be an extra table
+	column or may need to be a separate data store.  You may wish to provide
+	a user interface that allows the user to specify and maintain their own
+	phone number.  Second, the code for the existing application or website
+	will need to be modified and Multi-Factor Authentication will need to be
+	added to whatever authentication is currently being used.  Simply follow
+	steps 1 and 2 above to incorporate the API and reference the pf_auth
+	class wherever you need to use Multi-Factor Authentication.
+
+	It is required that Multi-Factor Authentication only be done after the
+	primary authentication method has succeeded.  This prevents users from
+	entering another user's username and an invalid password and having this
+	result in a Multi-Factor Authentication call.  The user should only be
+	allowed access if both the primary authentication and Multi-Factor
+	Authentication are successful.

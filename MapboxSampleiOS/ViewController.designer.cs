@@ -5,7 +5,7 @@
 //
 using Foundation;
 
-namespace MapBoxSampleiOS
+namespace StateMaps
 {
     [Register ("ViewController")]
     partial class ViewController

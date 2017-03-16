@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace MapBoxSampleiOS
+namespace StateMaps
 {
     public class Application
     {

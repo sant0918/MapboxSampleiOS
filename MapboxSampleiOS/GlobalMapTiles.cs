@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace MapBoxSampleiOS
+namespace StateMaps
 {
     //http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
     public class GlobalMapTiles
