@@ -14,7 +14,7 @@ using System.IO;
 
 namespace StateMaps
 {
-    public class MapView : UIView
+    public class MapView : SVGKFastImageView
     {
         private CGRect _area;
         private MapLinkedList _map;
@@ -24,7 +24,7 @@ namespace StateMaps
         public string AccessToken { get; set; }
         public int Zoom;
 
-        public MapView(string url, CGRect frame, CLLocation location, int zoom) : base(frame)
+        public MapView(string url, CGRect frame, CLLocation location, int zoom) : base (frame)
         {
             this._area = frame;
             this._map = new MapLinkedList(new MapTile(location));
@@ -36,7 +36,7 @@ namespace StateMaps
 
         }
 
-        public MapView(string url, MapTile maptile, CGRect frame, int zoom) : base(frame)
+        public MapView(string url, MapTile maptile, CGRect frame, int zoom) : base (frame)
         {
             this._area = frame;
             this._map = new MapLinkedList(maptile);
@@ -138,11 +138,9 @@ namespace StateMaps
             
             foreach(var map in _map.nodes)
             {
-                MapTile m = map.GetTile(map);
-
                 context.SaveState();
-                context.TranslateCTM(m.tileSize.Width * m.tileNum, m.tileSize.Height);
-                m._svgImage.CALayerTree.RenderInContext(context);
+                context.TranslateCTM(map.Value.tileSize.Width * map.Value.tileNum, map.Value.tileSize.Height);
+                map.Value._svgImage.CALayerTree.RenderInContext(context);
                 context.RestoreState();
             }
 

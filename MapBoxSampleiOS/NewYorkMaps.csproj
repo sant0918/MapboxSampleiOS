@@ -156,11 +156,6 @@
     <BundleResource Include="mapserv.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="newyork.svg">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\SVGKit\SVGKit.csproj">
       <Project>{2D408D0B-B49F-4518-A40E-FA5D881FD2C9}</Project>
       <Name>SVGKit</Name>

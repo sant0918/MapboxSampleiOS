@@ -83,10 +83,11 @@ namespace StateMaps
         public override void ViewDidLayoutSubviews()
         {
             base.ViewDidLayoutSubviews();
-            SVGKImageView iv = new SVGKFastTileView(new CGRect(-1000,0,3048,2048));
+            //SVGKImageView iv = new SVGKFastTileView(new CGRect(-1000,0,3048,2048));
             //iv.Frame = new CGRect(0, 0, 256, 256);
-            View.AddSubview(iv);
+            //View.AddSubview(iv);
 
+            View.AddSubviews(top, center, bottom);
             // TODO: Add Mapviews as subview.
             UIView v = AppDelegate.Self.Window.RootViewController.View;
         }
@@ -164,7 +165,7 @@ namespace StateMaps
 
             if (gestureRecognizer.State == UIGestureRecognizerState.Began || gestureRecognizer.State == UIGestureRecognizerState.Changed)
             {
-
+                // TODO: Load additional tiles if pan reaches edge of image.
                 var translation = gestureRecognizer.TranslationInView(View);
 
                 image.Center = new CGPoint(image.Center.X + translation.X, image.Center.Y + translation.Y);
@@ -212,9 +213,11 @@ namespace StateMaps
 
             if (gestureRecognizer.State == UIGestureRecognizerState.Began || gestureRecognizer.State == UIGestureRecognizerState.Changed)
             {
-
+                
+                ScaleToZoom(gestureRecognizer.Scale);
                 gestureRecognizer.View.Transform *= CGAffineTransform.MakeScale(gestureRecognizer.Scale, gestureRecognizer.Scale);
 
+                
                 // Reset the gesture recognizer's scale - the next callback will get a delta from the current scale.
 
                 gestureRecognizer.Scale = 1;
@@ -223,8 +226,10 @@ namespace StateMaps
 
         }
 
+        // TODO: Properly convert scale to zoom.
         private void ScaleToZoom(nfloat scale)
         {
+            // TODO: If zoom changes, reload new tiles at new zoom level.
             this.zoom += (int)Math.Floor(scale);
         }
 

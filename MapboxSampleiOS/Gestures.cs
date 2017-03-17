@@ -4,7 +4,7 @@ using System.Linq;
 using UIKit;
 using Foundation;
 using ObjCRuntime;
-
+/*
 namespace MapboxSampleiOS
 {
     public partial class ViewController : UIViewController
@@ -139,4 +139,4 @@ namespace MapboxSampleiOS
         #endregion
 
     }
-}
+}*/

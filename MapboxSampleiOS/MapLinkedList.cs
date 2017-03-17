@@ -34,9 +34,9 @@ namespace StateMaps
         public void AddTile(LinkedListNode<MapTile> tile)
         {
 
-            
+
             // we find the node.
-            nodes.Find(tile);
+            this.AddFirst(tile);
         }
 
 
