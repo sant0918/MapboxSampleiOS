@@ -19,7 +19,9 @@ namespace StateMaps
         UIImageView image;
         public const string _url = "http://javier.nyc/cgi-bin/mapserv.exe?map=/ms4w/apps/osm/basemaps/osm-google.map&layers=all&mode=tile&tilemode=gmap&tile=";
         // location is updated from HandleLocationChanged event then passed to mapviews.
-        public CLLocation location; 
+        public CLLocation location;
+        public int zoom = 1; // init zoom level
+
 
         MapView top;
         MapView center;
@@ -41,9 +43,9 @@ namespace StateMaps
             Manager = new LocationManager();
             Manager.StartLocationUpdates();
 
-            top = new MapView(_url, new CGRect(-1280, -256, 2560, 256), location ); // 
-            center = new MapView(_url, new CGRect(-1280, 0, 2560, 256), location );
-            bottom = new MapView(_url, new CGRect(-1280, 256, 2560, 256), location );
+            top = new MapView(_url, new CGRect(-1280, -256, 2560, 256), location, zoom ); // 
+            center = new MapView(_url, new CGRect(-1280, 0, 2560, 256), location, zoom );
+            bottom = new MapView(_url, new CGRect(-1280, 256, 2560, 256), location, zoom );
 
         }
 
@@ -101,22 +103,7 @@ namespace StateMaps
 
         private void SetGestures()
         {
-            nfloat r = 0;
-            nfloat dx = 0;
-            nfloat dy = 0;
-            //this.rotateGesture = new UIRotationGestureRecognizer(() =>
-            //{
-            //    if ((rotateGesture.State == UIGestureRecognizerState.Began || rotateGesture.State == UIGestureRecognizerState.Changed)
-            //    && rotateGesture.NumberOfTouches == 2)
-            //    {
-            //        this.Transform = CGAffineTransform.MakeRotation(rotateGesture.Rotation + r);
-            //    }
-            //    else if (rotateGesture.State == UIGestureRecognizerState.Ended)
-            //    {
-            //        r += rotateGesture.Rotation;
-            //    }
-            //});
-
+           
             View.UserInteractionEnabled = true;
 
 
@@ -236,9 +223,9 @@ namespace StateMaps
 
         }
 
-        private int ScaleToZoom()
+        private void ScaleToZoom(nfloat scale)
         {
-
+            this.zoom += (int)Math.Floor(scale);
         }
 
 

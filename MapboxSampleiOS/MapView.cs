@@ -24,24 +24,26 @@ namespace StateMaps
         public string AccessToken { get; set; }
         public int Zoom;
 
-        public MapView(string url, CGRect frame, CLLocation location) : base(frame)
+        public MapView(string url, CGRect frame, CLLocation location, int zoom) : base(frame)
         {
             this._area = frame;
             this._map = new MapLinkedList(new MapTile(location));
             this._client = new HttpClient();
             this._url = url;
+            this.Zoom = zoom;
             PopulateTiles();
 
 
         }
 
-        public MapView(string url, MapTile maptile, CGRect frame) : base(frame)
+        public MapView(string url, MapTile maptile, CGRect frame, int zoom) : base(frame)
         {
             this._area = frame;
             this._map = new MapLinkedList(maptile);
             this._client = new HttpClient();
             this._url = url;
             this.mapTile = maptile;
+            this.Zoom = zoom;
             PopulateTiles();
         }
 
@@ -136,7 +138,7 @@ namespace StateMaps
             
             foreach(var map in _map.nodes)
             {
-                MapTile m = map.GetTile();
+                MapTile m = map.GetTile(map);
 
                 context.SaveState();
                 context.TranslateCTM(m.tileSize.Width * m.tileNum, m.tileSize.Height);
