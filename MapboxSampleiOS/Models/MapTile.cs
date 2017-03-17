@@ -14,7 +14,7 @@ namespace StateMaps.Models
         public int ZTile { get; private set; }
         public SVGKImage _svgImage;
 
-        public MapTile(CLLocationCoordinate2D location)
+        public MapTile(CLLocation location)
         {
             throw new NotImplementedException();
         }

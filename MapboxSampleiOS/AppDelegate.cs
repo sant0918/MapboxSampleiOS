@@ -1,6 +1,7 @@
 ﻿using Foundation;
 using UIKit;
 using SVGKit;
+using System;
 using System.IO;
 using CoreGraphics;
 
@@ -13,7 +14,7 @@ namespace StateMaps
     {
         // class-level declarations
         public static AppDelegate Self { get; private set; }
-
+        
         public override UIWindow Window {
             get;
             set;
@@ -25,7 +26,17 @@ namespace StateMaps
             AppDelegate.Self = this;
             return true;
         }
-       
+
+        public override void DidEnterBackground(UIApplication application)
+        {
+            Console.WriteLine("App entering background state.");
+        }
+
+        public override void WillEnterForeground(UIApplication application)
+        {
+            Console.WriteLine("App will enter foreground");
+        }
+
     }
 }
 

@@ -23,7 +23,7 @@ namespace StateMaps
         private MapTile mapTile; // used to get starting map tile location.
         public string AccessToken { get; set; }
 
-        public MapView(string url, CGRect frame, CLLocationCoordinate2D location) : base(frame)
+        public MapView(string url, CGRect frame, CLLocation location) : base(frame)
         {
             this._area = frame;
             this._map = new MapLinkedList();
@@ -43,29 +43,40 @@ namespace StateMaps
         public override void Draw(CGRect area)
         {
             base.Draw(area);
+
+            // TODO: Render tiles.
+
+            // TODO: Update display as user moves/pans. Use eventArgs/delegate in user gesture.
         }
 
         public async void PopulateTiles()
         {
             // Get dimensions for view.
-
+            CGRect view = this.Frame;
             // Get tile number for center of screen.
                 await GetTile(mapTile);
                 
         }
+        
+
+        // We fetch tile data here.
         private async Task GetTile(MapTile maptile)
         {
             // TODO: IMPLEMENT AZURE AD ACCESS TOKEN.
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, String.Concat(_url,mapTile.XTile,"+",mapTile.YTile,"+",mapTile.ZTile));
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
 
+            // Get serialized tiles
             object tile = await _client.SendAsync(request);
 
-            this._map.AddTile(tile);
-            // get more tiles recursively.
 
-            await this.GetTile(maptile.NextTile(-1)); // go left
-            await this.GetTile(maptile.NextTile(1)); // go right
+            // Tile gets added to linked list.
+            this._map.AddTile(tile);
+            
+            
+            // get more tiles recursively.
+            //await this.GetTile(maptile.NextTile(-1)); // go left
+            //Sawait this.GetTile(maptile.NextTile(1)); // go right
 
         }
 
@@ -82,7 +93,7 @@ namespace StateMaps
 
         public SVGKImage getTile(int zoom)
         {
-            Tuple<double, double> metersXY = gmt.LatLonToMeters(loc.Coordinate.Latitude, loc.Coordinate.Longitude);
+            Tuple<double, double> metersXY = gmt.LatLonToMeters(location.Coordinate.Latitude, loc.Coordinate.Longitude);
             Tuple<int, int> tilesMinXY = gmt.MetersToTile(metersXY.Item1, metersXY.Item2, zoom);
             Tuple<int, int> tilesMaxXY = tilesMinXY;
 

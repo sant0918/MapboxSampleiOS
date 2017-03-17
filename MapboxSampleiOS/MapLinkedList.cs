@@ -28,10 +28,11 @@ namespace StateMaps
         }
 
         /// <summary>
-        /// Adds map tile to link list.
+        /// TODO: Deserialize tile.
         /// </summary>
         public void AddTile(object tile)
         {
+            
             throw new NotImplementedException();
         }
 
