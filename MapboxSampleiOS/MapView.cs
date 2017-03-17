@@ -22,30 +22,44 @@ namespace StateMaps
         private string _url;
         private MapTile mapTile; // used to get starting map tile location.
         public string AccessToken { get; set; }
+        public int Zoom;
 
         public MapView(string url, CGRect frame, CLLocation location) : base(frame)
         {
             this._area = frame;
-            this._map = new MapLinkedList();
+            this._map = new MapLinkedList(new MapTile(location));
             this._client = new HttpClient();
             this._url = url;
-            this.mapTile = new MapTile(location);
+            PopulateTiles();
+
+
         }
 
         public MapView(string url, MapTile maptile, CGRect frame) : base(frame)
         {
             this._area = frame;
-            this._map = new MapLinkedList();
+            this._map = new MapLinkedList(maptile);
             this._client = new HttpClient();
             this._url = url;
             this.mapTile = maptile;
+            PopulateTiles();
         }
+
+        protected override void Dispose(bool disposing)
+        {
+
+            base.Dispose(disposing);
+
+            //TODO: Implement dispose.
+
+        }
+
         public override void Draw(CGRect area)
         {
             base.Draw(area);
 
             // TODO: Render tiles.
-
+            RenderSVgImages();
             // TODO: Update display as user moves/pans. Use eventArgs/delegate in user gesture.
         }
 
@@ -53,9 +67,9 @@ namespace StateMaps
         {
             // Get dimensions for view.
             CGRect view = this.Frame;
+
             // Get tile number for center of screen.
-                await GetTile(mapTile);
-                
+                await GetTile(mapTile);                
         }
         
 
@@ -67,17 +81,40 @@ namespace StateMaps
             request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
 
             // Get serialized tiles
-            object tile = await _client.SendAsync(request);
+            // TODO: Implement web api and return row of maptiles.
+            //object tile = await _client.SendAsync(request);
 
+            #region Temporary tile fetch implementation
 
+            #endregion
+            
             // Tile gets added to linked list.
-            this._map.AddTile(tile);
-            
-            
+            // going left
+            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile - 1, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile - 2, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile - 3, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile - 4, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+
+            // going right
+            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile + 1, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile + 2, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile + 3, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile + 4, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
             // get more tiles recursively.
             //await this.GetTile(maptile.NextTile(-1)); // go left
             //Sawait this.GetTile(maptile.NextTile(1)); // go right
 
+        }
+
+        private static LinkedListNode<MapTile> TEMPgetTile(int zoom, int col, int row)
+        {
+            string path = "tiles/";
+
+            string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + "/tile.svg");
+
+            return new LinkedListNode<MapTile>(new MapTile(col,row,zoom, SVGKImage.ImageNamed(pngFilename)) );
         }
 
         public override void DidReceiveMemoryWarning()
@@ -87,31 +124,28 @@ namespace StateMaps
             // Cleanup anything possible
             // mapView.EmptyMemoryCache ();
         }
-
-
-       
-
-        public SVGKImage getTile(int zoom)
+        
+        private void RenderSVgImages()
         {
-            Tuple<double, double> metersXY = gmt.LatLonToMeters(location.Coordinate.Latitude, loc.Coordinate.Longitude);
-            Tuple<int, int> tilesMinXY = gmt.MetersToTile(metersXY.Item1, metersXY.Item2, zoom);
-            Tuple<int, int> tilesMaxXY = tilesMinXY;
+            var context = UIGraphics.GetCurrentContext();
 
-            for (int ty = tilesMinXY.Item2; ty <= tilesMaxXY.Item2; ty++)
+            
+            //this.Layer.AddSublayer(svgImage.CALayerTree); 
+            //this.svgImage.CALayerTree.RenderInContext(context);
+
+            
+            foreach(var map in _map.nodes)
             {
-                for (int tx = tilesMinXY.Item1; tx <= tilesMaxXY.Item1; tx++)
-                {
-                    Tuple<int, int> googleTiles = gmt.GoogleTile(tx, ty, zoom);
+                MapTile m = map.GetTile();
 
-                    // TODO: fetch tiles from mapserver.
-                }
+                context.SaveState();
+                context.TranslateCTM(m.tileSize.Width * m.tileNum, m.tileSize.Height);
+                m._svgImage.CALayerTree.RenderInContext(context);
+                context.RestoreState();
             }
 
-            string path = "tiles/";
+           
 
-            string pngFilename = Path.Combine(path, zoom.ToString());
-
-            return SVGKImage.ImageNamed(pngFilename);
         }
     }
 }

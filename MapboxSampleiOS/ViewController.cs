@@ -49,6 +49,9 @@ namespace StateMaps
 
         #endregion
 
+        
+
+
         public override void ViewDidLoad ()
         {
             base.ViewDidLoad ();
@@ -81,6 +84,8 @@ namespace StateMaps
             SVGKImageView iv = new SVGKFastTileView(new CGRect(-1000,0,3048,2048));
             //iv.Frame = new CGRect(0, 0, 256, 256);
             View.AddSubview(iv);
+
+            // TODO: Add Mapviews as subview.
             UIView v = AppDelegate.Self.Window.RootViewController.View;
         }
 
@@ -90,8 +95,218 @@ namespace StateMaps
         {
             base.DidReceiveMemoryWarning ();
 
-            // Cleanup anything possible
+            // TODO: Cleanup anything possible
            // mapView.EmptyMemoryCache ();
+        }
+
+        private void SetGestures()
+        {
+            nfloat r = 0;
+            nfloat dx = 0;
+            nfloat dy = 0;
+            //this.rotateGesture = new UIRotationGestureRecognizer(() =>
+            //{
+            //    if ((rotateGesture.State == UIGestureRecognizerState.Began || rotateGesture.State == UIGestureRecognizerState.Changed)
+            //    && rotateGesture.NumberOfTouches == 2)
+            //    {
+            //        this.Transform = CGAffineTransform.MakeRotation(rotateGesture.Rotation + r);
+            //    }
+            //    else if (rotateGesture.State == UIGestureRecognizerState.Ended)
+            //    {
+            //        r += rotateGesture.Rotation;
+            //    }
+            //});
+
+            View.UserInteractionEnabled = true;
+
+
+
+            var rotationGesture = new UIRotationGestureRecognizer(RotateImage);
+
+            View.AddGestureRecognizer(rotationGesture);
+
+
+
+            var pinchGesture = new UIPinchGestureRecognizer(ScaleImage);
+
+            pinchGesture.Delegate = new GestureDelegate(this);
+
+            View.AddGestureRecognizer(pinchGesture);
+
+            var panGesture = new UIPanGestureRecognizer(PanImage);
+
+            panGesture.MaximumNumberOfTouches = 2;
+
+            panGesture.Delegate = new GestureDelegate(this);           
+
+            View.AddGestureRecognizer(panGesture);
+            View.AddGestureRecognizer(rotationGesture);
+        }
+
+        void AdjustAnchorPointForGestureRecognizer(UIGestureRecognizer gestureRecognizer)
+
+        {
+
+            if (gestureRecognizer.State == UIGestureRecognizerState.Began)
+            {
+
+                var image = gestureRecognizer.View;
+
+                var locationInView = gestureRecognizer.LocationInView(image);
+
+                var locationInSuperview = gestureRecognizer.LocationInView(image.Superview);
+
+
+
+                image.Layer.AnchorPoint = new CGPoint(locationInView.X / image.Bounds.Size.Width, locationInView.Y / image.Bounds.Size.Height);
+
+                image.Center = locationInSuperview;
+
+            }
+
+        }
+        // Shift the image's center by the pan amount
+
+        void PanImage(UIPanGestureRecognizer gestureRecognizer)
+
+        {
+
+            AdjustAnchorPointForGestureRecognizer(gestureRecognizer);
+
+            var image = gestureRecognizer.View;
+
+            if (gestureRecognizer.State == UIGestureRecognizerState.Began || gestureRecognizer.State == UIGestureRecognizerState.Changed)
+            {
+
+                var translation = gestureRecognizer.TranslationInView(View);
+
+                image.Center = new CGPoint(image.Center.X + translation.X, image.Center.Y + translation.Y);
+
+                // Reset the gesture recognizer's translation to {0, 0} - the next callback will get a delta from the current position.
+
+                gestureRecognizer.SetTranslation(CGPoint.Empty, image);
+
+            }
+
+        }
+
+
+
+        // Rotates the image by the current rotation
+
+        void RotateImage(UIRotationGestureRecognizer gestureRecognizer)
+
+        {
+
+            AdjustAnchorPointForGestureRecognizer(gestureRecognizer);
+
+            if (gestureRecognizer.State == UIGestureRecognizerState.Began || gestureRecognizer.State == UIGestureRecognizerState.Changed)
+            {
+
+                gestureRecognizer.View.Transform *= CGAffineTransform.MakeRotation(gestureRecognizer.Rotation);
+
+                // Reset the gesture recognizer's rotation - the next callback will get a delta from the current rotation.
+
+                gestureRecognizer.Rotation = 0;
+
+            }
+
+        }
+
+
+
+        // Scales the image by the current scale
+
+        void ScaleImage(UIPinchGestureRecognizer gestureRecognizer)
+
+        {
+
+            AdjustAnchorPointForGestureRecognizer(gestureRecognizer);
+
+            if (gestureRecognizer.State == UIGestureRecognizerState.Began || gestureRecognizer.State == UIGestureRecognizerState.Changed)
+            {
+
+                gestureRecognizer.View.Transform *= CGAffineTransform.MakeScale(gestureRecognizer.Scale, gestureRecognizer.Scale);
+
+                // Reset the gesture recognizer's scale - the next callback will get a delta from the current scale.
+
+                gestureRecognizer.Scale = 1;
+
+            }
+
+        }
+
+        private int ScaleToZoom()
+        {
+
+        }
+
+
+        class GestureDelegate : UIGestureRecognizerDelegate
+        {
+
+            ViewController controller;
+
+
+
+            public GestureDelegate(ViewController controller)
+
+            {
+
+                this.controller = controller;
+
+            }
+
+
+
+            public override bool ShouldReceiveTouch(UIGestureRecognizer aRecogniser, UITouch aTouch)
+
+            {
+
+                return true;
+
+            }
+
+
+
+            // Ensure that the pinch, pan and rotate gestures are all recognized simultaneously
+
+            public override bool ShouldRecognizeSimultaneously(UIGestureRecognizer gestureRecognizer, UIGestureRecognizer otherGestureRecognizer)
+
+            {
+
+                // if the gesture recognizers's view isn't one of our images don't recognize
+
+                /*   if (gestureRecognizer.View != controller.firstImage &&
+
+                       gestureRecognizer.View != controller.secondImage &&
+
+                       gestureRecognizer.View != controller.thirdImage)
+
+                       return false;
+                       */
+
+
+                // if the gesture recognizers views differ, don't recognize
+
+                if (gestureRecognizer.View != otherGestureRecognizer.View)
+
+                    return false;
+
+
+
+                // if either of the gesture recognizers is a long press, don't recognize
+
+                if (gestureRecognizer is UILongPressGestureRecognizer || otherGestureRecognizer is UILongPressGestureRecognizer)
+
+                    return false;
+
+
+
+                return true;
+
+            }
+
         }
     }
 }

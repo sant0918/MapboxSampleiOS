@@ -10,16 +10,17 @@ using StateMaps.Models;
 
 namespace StateMaps
 {
-    public sealed class MapLinkedList
+    public sealed class MapLinkedList : LinkedList<LinkedListNode<MapTile>>
     {
         
-        LinkedList<MapLinkedListNode> nodes = new LinkedList<MapLinkedListNode>();
-        LinkedListNode<MapLinkedListNode> currentNode;
+        public LinkedList<LinkedListNode<MapTile>> nodes = new LinkedList<LinkedListNode<MapTile>>();
+        public LinkedListNode<MapTile> currentNode;
 
 
-        public MapLinkedList()
+        public MapLinkedList(MapTile maptile)
         {
-            this.currentNode = new LinkedListNode<MapLinkedListNode>(new MapLinkedListNode(new object { }));
+            this.currentNode = new LinkedListNode<MapTile>(maptile);
+            
         }
 
         public void GoToNode(object node)
@@ -30,23 +31,15 @@ namespace StateMaps
         /// <summary>
         /// TODO: Deserialize tile.
         /// </summary>
-        public void AddTile(object tile)
+        public void AddTile(LinkedListNode<MapTile> tile)
         {
+
             
-            throw new NotImplementedException();
+            // we find the node.
+            nodes.Find(tile);
         }
 
 
-
-        public class MapLinkedListNode
-        {
-            private MapTile _tile;
-            
-            internal MapLinkedListNode(MapTile tile)
-            {
-                this._tile = tile;
-            }            
-
-        }
+    
     }
 }
