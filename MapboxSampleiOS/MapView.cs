@@ -94,29 +94,29 @@ namespace StateMaps
             
             // Tile gets added to linked list.
             // going left
-            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
-            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile - 1, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
-            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile - 2, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
-            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile - 3, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
-            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile - 4, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+            this._map.AddTile(TEMPgetTile(maptile,  0, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+            this._map.AddTile(TEMPgetTile(maptile, -1, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+            this._map.AddTile(TEMPgetTile(maptile, -2, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+            this._map.AddTile(TEMPgetTile(maptile, -3, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+            this._map.AddTile(TEMPgetTile(maptile, -4, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
 
             // going right
-            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
-            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile + 1, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
-            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile + 2, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
-            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile + 3, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
-            this._map.AddTile(TEMPgetTile(maptile.ZTile, maptile.XTile + 4, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            this._map.AddTile(TEMPgetTile(maptile, 0, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            this._map.AddTile(TEMPgetTile(maptile, 1, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            this._map.AddTile(TEMPgetTile(maptile, 2, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            this._map.AddTile(TEMPgetTile(maptile, 3, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            this._map.AddTile(TEMPgetTile(maptile, 4, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
             // get more tiles recursively.
             //await this.GetTile(maptile.NextTile(-1)); // go left
             //Sawait this.GetTile(maptile.NextTile(1)); // go right
 
         }
 
-        private static LinkedListNode<MapTile> TEMPgetTile(MapTile maptile)
+        private static LinkedListNode<MapTile> TEMPgetTile(MapTile maptile, int Xoffset, int Yoffset)
         {
             string path = "tiles/";
 
-            string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + "/tile.svg");
+            string pngFilename = Path.Combine(path, maptile.ZTile.ToString() + "/" + (maptile.XTile + Xoffset) + "/" + (maptile.YTile + Yoffset) + "/tile.svg");
 
 			maptile._svgImage = SVGKImage.ImageNamed(pngFilename);
             return new LinkedListNode<MapTile>(maptile);
