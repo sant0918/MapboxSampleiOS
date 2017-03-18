@@ -46,6 +46,7 @@ namespace StateMaps
             top = new MapView(_url, new CGRect(-1280, -256, 2560, 256), location, zoom ); // 
             center = new MapView(_url, new CGRect(-1280, 0, 2560, 256), location, zoom );
             bottom = new MapView(_url, new CGRect(-1280, 256, 2560, 256), location, zoom );
+			SetGestures();
 
         }
 
@@ -89,7 +90,7 @@ namespace StateMaps
 
             View.AddSubviews(top, center, bottom);
             // TODO: Add Mapviews as subview.
-            UIView v = AppDelegate.Self.Window.RootViewController.View;
+    //        UIView v = AppDelegate.Self.Window.RootViewController.View;
         }
 
         

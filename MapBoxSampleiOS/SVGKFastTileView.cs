@@ -140,7 +140,7 @@ namespace StateMaps
 
             var pinchGesture = new UIPinchGestureRecognizer(ScaleImage);
 
-            pinchGesture.Delegate = new GestureDelegate(this);
+            //pinchGesture.Delegate = new GestureDelegate(this);
 
             this.AddGestureRecognizer(pinchGesture);
 

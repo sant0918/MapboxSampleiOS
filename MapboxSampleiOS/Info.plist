@@ -43,6 +43,10 @@
 	<key>XSAppIconAssets</key>
 	<string>Resources/Images.xcassets/AppIcons.appiconset</string>
 	<key>CFBundleDisplayName</key>
-	<string>StateMaps</string>
+	<string>MapBoxSampleiOS</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>location</string>
+	</array>
 </dict>
 </plist>

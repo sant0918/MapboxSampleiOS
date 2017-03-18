@@ -13,7 +13,7 @@ namespace StateMaps
     public class AppDelegate : UIApplicationDelegate
     {
         // class-level declarations
-        public static AppDelegate Self { get; private set; }
+     //   public static AppDelegate Self { get; private set; }
         
         public override UIWindow Window {
             get;
@@ -23,19 +23,19 @@ namespace StateMaps
         
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
-            AppDelegate.Self = this;
+       //     AppDelegate.Self = this;
             return true;
         }
 
-        public override void DidEnterBackground(UIApplication application)
-        {
-            Console.WriteLine("App entering background state.");
-        }
+       // public override void DidEnterBackground(UIApplication application)
+       // {
+          //  Console.WriteLine("App entering background state.");
+       // }
 
-        public override void WillEnterForeground(UIApplication application)
-        {
-            Console.WriteLine("App will enter foreground");
-        }
+       // public override void WillEnterForeground(UIApplication application)
+       // {
+           // Console.WriteLine("App will enter foreground");
+       // }
 
     }
 }

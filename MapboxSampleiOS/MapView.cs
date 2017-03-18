@@ -11,6 +11,7 @@ using StateMaps.Models;
 using CoreGraphics;
 using CoreLocation;
 using System.IO;
+using SVGKit;
 
 namespace StateMaps
 {
@@ -119,13 +120,7 @@ namespace StateMaps
             return new LinkedListNode<MapTile>(new MapTile(col,row,zoom, SVGKImage.ImageNamed(pngFilename)) );
         }
 
-        public override void DidReceiveMemoryWarning()
-        {
-            base.DidReceiveMemoryWarning();
-
-            // Cleanup anything possible
-            // mapView.EmptyMemoryCache ();
-        }
+       
         
         private void RenderSVgImages()
         {
