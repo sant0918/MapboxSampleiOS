@@ -9,7 +9,7 @@ namespace StateMaps.Models
 {
     public class MapTile
     {
-        public int tileNum { get; private set; }
+        public Tuple<int,int> tileOffset { get; private set; }
         public int XTile { get; private set; }
         public int YTile { get; private set; }
         public int ZTile { get; private set; }
@@ -30,6 +30,17 @@ namespace StateMaps.Models
             tileSize = new CGSize(256, 256);
             
             
+        }
+
+        // Used for surrounding tiles.
+        public MapTile(MapTile maptile, Tuple<int,int> tileOffset)
+        {
+            this.tileOffset = tileOffset;
+            this.XTile = maptile.XTile;
+            this.YTile = maptile.YTile;
+            this.ZTile = maptile.ZTile;
+            this._svgImage = maptile._svgImage;
+            tileSize = new CGSize(256, 256);
         }
 
       

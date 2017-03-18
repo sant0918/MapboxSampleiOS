@@ -12,6 +12,7 @@ using CoreGraphics;
 using CoreLocation;
 using System.IO;
 using SVGKit;
+using StateMaps.Models;
 
 namespace StateMaps
 {
@@ -120,7 +121,7 @@ namespace StateMaps
             string pngFilename = Path.Combine(path, maptile.ZTile.ToString() + "/" + (maptile.XTile + Xoffset) + "/" + (maptile.YTile + Yoffset) + "/tile.svg");
 
 			maptile._svgImage = SVGKImage.ImageNamed(pngFilename);
-            return new LinkedListNode<MapTile>(maptile);
+            return new LinkedListNode<MapTile>(new Models.MapTile(maptile, new Tuple<int,int>(Xoffset,Yoffset)));
         }
 
        
@@ -137,7 +138,7 @@ namespace StateMaps
             foreach(var map in _map)
             {
                 context.SaveState();
-                context.TranslateCTM(map.Value.tileSize.Width * map.Value.tileNum, map.Value.tileSize.Height);
+                context.TranslateCTM(map.Value.tileSize.Width * map.Value.tileOffset.Item1, map.Value.tileSize.Height * map.Value.tileOffset.Item2);
                 map.Value._svgImage.CALayerTree.RenderInContext(context);
                 context.RestoreState();
             }
