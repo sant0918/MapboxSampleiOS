@@ -39,14 +39,11 @@ namespace StateMaps
         #region Constructors
         public ViewController (IntPtr handle) : base (handle)
         {
-            // As soon as the app is done launching, begin generating location updates in the location manager
             Manager = new LocationManager();
-            Manager.StartLocationUpdates();
+			Manager.StartLocationUpdates();
+			location = Manager.LocMgr.Location;
 
-            top = new MapView(_url, new CGRect(-1280, -256, 2560, 256), location, zoom ); // 
-            center = new MapView(_url, new CGRect(-1280, 0, 2560, 256), location, zoom );
-            bottom = new MapView(_url, new CGRect(-1280, 256, 2560, 256), location, zoom );
-			SetGestures();
+           
 
         }
 
@@ -72,6 +69,11 @@ namespace StateMaps
                 image.Frame = new CGRect(10, 10, image.Image.CGImage.Width, image.Image.CGImage.Height);
 
              }*/
+
+
+
+			// As soon as the app is done launching, begin generating location updates in the location manager
+
         }
 
         //Gps location is reiteved here.
@@ -79,19 +81,35 @@ namespace StateMaps
         {
             // Handle foreground updates
             this.location = e.Location;
+
+			if (this.location != null)
+			{
+				if (center == null )
+				{
+					top = new MapView(_url, new CGRect(-1280, -256, 2560, 256), this.location, zoom); // 
+					center = new MapView(_url, new CGRect(-1280, 0, 2560, 256), this.location, zoom);
+					bottom = new MapView(_url, new CGRect(-1280, 256, 2560, 256), this.location, zoom);
+					SetGestures();
+				}
+			}
         }
 
         public override void ViewDidLayoutSubviews()
         {
             base.ViewDidLayoutSubviews();
-            //SVGKImageView iv = new SVGKFastTileView(new CGRect(-1000,0,3048,2048));
-            //iv.Frame = new CGRect(0, 0, 256, 256);
-            //View.AddSubview(iv);
-
-            View.AddSubviews(top, center, bottom);
-            // TODO: Add Mapviews as subview.
-    //        UIView v = AppDelegate.Self.Window.RootViewController.View;
-        }
+			//SVGKImageView iv = new SVGKFastTileView(new CGRect(-1000,0,3048,2048));
+			//iv.Frame = new CGRect(0, 0, 256, 256);
+			//View.AddSubview(iv);
+			if (this.location != null)
+			{
+				if (center != null)
+				{
+					View.AddSubviews(top, center, bottom);
+					// TODO: Add Mapviews as subview.
+					//        UIView v = AppDelegate.Self.Window.RootViewController.View;
+				}
+			}
+		}
 
         
 

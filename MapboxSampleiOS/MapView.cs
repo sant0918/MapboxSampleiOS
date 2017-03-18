@@ -28,7 +28,8 @@ namespace StateMaps
         public MapView(string url, CGRect frame, CLLocation location, int zoom) : base (frame)
         {
             this._area = frame;
-            this._map = new MapLinkedList(new MapTile(location));
+			this.mapTile = new MapTile(location);
+            this._map = new MapLinkedList(this.mapTile);
             this._client = new HttpClient();
             this._url = url;
             this.Zoom = zoom;
@@ -66,22 +67,22 @@ namespace StateMaps
             // TODO: Update display as user moves/pans. Use eventArgs/delegate in user gesture.
         }
 
-        public async void PopulateTiles()
+        public void PopulateTiles()
         {
             // Get dimensions for view.
             CGRect view = this.Frame;
 
             // Get tile number for center of screen.
-                await GetTile(mapTile);                
+                GetTile(mapTile);                
         }
         
 
         // We fetch tile data here.
-        private async Task GetTile(MapTile maptile)
+        private void GetTile(MapTile maptile)
         {
             // TODO: IMPLEMENT AZURE AD ACCESS TOKEN.
-            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, String.Concat(_url,mapTile.XTile,"+",mapTile.YTile,"+",mapTile.ZTile));
-            request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+//            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, String.Concat(_url,mapTile.XTile,"+",mapTile.YTile,"+",mapTile.ZTile));
+  //          request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
 
             // Get serialized tiles
             // TODO: Implement web api and return row of maptiles.

@@ -14,6 +14,7 @@ namespace StateMaps
         public LocationManager()
         {
             this.locMgr = new CLLocationManager();
+
             this.locMgr.PausesLocationUpdatesAutomatically = false;
 
              // event for the location changing
@@ -29,19 +30,21 @@ namespace StateMaps
                 locMgr.AllowsBackgroundLocationUpdates = true;
             }
 
-            LocationUpdated += PrintLocation;
+        //    LocationUpdated += PrintLocation;
         }
        
         public CLLocationManager LocMgr
         {
             get
             {
-                return this.LocMgr;
+                return this.locMgr;
             }
         }
 
         public void StartLocationUpdates()
         {
+			LocMgr.RequestWhenInUseAuthorization();
+
             if (CLLocationManager.LocationServicesEnabled)
             {
                 LocMgr.DesiredAccuracy = 1;
