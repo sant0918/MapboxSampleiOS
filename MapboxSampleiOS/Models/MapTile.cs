@@ -23,22 +23,16 @@ namespace StateMaps.Models
             Tuple<double, double> metersXY = gmt.LatLonToMeters(loc.Coordinate.Latitude, loc.Coordinate.Longitude);
             Tuple<int, int> tilesMinXY = gmt.MetersToTile(metersXY.Item1, metersXY.Item2, zoom);
 			Tuple<int, int> gtilesXY = gmt.GoogleTile(tilesMinXY.Item1, tilesMinXY.Item2, zoom);
-            this.XTile = gtilesXY.Item1;
+            
+			this.XTile = gtilesXY.Item1;
             this.YTile = gtilesXY.Item2;
 			this.ZTile = zoom;
-            
+            tileSize = new CGSize(256, 256);
             
             
         }
 
-        public MapTile(int x, int y, int z, SVGKImage svgImage)
-        {
-            XTile = x;
-            YTile = y;
-            ZTile = z;
-            _svgImage = svgImage;
-            tileSize = new CGSize(256, 256);
-        }
+      
          public MapTile NextTile(int direction)
         {
             XTile += direction;

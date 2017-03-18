@@ -80,32 +80,33 @@ namespace StateMaps
         // We fetch tile data here.
         private void GetTile(MapTile maptile)
         {
-            // TODO: IMPLEMENT AZURE AD ACCESS TOKEN.
-//            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, String.Concat(_url,mapTile.XTile,"+",mapTile.YTile,"+",mapTile.ZTile));
-  //          request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
+			// TODO: IMPLEMENT AZURE AD ACCESS TOKEN.
+			//            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, String.Concat(_url,mapTile.XTile,"+",mapTile.YTile,"+",mapTile.ZTile));
+			//          request.Headers.Authorization = new AuthenticationHeaderValue("Bearer", AccessToken);
 
-            // Get serialized tiles
-            // TODO: Implement web api and return row of maptiles.
-            //object tile = await _client.SendAsync(request);
+			// Get serialized tiles
+			// TODO: Implement web api and return row of maptiles.
+			//object tile = await _client.SendAsync(request);
 
-            #region Temporary tile fetch implementation
+			#region Temporary tile fetch implementation
 
-            #endregion
-            
-            // Tile gets added to linked list.
+			#endregion
+
+			// Tile gets added to linked list.
+			int Yoffset = (int)(this._area.Top / maptile.tileSize.Height);
+            this._map.AddTile(TEMPgetTile(maptile,  0, Yoffset));
             // going left
-            this._map.AddTile(TEMPgetTile(maptile,  0, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
-            this._map.AddTile(TEMPgetTile(maptile, -1, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
-            this._map.AddTile(TEMPgetTile(maptile, -2, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
-            this._map.AddTile(TEMPgetTile(maptile, -3, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
-            this._map.AddTile(TEMPgetTile(maptile, -4, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+			this._map.AddTile(TEMPgetTile(maptile, -1, Yoffset ));
+            this._map.AddTile(TEMPgetTile(maptile, -2, Yoffset ));
+            //this._map.AddTile(TEMPgetTile(maptile, -3, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
+            //this._map.AddTile(TEMPgetTile(maptile, -4, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height) ));
 
             // going right
-            this._map.AddTile(TEMPgetTile(maptile, 0, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
-            this._map.AddTile(TEMPgetTile(maptile, 1, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
-            this._map.AddTile(TEMPgetTile(maptile, 2, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
-            this._map.AddTile(TEMPgetTile(maptile, 3, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
-            this._map.AddTile(TEMPgetTile(maptile, 4, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            
+            this._map.AddTile(TEMPgetTile(maptile, 1, Yoffset));
+            //this._map.AddTile(TEMPgetTile(maptile, 2, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            //this._map.AddTile(TEMPgetTile(maptile, 3, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
+            //this._map.AddTile(TEMPgetTile(maptile, 4, maptile.YTile + (int)(this._area.Top / maptile.tileSize.Height)));
             // get more tiles recursively.
             //await this.GetTile(maptile.NextTile(-1)); // go left
             //Sawait this.GetTile(maptile.NextTile(1)); // go right
@@ -133,7 +134,7 @@ namespace StateMaps
             //this.svgImage.CALayerTree.RenderInContext(context);
 
             
-            foreach(var map in _map.nodes)
+            foreach(var map in _map)
             {
                 context.SaveState();
                 context.TranslateCTM(map.Value.tileSize.Width * map.Value.tileNum, map.Value.tileSize.Height);
