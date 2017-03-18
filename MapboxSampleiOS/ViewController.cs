@@ -20,7 +20,7 @@ namespace StateMaps
         public const string _url = "http://javier.nyc/cgi-bin/mapserv.exe?map=/ms4w/apps/osm/basemaps/osm-google.map&layers=all&mode=tile&tilemode=gmap&tile=";
         // location is updated from HandleLocationChanged event then passed to mapviews.
         public CLLocation location;
-        public int zoom = 1; // init zoom level
+        public int zoom = 15; // init zoom level
 
 
         MapView top;

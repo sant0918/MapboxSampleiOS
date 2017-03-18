@@ -28,7 +28,7 @@ namespace StateMaps
         public MapView(string url, CGRect frame, CLLocation location, int zoom) : base (frame)
         {
             this._area = frame;
-			this.mapTile = new MapTile(location);
+			this.mapTile = new MapTile(location, zoom);
             this._map = new MapLinkedList(this.mapTile);
             this._client = new HttpClient();
             this._url = url;
@@ -112,13 +112,14 @@ namespace StateMaps
 
         }
 
-        private static LinkedListNode<MapTile> TEMPgetTile(int zoom, int col, int row)
+        private static LinkedListNode<MapTile> TEMPgetTile(MapTile maptile)
         {
             string path = "tiles/";
 
             string pngFilename = Path.Combine(path, zoom.ToString() + "/" + col.ToString() + "/" + row.ToString() + "/tile.svg");
 
-            return new LinkedListNode<MapTile>(new MapTile(col,row,zoom, SVGKImage.ImageNamed(pngFilename)) );
+			maptile._svgImage = SVGKImage.ImageNamed(pngFilename);
+            return new LinkedListNode<MapTile>(maptile);
         }
 
        

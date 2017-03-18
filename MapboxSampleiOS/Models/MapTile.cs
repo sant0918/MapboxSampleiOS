@@ -16,14 +16,16 @@ namespace StateMaps.Models
         public CGSize tileSize;
         public SVGKImage _svgImage;
 
-        public MapTile(CLLocation loc)
+        public MapTile(CLLocation loc, int zoom)
         {
             // Convert location to gmap tiles.
             GlobalMapTiles gmt = new GlobalMapTiles();
             Tuple<double, double> metersXY = gmt.LatLonToMeters(loc.Coordinate.Latitude, loc.Coordinate.Longitude);
-            Tuple<int, int> tilesMinXY = gmt.MetersToTile(metersXY.Item1, metersXY.Item2, ZTile);
-            this.XTile = tilesMinXY.Item1;
-            this.YTile = tilesMinXY.Item2;
+            Tuple<int, int> tilesMinXY = gmt.MetersToTile(metersXY.Item1, metersXY.Item2, zoom);
+			Tuple<int, int> gtilesXY = gmt.GoogleTile(tilesMinXY.Item1, tilesMinXY.Item2, zoom);
+            this.XTile = gtilesXY.Item1;
+            this.YTile = gtilesXY.Item2;
+			this.ZTile = zoom;
             
             
             
