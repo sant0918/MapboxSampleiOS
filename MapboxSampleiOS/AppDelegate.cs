@@ -14,7 +14,8 @@ namespace StateMaps
     {
         // class-level declarations
         public static AppDelegate Self { get; private set; }
-        
+        public ViewController viewController;
+
         public override UIWindow Window {
             get;
             set;
@@ -24,9 +25,22 @@ namespace StateMaps
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
             AppDelegate.Self = this;
+            Window = new UIWindow(UIScreen.MainScreen.Bounds);
+            if(UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone)
+            {
+                viewController = new ViewController("MapViewController_iphone", null);
+            }
+            else
+            {
+                viewController = new ViewController("MapViewController_ipad", null);
+            }
+            Window.RootViewController = this.viewController;
+            Window.MakeKeyAndVisible();
+
             return true;
         }
 
+        
         public override void DidEnterBackground(UIApplication application)
         {
             Console.WriteLine("App entering background state.");

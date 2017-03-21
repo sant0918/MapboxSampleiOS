@@ -16,7 +16,7 @@ using StateMaps.Models;
 
 namespace StateMaps
 {
-    public class MapView : SVGKFastImageView
+    public class MapView : UIScrollView
     {
         private CGRect _area;
         private MapLinkedList _map;
@@ -25,6 +25,7 @@ namespace StateMaps
         private MapTile mapTile; // used to get starting map tile location.
         public string AccessToken { get; set; }
         public int Zoom;
+        public CGSize contentSize;
 
         public MapView(string url, CGRect frame, CLLocation location, int zoom) : base (frame)
         {
@@ -50,9 +51,17 @@ namespace StateMaps
             PopulateTiles();
         }
 
+        public MapView(MapScrollView mapScrollView, CLLocation location, int zoom) : base(mapScrollView.Frame)
+        {
+            this._area = mapScrollView.Frame;
+            this.contentSize = mapScrollView.ContentSize;
+            this.Zoom = zoom;
+
+        }
+
         protected override void Dispose(bool disposing)
         {
-
+            
             base.Dispose(disposing);
 
             //TODO: Implement dispose.
@@ -72,7 +81,7 @@ namespace StateMaps
         {
             // Get dimensions for view.
             CGRect view = this.Frame;
-
+            
             // Get tile number for center of screen.
                 GetTile(mapTile);                
         }
@@ -141,9 +150,7 @@ namespace StateMaps
                 context.TranslateCTM(map.Value.tileSize.Width * map.Value.tileOffset.Item1, map.Value.tileSize.Height * map.Value.tileOffset.Item2);
                 map.Value._svgImage.CALayerTree.RenderInContext(context);
                 context.RestoreState();
-            }
-
-           
+            }          
 
         }
     }

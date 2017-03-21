@@ -26,6 +26,7 @@ namespace StateMaps
         MapView top;
         MapView center;
         MapView bottom;
+        MapScrollView maps;
 
         #region ComputedProperties
         public static bool UserInterfaceIdiomIsPhone
@@ -42,14 +43,19 @@ namespace StateMaps
             Manager = new LocationManager();
 			Manager.StartLocationUpdates();
 			location = Manager.LocMgr.Location;
-
-           
-
+            
         }
 
+        public ViewController(string nibName, NSBundle bundle) : base(nibName, bundle)
+        {
+            Manager = new LocationManager();
+            Manager.StartLocationUpdates();
+            location = Manager.LocMgr.Location;
+
+        }
         #endregion
 
-        
+
 
 
         public override void ViewDidLoad ()
@@ -58,22 +64,31 @@ namespace StateMaps
 
             // It is better to handle this with notifications, so that the UI updates
             // resume when the application re-enters the foreground!
-            Manager.LocationUpdated += HandleLocationChanged;
+            // Manager.LocationUpdated += HandleLocationChanged;
 
-            // Add base map
-            /*using (UIImage foto = UIImage.FromBundle("mapserv.png"))
-             {
-                image = new UIImageView(foto);
-                image.UserInteractionEnabled = true;
-                View.AddSubview(image);
-                image.Frame = new CGRect(10, 10, image.Image.CGImage.Width, image.Image.CGImage.Height);
+            // As soon as the app is done launching, begin generating location updates in the location manager
+            View.AddSubview(maps);
+        }
 
-             }*/
+        public override void ViewDidAppear(bool animated)
+        {
+            base.ViewDidAppear(animated);
+        }
+
+        public override void ViewWillDisappear(bool animated)
+        {
+            base.ViewWillDisappear(animated);
+        }
+
+        public override void ViewWillAppear(bool animated)
+        {
+            base.ViewWillAppear(animated);
+        }
 
 
-
-			// As soon as the app is done launching, begin generating location updates in the location manager
-
+        public bool ShouldAutoRotateToInterfaceOrientation(UIInterfaceOrientation interfaceOrientation)
+        {
+            return interfaceOrientation == UIInterfaceOrientation.Portrait;
         }
 
         //Gps location is reiteved here.
@@ -90,7 +105,9 @@ namespace StateMaps
 					center = new MapView(_url, new CGRect(-1280, 0, 2560, 256), this.location, zoom);
 					bottom = new MapView(_url, new CGRect(-1280, 256, 2560, 256), this.location, zoom);
 					SetGestures();
-					View.AddSubviews(top, center, bottom);
+                    View.AddSubview(maps);
+                    View.AddSubviews(top, center, bottom);
+
 					View.SetNeedsDisplay();
 				}
 
