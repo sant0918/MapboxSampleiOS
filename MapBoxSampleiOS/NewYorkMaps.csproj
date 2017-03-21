@@ -133,6 +133,7 @@
     <Compile Include="AppDelegate.cs" />
     <Compile Include="MapLinkedList.cs" />
     <Compile Include="MapScrollView.cs" />
+    <Compile Include="MapTileView.cs" />
     <Compile Include="MapView.cs" />
     <Compile Include="Models\Distance.cs" />
     <Compile Include="Models\GeoCoordinates.cs" />
@@ -146,6 +147,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <ItemGroup>
+    <BundleResource Include="Resources\tiles\15\9648\12314\tile.svg" />
+    <BundleResource Include="Resources\tiles\15\9649\12314\tile.svg" />
+    <BundleResource Include="Resources\tiles\15\9650\12314\tile.svg" />
+    <BundleResource Include="Resources\tiles\15\9651\12314\tile.svg" />
+    <BundleResource Include="Resources\tiles\15\9652\12314\tile.svg" />
     <BundleResource Include="Settings.bundle\Root.plist" />
   </ItemGroup>
   <ItemGroup>
@@ -165,7 +171,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\tiles\" />
     <Folder Include="Views\" />
   </ItemGroup>
 </Project>

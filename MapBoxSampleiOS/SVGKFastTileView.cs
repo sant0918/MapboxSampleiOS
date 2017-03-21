@@ -44,7 +44,7 @@ namespace StateMaps
             this.svgImage = svgImage;
             tileSize = tileSize = new CGSize(256, 256);
             this.svgImage.Size = tileSize;
-            this.SetGestures();
+            //this.SetGestures();
         }
         public override void Draw(CGRect area)
         {
@@ -70,12 +70,26 @@ namespace StateMaps
             int maxX = 9652;
             int minY = 12314;
             int maxY = 12320;
-            int c;
+            int c=0;
             int r = 0;
+            int col = 9651;
+            int row = 12314;
+            context.SaveState();
+            context.TranslateCTM(tileSize.Width * c, tileSize.Height * r);
+
+            this.svgImage = getTile(ZOOM, col, row);
+            this.svgImage.Size = tileSize;
+
+            this.svgImage.CALayerTree.RenderInContext(context);
+
+            //
+
+            context.RestoreState();
+
             //this.Layer.AddSublayer(svgImage.CALayerTree); 
             //this.svgImage.CALayerTree.RenderInContext(context);
 
-			for (int row = minY; row <= maxY; row++)
+            /*for (int row = minY; row <= maxY; row++)
             {
                 c = 0;
                 for (int col = minX; col <= maxX; col++)
@@ -98,7 +112,9 @@ namespace StateMaps
                 }
                 r++;
 
-            }
+            }*/
+
+
 
         }
         private  static SVGKImage getTile(int zoom, int col, int row)

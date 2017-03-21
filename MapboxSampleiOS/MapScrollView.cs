@@ -6,12 +6,13 @@ using CoreGraphics;
 using CoreLocation;
 using Foundation;
 using UIKit;
+using StateMaps.Models;
 
 namespace StateMaps
 {
     public class MapScrollView : UIScrollView
     {
-        NSMutableArray<UILabel> visibleTiles;
+        NSMutableArray<SVGKFastTileView> visibleTiles;
         UIView MapContainerView;
         public string _url { get; private set; } = "http://javier.nyc/cgi-bin/mapserv.exe?map=/ms4w/apps/osm/basemaps/osm-google.map&layers=all&mode=tile&tilemode=gmap&tile=";
 
@@ -21,7 +22,7 @@ namespace StateMaps
         public MapScrollView(NSCoder coder) : base(coder)
         {
             ContentSize = new CGSize(5000, this.Frame.Size.Height);
-            visibleTiles = new NSMutableArray<UILabel>();
+            visibleTiles = new NSMutableArray<SVGKFastTileView>();
             MapContainerView = new UIView();
             MapContainerView.Frame = new CGRect(0, 0, ContentSize.Width, ContentSize.Height / 2);
             this.AddSubview(MapContainerView);
@@ -33,7 +34,7 @@ namespace StateMaps
         public MapScrollView(CGRect frame) : base(frame)
         {
 			ContentSize = new CGSize(5000, this.Frame.Size.Height);
-			visibleTiles = new NSMutableArray<UILabel>();
+			visibleTiles = new NSMutableArray<SVGKFastTileView>();
 			MapContainerView = new UIView();
 			MapContainerView.Frame = new CGRect(0, 0, ContentSize.Width, ContentSize.Height / 2);
 			this.AddSubview(MapContainerView);
@@ -59,7 +60,7 @@ namespace StateMaps
 
                 // move content by the same amount so it appears to stay still
                 
-                foreach(UILabel label in visibleTiles)
+                foreach(SVGKFastTileView label in visibleTiles)
                 {
                     CGPoint center = this.MapContainerView.ConvertPointToView(label.Center, this);
                     center.X += (centerOffsetX - currentOffset.X);
@@ -84,11 +85,11 @@ namespace StateMaps
         #endregion
 
         #region MapTiling
-        UILabel InsertMap()
+        SVGKFastTileView InsertMap()
         {
             
-            UILabel map = new UILabel(new CGRect(0,0,500,80));
-			map.Text = "montro";
+            SVGKFastTileView map = new SVGKFastTileView(new CGRect(0,0,500,80));
+			
             this.AddSubview(map);
 
             return map;
@@ -96,7 +97,7 @@ namespace StateMaps
 
         private nfloat PlaceNewMapOnRight(nfloat rightEdge)
         {
-            UILabel map = this.InsertMap();
+            SVGKFastTileView map = this.InsertMap();
             this.visibleTiles.AddObjects(map);
 
             CGRect frame = map.Frame;
@@ -111,7 +112,7 @@ namespace StateMaps
         private nfloat PlaceNewMapOnLeft(nfloat leftEdge)
         {
             
-            UILabel[] map = new UILabel[1] { this.InsertMap() };            
+            SVGKFastTileView[] map = new SVGKFastTileView[1] { this.InsertMap() };            
             this.visibleTiles.InsertObjects(map, new NSIndexSet(0));
 
             CGRect frame = map[0].Frame;
@@ -133,7 +134,7 @@ namespace StateMaps
             }
 
             // add tiles that are missing on right side.
-            UILabel lastMap = this.visibleTiles[this.visibleTiles.Count - 1]; // last object
+            SVGKFastTileView lastMap = this.visibleTiles[this.visibleTiles.Count - 1]; // last object
             nfloat rightEdge = lastMap.Frame.GetMaxX();
 
             while (rightEdge < maximumVisibleX)
@@ -142,7 +143,7 @@ namespace StateMaps
             }
 
             // add tiles that are missing on left side
-            UILabel firstMap = this.visibleTiles[0];
+            SVGKFastTileView firstMap = this.visibleTiles[0];
             nfloat leftEdge = firstMap.Frame.GetMinX();
 
             while (leftEdge > minimumVisibleX)
