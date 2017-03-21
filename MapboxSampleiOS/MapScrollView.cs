@@ -32,7 +32,15 @@ namespace StateMaps
         }
         public MapScrollView(CGRect frame) : base(frame)
         {
+			ContentSize = new CGSize(5000, this.Frame.Size.Height);
+			visibleTiles = new NSMutableArray<UILabel>();
+			MapContainerView = new UIView();
+			MapContainerView.Frame = new CGRect(0, 0, ContentSize.Width, ContentSize.Height / 2);
+			this.AddSubview(MapContainerView);
+			MapContainerView.UserInteractionEnabled = false;
 
+			// hide horizontal scroll indicator so our recentering trick is not revealed.
+			ShowsHorizontalScrollIndicator = false;
         }
 
         #region Layout
@@ -80,6 +88,7 @@ namespace StateMaps
         {
             
             UILabel map = new UILabel(new CGRect(0,0,500,80));
+			map.Text = "montro";
             this.AddSubview(map);
 
             return map;

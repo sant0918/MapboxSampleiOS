@@ -13,6 +13,7 @@ using StateMaps.Models;
 
 namespace StateMaps
 {
+	
     public partial class ViewController : UIViewController
     {
 
@@ -40,6 +41,7 @@ namespace StateMaps
         #region Constructors
         public ViewController (IntPtr handle) : base (handle)
         {
+			maps = new MapScrollView(UIScreen.MainScreen.Bounds);
             Manager = new LocationManager();
 			Manager.StartLocationUpdates();
 			location = Manager.LocMgr.Location;

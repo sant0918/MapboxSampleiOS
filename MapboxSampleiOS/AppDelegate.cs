@@ -25,17 +25,17 @@ namespace StateMaps
         public override bool FinishedLaunching (UIApplication application, NSDictionary launchOptions)
         {
             AppDelegate.Self = this;
-            Window = new UIWindow(UIScreen.MainScreen.Bounds);
-            if(UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone)
-            {
-                viewController = new ViewController("MapViewController_iphone", null);
-            }
-            else
-            {
-                viewController = new ViewController("MapViewController_ipad", null);
-            }
-            Window.RootViewController = this.viewController;
-            Window.MakeKeyAndVisible();
+            //Window = new UIWindow(UIScreen.MainScreen.Bounds);
+            //if(UIDevice.CurrentDevice.UserInterfaceIdiom == UIUserInterfaceIdiom.Phone)
+            //{
+            //    viewController = new ViewController("MainViewController", null);
+            //}
+            //else
+            //{
+            //    viewController = new ViewController("MapViewController_ipad", null);
+            //}
+            //Window.RootViewController = this.viewController;
+            // Window.MakeKeyAndVisible();
 
             return true;
         }
