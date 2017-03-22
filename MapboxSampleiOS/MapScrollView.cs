@@ -18,6 +18,8 @@ namespace StateMaps
 
         public CLLocation location;
         public int zoom = 15; // init zoom level
+        nfloat minimumVisibleX = 0;
+        nfloat maximumVisibleX = 0;
 
         public MapScrollView(NSCoder coder) : base(coder)
         {
@@ -78,8 +80,8 @@ namespace StateMaps
             // tile content in visible bounds.
 			// visibleBounds 
             CGRect visibleBounds = this.ConvertRectToView(this.Bounds, this.MapContainerView); 
-            nfloat minimumVisibleX = visibleBounds.GetMinX();
-            nfloat maximumVisibleX = visibleBounds.GetMaxX();
+            this.maximumVisibleX = visibleBounds.GetMinX();
+            this.minimumVisibleX = visibleBounds.GetMaxX();
 			nfloat diff = maximumVisibleX - minimumVisibleX;
             this.tileLabelsFromMinX(minimumVisibleX, maximumVisibleX);
         }
@@ -90,8 +92,8 @@ namespace StateMaps
         {
 			SVGKFastTileView map = new SVGKFastTileView(new CGRect(0,0,256,256), xOffset);
             CGRect bounds = this.ConvertRectToView(this.Bounds, map);
-            UILabel label1 = new UILabel(new CGRect(0, 0, 200, 80));
-            UILabel label2 = new UILabel(new CGRect(0, 0, 200, 80));            
+            UILabel label1 = new UILabel(new CGRect(this.minimumVisibleX, 0, 200, 80));
+            UILabel label2 = new UILabel(new CGRect(this.maximumVisibleX, 0, 200, 80));            
             label1.Text = "que";
             label2.Text = "lo que";
 			this.AddSubview(label1);
