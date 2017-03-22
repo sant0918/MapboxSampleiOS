@@ -76,23 +76,24 @@ namespace StateMaps
             this.RecenterIfNecessary();
 
             // tile content in visible bounds.
-            CGRect visibleBounds = this.ConvertRectToView(this.Bounds, this.MapContainerView);
+			// visibleBounds 
+            CGRect visibleBounds = this.ConvertRectToView(this.Bounds, this.MapContainerView); 
             nfloat minimumVisibleX = visibleBounds.GetMinX();
             nfloat maximumVisibleX = visibleBounds.GetMaxX();
-
+			nfloat diff = maximumVisibleX - minimumVisibleX;
             this.tileLabelsFromMinX(minimumVisibleX, maximumVisibleX);
         }
         #endregion
 
         #region MapTiling
-        SVGKFastTileView InsertMap()
+        SVGKFastTileView InsertMap(int xOffset = 0)
         {
-            
-            SVGKFastTileView map = new SVGKFastTileView(new CGRect(0,0,500,80));
-			
-            this.AddSubview(map);
-
-            return map;
+			SVGKFastTileView map = new SVGKFastTileView(new CGRect(0,0,256,256), xOffset);
+			CGRect bounds = this.ConvertRectToView(this.Bounds, map);
+			nfloat minx = bounds.GetMinX();
+			nfloat maxx = bounds.GetMaxX();
+			this.AddSubview(map);
+			return map;
         }
 
         private nfloat PlaceNewMapOnRight(nfloat rightEdge)

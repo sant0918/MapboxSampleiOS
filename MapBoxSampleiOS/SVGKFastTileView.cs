@@ -21,17 +21,18 @@ namespace StateMaps
         UIRotationGestureRecognizer rotateGesture;
         UIPanGestureRecognizer panGesture;
         CGSize tileSize;
-
+		private int col = 9651;
         public SVGKFastTileView(SVGKImage svgImage) : base (svgImage)
         {
             SetupImages(svgImage);
 
         }
 
-        public SVGKFastTileView(CGRect frame) : base (frame)
+        public SVGKFastTileView(CGRect frame, int xOffset) : base (frame)
         {
-			this.SetGestures();
+			//this.SetGestures();
             tileSize = new CGSize(256, 256);
+			this.col += xOffset;
         }
 
         public SVGKFastTileView(SVGKImage svgImage, CGRect frame) : base(frame)
