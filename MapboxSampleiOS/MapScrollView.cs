@@ -92,8 +92,8 @@ namespace StateMaps
         {
 			UILabel map = new UILabel(new CGRect(0,0,500,80));
             CGRect bounds = this.ConvertRectToView(this.Bounds, map);
-            UILabel label1 = new UILabel(new CGRect(this.minimumVisibleX, 0, 200, 80));
-            UILabel label2 = new UILabel(new CGRect(this.maximumVisibleX, 0, 200, 80));            
+            UILabel label1 = new UILabel(new CGRect(0, 0, 200, 80));
+            UILabel label2 = new UILabel(new CGRect(0, 0, 200, 80));            
             label1.Text = "que";
             label2.Text = "lo que";
 			this.AddSubview(map);
