@@ -46,7 +46,7 @@ namespace StateMaps
 
         private static MapTile getTile(MapTile maptile)
         {
-            string path = "tiles/";
+            string path = "tiles/NYC/";
 
             string pngFilename = Path.Combine(path, maptile.ZTile.ToString() + "/" + maptile.XTile + "/" + maptile.YTile + "/tile.svg");
             maptile._svgImage = SVGKImage.ImageNamed(pngFilename);
