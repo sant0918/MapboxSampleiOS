@@ -36,6 +36,8 @@ namespace StateMaps
 
             // hide horizontal scroll indicator so our recentering trick is not revealed.
             ShowsHorizontalScrollIndicator = false;
+            ShowsVerticalScrollIndicator = true;
+            
         }
 
         #region Layout

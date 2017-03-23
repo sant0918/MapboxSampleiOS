@@ -42,6 +42,7 @@ namespace StateMaps
         public ViewController (IntPtr handle) : base (handle)
         {
 			maps = new MapScrollView(UIScreen.MainScreen.Bounds);
+            maps.AddGestureRecognizer
             Manager = new LocationManager();
 			Manager.StartLocationUpdates();
 			location = Manager.LocMgr.Location;
@@ -163,7 +164,7 @@ namespace StateMaps
 
             panGesture.Delegate = new GestureDelegate(this);           
 
-            View.AddGestureRecognizer(panGesture);
+            maps.AddGestureRecognizer(panGesture);
             View.AddGestureRecognizer(rotationGesture);
         }
 
