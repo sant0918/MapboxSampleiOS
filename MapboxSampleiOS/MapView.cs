@@ -130,7 +130,7 @@ namespace StateMaps
             string pngFilename = Path.Combine(path, maptile.ZTile.ToString() + "/" + (maptile.XTile + Xoffset) + "/" + (maptile.YTile + Yoffset) + "/tile.svg");
 
 			maptile._svgImage = SVGKImage.ImageNamed(pngFilename);
-            return new LinkedListNode<MapTile>(new Models.MapTile(maptile, new Tuple<int,int>(Xoffset,Yoffset)));
+            return new LinkedListNode<MapTile>(new Models.MapTile(maptile));
         }
 
        
