@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using SVGKit;
@@ -38,7 +38,11 @@ namespace StateMaps.Models
             this.YTile = maptile.YTile;
             this.ZTile = maptile.ZTile;
             this._svgImage = maptile._svgImage;
+<<<<<<< Updated upstream
             this._svgImage.Size = new CGSize(256, 256);
+=======
+            //this._svgImage.Size = new CGSize(2560, 2560);
+>>>>>>> Stashed changes
         }
 
       
