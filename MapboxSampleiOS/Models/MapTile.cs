@@ -33,7 +33,7 @@ namespace StateMaps.Models
         }
 
         // Used for surrounding tiles.
-        public MapTile(MapTile maptile, Tuple<int,int> tileOffset)
+        public MapTile(MapTile maptile)
         {
             this.tileOffset = tileOffset;
             this.XTile = maptile.XTile;

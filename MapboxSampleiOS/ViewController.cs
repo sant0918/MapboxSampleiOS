@@ -101,15 +101,10 @@ namespace StateMaps
 
 			if (this.location != null)
 			{
-				if (center == null )
+				if (maps != null )
 				{
-					top = new MapView(_url, new CGRect(-1280, -256, 2560, 256), this.location, zoom); // 
-					center = new MapView(_url, new CGRect(-1280, 0, 2560, 256), this.location, zoom);
-					bottom = new MapView(_url, new CGRect(-1280, 256, 2560, 256), this.location, zoom);
 					SetGestures();
-                    View.AddSubview(maps);
-                    View.AddSubviews(top, center, bottom);
-
+                    View.AddSubview(maps);                    
 					View.SetNeedsDisplay();
 				}
 

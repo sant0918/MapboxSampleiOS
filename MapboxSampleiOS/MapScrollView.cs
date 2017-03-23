@@ -12,38 +12,30 @@ namespace StateMaps
 {
     public class MapScrollView : UIScrollView
     {
-        NSMutableArray<UILabel> visibleTiles;
+        NSMutableArray<MapTileView> visibleTiles;
         UIView MapContainerView;
         public string _url { get; private set; } = "http://javier.nyc/cgi-bin/mapserv.exe?map=/ms4w/apps/osm/basemaps/osm-google.map&layers=all&mode=tile&tilemode=gmap&tile=";
 
-        public CLLocation location;
+        public static LocationManager Manager { get; set; }
         public int zoom = 15; // init zoom level
         nfloat minimumVisibleX = 0;
         nfloat maximumVisibleX = 0;
-
-        public MapScrollView(NSCoder coder) : base(coder)
-        {
-            ContentSize = new CGSize(5000, this.Frame.Size.Height);
-            visibleTiles = new NSMutableArray<UILabel>();
-            MapContainerView = new UIView();
-            MapContainerView.Frame = new CGRect(0, 0, ContentSize.Width, ContentSize.Height / 2);
-            this.AddSubview(MapContainerView);
-            MapContainerView.UserInteractionEnabled = false;
-
-            // hide horizontal scroll indicator so our recentering trick is not revealed.
-            ShowsHorizontalScrollIndicator = false;
-        }
+        
         public MapScrollView(CGRect frame) : base(frame)
         {
 			ContentSize = new CGSize(5000, this.Frame.Size.Height);
-			visibleTiles = new NSMutableArray<UILabel>();
+			visibleTiles = new NSMutableArray<MapTileView>();
 			MapContainerView = new UIView();
 			MapContainerView.Frame = new CGRect(0, 0, ContentSize.Width, ContentSize.Height / 2);
 			this.AddSubview(MapContainerView);
 			MapContainerView.UserInteractionEnabled = false;
 
-			// hide horizontal scroll indicator so our recentering trick is not revealed.
-			ShowsHorizontalScrollIndicator = false;
+            // setup gps location
+            Manager = new LocationManager();
+            Manager.StartLocationUpdates();
+
+            // hide horizontal scroll indicator so our recentering trick is not revealed.
+            ShowsHorizontalScrollIndicator = false;
         }
 
         #region Layout
@@ -65,7 +57,7 @@ namespace StateMaps
 
                 // move content by the same amount so it appears to stay still
                 
-                foreach(UILabel label in visibleTiles)
+                foreach(MapTileView label in visibleTiles)
                 {
                     CGPoint center = this.MapContainerView.ConvertPointToView(label.Center, this);
                     center.X += (centerOffsetX - currentOffset.X);
@@ -92,14 +84,18 @@ namespace StateMaps
 
         #region MapTiling
 		// inserts item into suview and returns item.
-        UILabel InsertMap(int xOffset = 0)
+        MapTileView InsertMap(MapTile maptile = null, int newXTile = 0)
         {
-			UILabel map = new UILabel(new CGRect(0,0,500,80));
-            CGRect bounds = this.ConvertRectToView(this.Bounds, map);
-            UILabel label1 = new UILabel(new CGRect(0, 0, 200, 80));
-            UILabel label2 = new UILabel(new CGRect(0, 0, 200, 80));
-			map.Text = this.minimumVisibleX.ToString();
-            label2.Text = "lo que";
+            MapTileView map;
+            if (this.visibleTiles.Count == 0)
+            {
+                 map = new MapTileView("tempurl", new CGRect(0, 0, 256, 256), Manager.LocMgr.Location, 15);
+            }
+            else
+            {
+                map = new MapTileView("tempurl", new CGRect(0, 0, 256, 256), maptile, 15);
+            }
+			
 			this.AddSubview(map);
 			return map;
         }
@@ -108,7 +104,17 @@ namespace StateMaps
 		// by adjusting the frame size of item in array.
         private nfloat PlaceNewMapOnRight(nfloat rightEdge)
         {
-            UILabel map = this.InsertMap();
+            MapTileView map;
+            if (this.visibleTiles.Count == 0)
+            {
+                 map = this.InsertMap();
+            }
+            else
+            {
+                // we pass the XTile value and increment during insertion of new map.
+                this.visibleTiles[this.visibleTiles.Count - 1].mapTile.NextTile(1); // move right.
+                map = this.InsertMap(this.visibleTiles[this.visibleTiles.Count - 1].mapTile);
+            }
             this.visibleTiles.AddObjects(map);
 
             CGRect frame = map.Frame;
@@ -125,7 +131,8 @@ namespace StateMaps
         private nfloat PlaceNewMapOnLeft(nfloat leftEdge)
         {
             
-            UILabel[] map = new UILabel[1] { this.InsertMap() };            
+            this.visibleTiles[0].mapTile.NextTile(-1); // move left
+            MapTileView[] map = new MapTileView[1] { this.InsertMap(this.visibleTiles[0].mapTile) };            
             this.visibleTiles.InsertObjects(map, new NSIndexSet(0));
 
             CGRect frame = map[0].Frame;
@@ -147,7 +154,7 @@ namespace StateMaps
             }
 
             // add tiles that are missing on right side.
-            UILabel lastMap = this.visibleTiles[this.visibleTiles.Count - 1]; // last object
+            MapTileView lastMap = this.visibleTiles[this.visibleTiles.Count - 1]; // last object
             nfloat rightEdge = lastMap.Frame.GetMaxX();
 
             while (rightEdge < maximumVisibleX)
@@ -156,7 +163,7 @@ namespace StateMaps
             }
 
             // add tiles that are missing on left side
-            UILabel firstMap = this.visibleTiles[0];
+            MapTileView firstMap = this.visibleTiles[0];
             nfloat leftEdge = firstMap.Frame.GetMinX();
 
             while (leftEdge > minimumVisibleX)
