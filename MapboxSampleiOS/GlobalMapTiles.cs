@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 
 
-namespace MapBoxSampleiOS
+namespace StateMaps
 {
     //http://www.maptiler.org/google-maps-coordinates-tile-bounds-projection/
     public class GlobalMapTiles
@@ -110,7 +110,7 @@ namespace MapBoxSampleiOS
         //"Resolution (meters/pixel) for given zoom level (measured at Equator)"
         private double Resolution(int zoom)
         {
-            return this.initialResolution / (2 * zoom);
+			return this.initialResolution / Math.Pow(2,zoom);
         }
 
         //"Maximal scaledown zoom of the pyramid closest to the pixelSize."
@@ -127,7 +127,7 @@ namespace MapBoxSampleiOS
 
         public Tuple<int,int> GoogleTile(int tilesX, int tilesY, int zoom)
         {
-            return new Tuple<int, int>(tilesX, (2 * zoom - 1) - tilesY);
+			return new Tuple<int, int>(tilesX, ((int)((Math.Pow(2, zoom) - 1) - tilesY)));
         }
 
         

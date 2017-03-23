@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NewYorkMaps", "MapBoxSample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SVGKit", "SVGKit\SVGKit.csproj", "{2D408D0B-B49F-4518-A40E-FA5D881FD2C9}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Authentication", "Authentication\Authentication.csproj", "{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,18 @@ Global
 		{2D408D0B-B49F-4518-A40E-FA5D881FD2C9}.Release|iPhone.Build.0 = Release|Any CPU
 		{2D408D0B-B49F-4518-A40E-FA5D881FD2C9}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
 		{2D408D0B-B49F-4518-A40E-FA5D881FD2C9}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Release|iPhone.Build.0 = Release|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{77B39EEB-E3D1-4BD9-B86C-D389B5314EDB}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

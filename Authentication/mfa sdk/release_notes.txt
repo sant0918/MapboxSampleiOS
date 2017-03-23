@@ -1,0 +1,92 @@
+Version 2.16 of the ASP.net 2.0 C# SDK adds the following additional
+ functionality:
+*Added support for one-way SMS
+
+Upgrade Considerations:
+This version of the SDK is backwards compatible with all previous versions
+
+-------------------------------------------------------------------------------
+
+Version 2.15 of the ASP.net 2.0 C# SDK adds the following additional
+ functionality:
+*Added UTF-8 support for SMS
+
+Upgrade Considerations:
+This version of the SDK is backwards compatible with all previous versions
+
+-------------------------------------------------------------------------------
+
+Version 2.14 of the ASP.net 2.0 C# SDK adds the following additional
+ functionality:
+*Added PushNotificationType to validateDeviceTokenRequest
+*New call_results are documented
+
+Upgrade Considerations:
+This version of the SDK is backwards compatible with all previous versions
+
+-------------------------------------------------------------------------------
+
+Version 2.12 of the ASP.net 2.0 C# SDK adds the following additional
+ functionality:
+*Added support for Phone App
+
+Upgrade Considerations:
+This version of the SDK is backwards compatible with all previous versions
+
+-------------------------------------------------------------------------------
+
+Version 2.8 of the ASP.net 2.0 C# SDK adds the following additional
+ functionality:
+*Added support for SMS
+*Added support for VoicePrint reset
+*New call_results are documented
+
+Upgrade Considerations:
+This version of the SDK is backwards compatible with all previous versions
+
+-------------------------------------------------------------------------------
+
+Version 2.7 of the ASP.net 2.0 C# SDK adds the following additional
+ functionality:
+*Fixed an issue where the SDK might throw exceptions on some 64-bit Operating
+ Systems
+*Added support for Voiceprint 
+
+Upgrade Considerations:
+This version of the SDK is backwards compatible with all previous versions
+
+-------------------------------------------------------------------------------
+
+Version 2.6 of the ASP.net 2.0 C# SDK adds the following additional 
+ functionality:
+*Added examples for PIN Mode and extensions
+
+Upgrade Considerations:
+This version of the SDK is backwards compatible with all previous versions
+
+-------------------------------------------------------------------------------
+
+Version 2.5 of the ASP.net 2.0 C# SDK adds the following additional 
+functionality:
+*Added ability to use extensions with phone numbers
+
+Upgrade Considerations:
+This version of the SDK is backwards compatible with all previous versions
+
+-------------------------------------------------------------------------------
+
+Version 2.3 of the ASP.net 2.0 C# SDK adds the following additional 
+functionality:
+*Support for asynchronous requests
+
+Upgrade Considerations:
+This version of the SDK is backwards compatible with all previous versions
+
+-------------------------------------------------------------------------------
+
+Version 2.2 of the ASP.net 2.0 C# SDK adds the following additional 
+functionality:
+*Support for PIN mode
+
+Upgrade Considerations:
+This version of the SDK is backwards compatible with all previous versions

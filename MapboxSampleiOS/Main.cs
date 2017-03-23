@@ -1,6 +1,6 @@
 ﻿using UIKit;
 
-namespace MapBoxSampleiOS
+namespace StateMaps
 {
     public class Application
     {
@@ -10,6 +10,7 @@ namespace MapBoxSampleiOS
             // if you want to use a different Application Delegate class from "AppDelegate"
             // you can specify it here.
             UIApplication.Main (args, null, "AppDelegate");
+            
         }
     }
 }

@@ -1,0 +1,97 @@
+The following table lists the different call result codes that may be returned
+by the API and the corresponding descriptions.
+
+These codes only describe the result of the phone call and not whether
+authentication was successful or failed.  A call result value will always be
+returned regardless of whether a call is made or not and whether the Multi-Factor
+Authentication succeeds or fails.  These codes are mainly useful for
+troubleshooting issues with the SDK integration and wouldn't be used for
+programmatic logic following an authentication request.
+
+ call_result |             description
+-------------+--------------------------------------
+ 1           | PIN Entered
+ 2           | No PIN Entered
+ 3           | # Not Pressed After Entry
+ 4           | No Phone Input - Timed Out
+ 5           | PIN Expired and Not Changed
+ 6           | Used Cache
+ 7           | Bypassed Auth
+ 8           | Used Cache
+ 9           | Used Cache
+ 10          | Call Disconnected
+ 11          | Call Timed Out
+ 12          | Invalid Phone Input
+ 13          | Got Voicemail
+ 14          | User is Blocked
+ 15          | Status Pending
+ 16          | Voiceprint Succeeded
+ 17          | Voiceprint Enrolled
+ 18          | Voiceprint Expired and Not Changed
+ 19          | Text Message Authenticated
+ 20          | Text Message Sent
+ 21          | Mobile App Authenticated
+ 22          | OATH Code Pending
+ 23          | OATH Code Verified
+ 24          | Fallback OATH Code Verified
+ 25          | Fallback Security Questions Answered
+ 100         | Invalid Phone Number
+ 101         | Auth Already In Progress
+ 102         | Phone Unreachable
+ 103         | International Calls Not Allowed
+ 104         | PIN Mode Not Allowed
+ 105         | Account Locked
+ 106         | Invalid Message
+ 107         | Invalid Phone Number Format
+ 108         | User Hung Up the Phone
+ 109         | Insufficient Balance
+ 110         | Phone Extensions Not Allowed
+ 111         | Invalid Extension
+ 112         | Fraud Code Entered
+ 113         | Rollover Not Allowed
+ 114         | Return PIN Mode Not Allowed
+ 115         | Event Confirmation Not Allowed
+ 116         | Invalid Event Parameter
+ 117         | Unable to Place Call
+ 118         | Voiceprint Failed
+ 119         | Voiceprint Mode Not Allowed
+ 120         | Text Message Could Not Be Sent
+ 121         | No Text Message Reply Received
+ 122         | Text Message OTP Incorrect
+ 123         | Text Message OTP + PIN Incorrect
+ 124         | Text Message Mode Not Allowed
+ 125         | Localization Not Allowed
+ 126         | User Licenses Exceeded
+ 127         | Text Message User Licenses Exceeded
+ 128         | Voiceprint User Licenses Exceeded
+ 129         | Mobile App Denied
+ 130         | Mobile App Invalid PIN
+ 131         | Mobile App PIN Not Changed
+ 132         | Fraud Reported
+ 133         | Mobile App No Response
+ 134         | Mobile App Mode Not Allowed
+ 135         | Mobile App All Devices Blocked
+ 136         | Mobile App Notification Failed
+ 137         | Mobile App Invalid Result
+ 138         | OATH Code Incorrect
+ 139         | Duplicate OATH Code
+ 140         | OATH Code Out of Date
+ 141         | OATH Token Mode Not Allowed
+ 142         | OATH Code Result Timeout
+ 143         | Security Questions Result Timeout
+ 144         | Auth Result Timeout
+ 145         | Device Registration Changed
+
+The following table lists the different error ids that may be returned
+by the API and the corresponding descriptions.
+
+These errors may occur when the SDK is not configured properly or the
+customer account is not active.
+
+ error_id |           description
+----------+---------------------------------
+ 1        | Invalid Customer
+ 2        | Invalid License Key
+ 3        | Invalid Client Cert
+ 4        | Invalid Message
+ 5        | Invalid Group Key
