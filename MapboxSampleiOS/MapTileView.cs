@@ -29,8 +29,6 @@ namespace StateMaps
 
         public MapTileView(string url, CGRect frame, MapTile maptile, int zoom) : base (frame)
         {
-            
-            maptile.NextTile(1);
             this.mapTile = maptile;
             this.Zoom = zoom;
             this.mapTile = getTile(this.mapTile);
@@ -47,7 +45,6 @@ namespace StateMaps
         private static MapTile getTile(MapTile maptile)
         {
             string path = "tiles/NYC/";
-
             string pngFilename = Path.Combine(path, maptile.ZTile.ToString() + "/" + maptile.XTile + "/" + maptile.YTile + "/tile.svg");
             maptile._svgImage = SVGKImage.ImageNamed(pngFilename);
             return new MapTile(maptile);

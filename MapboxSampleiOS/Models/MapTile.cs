@@ -28,8 +28,6 @@ namespace StateMaps.Models
             this.YTile = gtilesXY.Item2;
 			this.ZTile = zoom;
             tileSize = new CGSize(256, 256);
-            
-            
         }
 
         // Used for surrounding tiles.
@@ -47,7 +45,6 @@ namespace StateMaps.Models
          public MapTile NextTile(int direction)
         {
             XTile += direction;
-
             return this;
         }
         public MapTile Deserialize(string mapTile)
