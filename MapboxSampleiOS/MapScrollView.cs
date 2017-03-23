@@ -49,6 +49,9 @@ namespace StateMaps
         #region Layout
 
         // recenter content periodically to achieve impression of infinite scrolling
+		/*
+		Recenters all views in array.
+		*/
         public void RecenterIfNecessary()
         {
             CGPoint currentOffset = this.ContentOffset;
@@ -80,26 +83,29 @@ namespace StateMaps
             // tile content in visible bounds.
 			// visibleBounds 
             CGRect visibleBounds = this.ConvertRectToView(this.Bounds, this.MapContainerView); 
-            this.maximumVisibleX = visibleBounds.GetMinX();
-            this.minimumVisibleX = visibleBounds.GetMaxX();
+            this.minimumVisibleX = visibleBounds.GetMinX();
+            this.maximumVisibleX = visibleBounds.GetMaxX();
 			nfloat diff = maximumVisibleX - minimumVisibleX;
             this.tileLabelsFromMinX(minimumVisibleX, maximumVisibleX);
         }
         #endregion
 
         #region MapTiling
+		// inserts item into suview and returns item.
         UILabel InsertMap(int xOffset = 0)
         {
 			UILabel map = new UILabel(new CGRect(0,0,500,80));
             CGRect bounds = this.ConvertRectToView(this.Bounds, map);
             UILabel label1 = new UILabel(new CGRect(0, 0, 200, 80));
-            UILabel label2 = new UILabel(new CGRect(0, 0, 200, 80));            
-            label1.Text = "que";
+            UILabel label2 = new UILabel(new CGRect(0, 0, 200, 80));
+			map.Text = this.minimumVisibleX.ToString();
             label2.Text = "lo que";
 			this.AddSubview(map);
 			return map;
         }
 
+		// Adds new item into subview, adds to the end of the array and put's it in view
+		// by adjusting the frame size of item in array.
         private nfloat PlaceNewMapOnRight(nfloat rightEdge)
         {
             UILabel map = this.InsertMap();
@@ -114,6 +120,8 @@ namespace StateMaps
             return frame.GetMaxX();
         }
 
+		// Adds new item into subview, adds to the beginning of the array and put's it in view
+		// by adjusting the frame size of item in array.
         private nfloat PlaceNewMapOnLeft(nfloat leftEdge)
         {
             
