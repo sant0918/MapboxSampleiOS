@@ -23,8 +23,9 @@ namespace StateMaps
 
         public MapTileView(string url, CGRect frame, CLLocation location, int zoom) : base (frame)
         {
-            this.mapTile = new MapTile(location, zoom);
+			this.mapTile = getTile(new MapTile(location, zoom));
             this.Zoom = zoom;
+
         }
 
         public MapTileView(string url, CGRect frame, MapTile maptile, int zoom) : base (frame)

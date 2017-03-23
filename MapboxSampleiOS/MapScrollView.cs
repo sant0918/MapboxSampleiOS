@@ -23,13 +23,13 @@ namespace StateMaps
         
         public MapScrollView(CGRect frame) : base(frame)
         {
-			ContentSize = new CGSize(5000, this.Frame.Size.Height);
+			ContentSize = new CGSize(5000, this.Frame.Size.Height * 2);
 			visibleTiles = new NSMutableArray<MapTileView>();
 			MapContainerView = new UIView();
-			MapContainerView.Frame = new CGRect(0, 0, ContentSize.Width, ContentSize.Height * 2);
+			MapContainerView.Frame = new CGRect(0, 0, ContentSize.Width, ContentSize.Height / 2);
 			this.AddSubview(MapContainerView);
 			MapContainerView.UserInteractionEnabled = false;
-
+			this.UserInteractionEnabled = true;
             // setup gps location
             Manager = new LocationManager();
             Manager.StartLocationUpdates();
@@ -50,10 +50,13 @@ namespace StateMaps
         {
             CGPoint currentOffset = this.ContentOffset;
             nfloat contentWidth = this.ContentSize.Width;
-            nfloat centerOffsetX = (contentWidth - this.Bounds.Size.Width) / 2;
-            nfloat distanceFromCenter = (nfloat)Math.Abs(currentOffset.X - centerOffsetX);
+			nfloat contentHeight = this.ContentSize.Height;
+			nfloat centerOffsetX = (contentWidth - this.Bounds.Size.Width) / 2;
+			nfloat centerOffsetY = (contentHeight - this.Bounds.Size.Height) / 2;
+            nfloat distanceFromCenterX = (nfloat)Math.Abs(currentOffset.X - centerOffsetX);
+			nfloat distanceFromCenterY = (nfloat)Math.Abs(currentOffset.Y - centerOffsetY);
 
-            if(distanceFromCenter > (contentWidth / 4))
+            if(distanceFromCenterX > (contentWidth / 4))
             {
                 this.ContentOffset = new CGPoint(centerOffsetX, currentOffset.Y);
 
@@ -62,10 +65,26 @@ namespace StateMaps
                 foreach(MapTileView label in visibleTiles)
                 {
                     CGPoint center = this.MapContainerView.ConvertPointToView(label.Center, this);
-                    center.X += (centerOffsetX - currentOffset.X);
-                    label.Center = this.ConvertPointToView(center, this.MapContainerView);
+
+					center.X += (centerOffsetX - currentOffset.X);
+					label.Center = this.ConvertPointToView(center, this.MapContainerView);
                 }
             }
+
+			// recenter vertical scroll
+			if (distanceFromCenterY > (contentHeight / 4))
+			{
+				this.ContentOffset = new CGPoint(centerOffsetX, currentOffset.Y);
+
+				// move content by the same amount so it appears to stay still
+
+				foreach (MapTileView label in visibleTiles)
+				{
+					CGPoint center = this.MapContainerView.ConvertPointToView(label.Center, this);
+					center.Y += (centerOffsetY - currentOffset.Y);
+					label.Center = this.ConvertPointToView(center, this.MapContainerView);
+				}
+			}
         }
 
         public override void LayoutSubviews()
