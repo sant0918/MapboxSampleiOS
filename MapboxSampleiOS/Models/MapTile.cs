@@ -13,7 +13,7 @@ namespace StateMaps.Models
         public int XTile { get; private set; }
         public int YTile { get; private set; }
         public int ZTile { get; private set; }
-		public CGSize tileSize = new CGSize(2560, 2560);
+		public CGSize tileSize = new CGSize(256, 256);
         public SVGKImage _svgImage;
 
         public MapTile(CLLocation loc, int zoom)
@@ -38,7 +38,7 @@ namespace StateMaps.Models
             this.YTile = maptile.YTile;
             this.ZTile = maptile.ZTile;
             this._svgImage = maptile._svgImage;
-            this._svgImage.Size = new CGSize(2560, 2560);
+            this._svgImage.Size = new CGSize(256, 256);
         }
 
       

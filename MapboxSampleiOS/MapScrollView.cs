@@ -26,7 +26,7 @@ namespace StateMaps
 			ContentSize = new CGSize(5000, this.Frame.Size.Height);
 			visibleTiles = new NSMutableArray<MapTileView>();
 			MapContainerView = new UIView();
-			MapContainerView.Frame = new CGRect(0, 0, ContentSize.Width, ContentSize.Height / 2);
+			MapContainerView.Frame = new CGRect(0, 0, ContentSize.Width, ContentSize.Height * 2);
 			this.AddSubview(MapContainerView);
 			MapContainerView.UserInteractionEnabled = false;
 
