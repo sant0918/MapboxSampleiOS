@@ -16,7 +16,7 @@ using StateMaps.Models;
 
 namespace StateMaps
 {
-    public class MapTileView : UIView
+    public class MapTileView : SVGKFastImageView
     {
         public MapTile mapTile;
         private int Zoom = 1;
