@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256pt" height="256pt" viewBox="0 0 256 256" version="1.1">
+<g id="surface2">
+<rect x="0" y="0" width="256" height="256" style="fill:rgb(60%,70.196078%,80%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(94.901961%,93.72549%,91.372549%);fill-opacity:1;" d="M 259 -4 L 225.160156 -4 L 171.515625 17.980469 L 124.15625 41 L -4 93.835938 L -4 259 L -4 -4 Z M 259 -4 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(70.980392%,82.352941%,61.176471%);fill-opacity:1;" d="M -4 -4 L -4 260 L -4 71.796875 L 6.195313 68.296875 L 26.238281 66.609375 L 55.039063 57.214844 L 71.890625 48.714844 L 73.058594 46.109375 L 51.910156 -4 Z M -4 -4 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(70.980392%,82.352941%,61.176471%);fill-opacity:1;" d="M 53.9375 -4 L 72.070313 37.457031 L 93.082031 28.035156 L 92.648438 18.976563 L 93.976563 12.011719 L 96.988281 4.839844 L 103.15625 -4 L 260 -4 Z M 53.9375 -4 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(70.980392%,82.352941%,61.176471%);fill-opacity:1;" d="M 58.6875 -4 L 62.058594 3.558594 L 75.433594 -0.316406 L 83.933594 3.683594 L 88.078125 -4 Z M 58.6875 -4 "/>
+<path style="fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-dasharray:2,3;stroke-miterlimit:10;" d="M 54.890625 -2 L 72.070313 37.457031 "/>
+<path style="fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-dasharray:2,3;stroke-miterlimit:10;" d="M -2 48.582031 L 35.820313 -0.25 L 39.914063 -2 "/>
+<path style="fill:none;stroke-width:1;stroke-linecap:round;stroke-linejoin:round;stroke:rgb(100%,100%,100%);stroke-opacity:1;stroke-dasharray:2,3;stroke-miterlimit:10;" d="M 72.070313 37.457031 L 93.082031 28.035156 L 92.648438 18.976563 L 93.976563 12.011719 L 96.988281 4.839844 L 101.761719 -2 "/>
+</g>
+</svg>
+

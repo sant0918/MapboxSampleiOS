@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="256pt" height="256pt" viewBox="0 0 256 256" version="1.1">
+<g id="surface2">
+<rect x="0" y="0" width="256" height="256" style="fill:rgb(60%,70.196078%,80%);fill-opacity:1;stroke:none;"/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(94.901961%,93.72549%,91.372549%);fill-opacity:1;" d="M 259 -4 L 259 103.480469 L 238.648438 114.027344 L 207.554688 132.773438 L 188.90625 146.246094 L 192.785156 108.953125 L 200.832031 -4 Z M 259 -4 "/>
+<path style=" stroke:none;fill-rule:evenodd;fill:rgb(70.980392%,82.352941%,61.176471%);fill-opacity:1;" d="M 226.5625 102.449219 L 260 79.78125 L 260 -4 L 211.222656 -4 L 213.6875 24.070313 L 195.84375 109.832031 Z M 226.5625 102.449219 "/>
+</g>
+</svg>
+
