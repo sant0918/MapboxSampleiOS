@@ -165,6 +165,7 @@ namespace StateMaps
             panGesture.Delegate = new GestureDelegate(this);           
 
             maps.AddGestureRecognizer(panGesture);
+            
             View.AddGestureRecognizer(rotationGesture);
         }
 
