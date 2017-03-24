@@ -43,9 +43,14 @@ namespace StateMaps.Models
         }
 
       
-         public MapTile NextTile(int direction)
+         public MapTile NextXTile(int direction)
         {
             XTile += direction;
+            return this;
+        }
+        public MapTile NextYTile(int direction)
+        {
+            YTile += direction;
             return this;
         }
         public MapTile Deserialize(string mapTile)
