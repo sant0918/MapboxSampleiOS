@@ -256,17 +256,16 @@ namespace StateMaps
             // add tiles that are missing on right side.
             NSMutableArray<MapTileView> lastMap = this.visibleTiles[this.visibleTiles.Count - 1]; // last object
 
-            nfloat rightEdge = lastMap.Frame.GetMaxX();
-
+            // All frame will always be the same size.
+            nfloat rightEdge = lastMap[0].Frame.GetMaxX();
             while (rightEdge < maximumVisibleX)
             {
                 rightEdge = this.PlaceNewMapOnRight(rightEdge);
             }
 
             // add tiles that are missing on left side
-            MapTileView firstMap = this.visibleTiles[0];
-            nfloat leftEdge = firstMap.Frame.GetMinX();
-
+            NSMutableArray<MapTileView> firstMap = this.visibleTiles[0];
+            nfloat leftEdge = firstMap[0].Frame.GetMinX();
             while (leftEdge > minimumVisibleX)
             {
                 leftEdge = this.PlaceNewMapOnLeft(leftEdge);
@@ -274,18 +273,24 @@ namespace StateMaps
 
             // remove tiles that have fallen off right edge.
             lastMap = this.visibleTiles[this.visibleTiles.Count - 1];
-            while(lastMap.Frame.X > maximumVisibleX)
+            while(lastMap[0].Frame.X > maximumVisibleX)
             {
-                lastMap.RemoveFromSuperview();
+                foreach(MapTileView m in lastMap)
+                {
+                    m.RemoveFromSuperview();
+                }
                 this.visibleTiles.RemoveLastObject();
                 lastMap = this.visibleTiles[this.visibleTiles.Count - 1];
             }
 
             // remove tiles that have fallen off left edge
             firstMap = this.visibleTiles[0];
-            while(firstMap.Frame.GetMaxX() < minimumVisibleX)
+            while(firstMap[0].Frame.GetMaxX() < minimumVisibleX)
             {
-                firstMap.RemoveFromSuperview();
+                foreach(MapTileView m in firstMap)
+                {
+                    m.RemoveFromSuperview();
+                }
                 this.visibleTiles.RemoveObjectsAtIndexes(new NSIndexSet(0));
                 firstMap = this.visibleTiles[0];
             }
@@ -293,13 +298,9 @@ namespace StateMaps
 
         private void tileLabelsFromMinY(nfloat minimumVisibleY, nfloat maximumVisibleY)
         {
-            if(this.visiblesVerticalTiles.Count == 0)
-            {
-                this.PlaceNewMapOnBottom(minimumVisibleY);
-            }
             // add tiles that are missing on the bottom.
-            MapTileView lastMap = this.visiblesVerticalTiles[this.visiblesVerticalTiles.Count - 1]; // last object
-            nfloat bottomEdge = lastMap.Frame.GetMaxY();
+            NSMutableArray<MapTileView> lastMap = this.visibleTiles[this.visibleTiles.Count - 1]; // last object
+            nfloat bottomEdge = lastMap[lastMap.Count - 1].Frame.GetMaxY();
 
             while (bottomEdge < maximumVisibleY)
             {
@@ -307,8 +308,8 @@ namespace StateMaps
             }
 
             // add tiles that are missing on top.
-            MapTileView firstMap = this.visiblesVerticalTiles[0];
-            nfloat topEdge = firstMap.Frame.GetMinY();
+            NSMutableArray<MapTileView> firstMap = this.visibleTiles[0];
+            nfloat topEdge = firstMap[0].Frame.GetMinY();
 
             while(topEdge > minimumVisibleY)
             {
@@ -316,24 +317,33 @@ namespace StateMaps
             }
 
             // remove tiles that fallen off bottom edge.
-            lastMap = this.visiblesVerticalTiles[this.visiblesVerticalTiles.Count - 1];
-            while(lastMap.Frame.Y > maximumVisibleY)
+            
+            while(lastMap[lastMap.Count - 1].Frame.Y > maximumVisibleY)
             {
-                lastMap.RemoveFromSuperView();
-                this.visiblesVerticalTiles.RemoveLastObject();
-                lastMap = this.visiblesVerticalTiles[this.visiblesVerticalTiles.Count - 1];
+                foreach(NSMutableArray<MapTileView> tiles in this.visibleTiles)
+                {
+                    tiles[tiles.Count - 1].RemoveFromSuperView();
+                    tiles.RemoveLastObject();
+                }               
+                
+                lastMap = this.visibleTiles[this.visibleTiles.Count - 1];
             }
 
             // remove tiles that have fallen off top edge
-            firstMap = this.visiblesVerticalTiles[0];
-            while(firstMap.Frame.GetMaxY() < minimumVisibleY)
+            firstMap = this.visibleTiles[0];
+            while(firstMap[0].Frame.GetMaxY() < minimumVisibleY)
             {
-                firstMap.RemoveFromSuperview();
-                this.visiblesVerticalTiles.RemoveObjectsAtIndexes(new NSIndexSet(0));
-                firstMap = this.visiblesVerticalTiles[0];
+                foreach(NSMutableArray<MapTileView> tiles in this.visibleTiles)
+                {
+                    tiles[0].RemoveFromSuperview();
+                    this.visibleTiles.RemoveObjectsAtIndexes(new NSIndexSet(0));
+                }
+                firstMap = this.visibleTiles[0];
             }
             
         }
+
+
 
         #endregion
     }
