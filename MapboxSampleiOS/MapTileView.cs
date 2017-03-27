@@ -16,7 +16,7 @@ using StateMaps.Models;
 
 namespace StateMaps
 {
-    public class MapTileView : UIView //SVGKFastImageView
+    public class MapTileView : SVGKFastImageView
     {
         public MapTile mapTile;
         private int Zoom = 1;
@@ -47,7 +47,16 @@ namespace StateMaps
         {
             string path = "tiles/NYC/";
             string pngFilename = Path.Combine(path, maptile.ZTile.ToString() + "/" + maptile.XTile + "/" + maptile.YTile + "/tile.svg");
-            maptile._svgImage = SVGKImage.ImageNamed(pngFilename);
+			File.OpenRead(pngFilename);
+			Console.WriteLine("X:" + maptile.XTile + "\nY:" + maptile.YTile + "\nPath:" + pngFilename);
+			try
+			{
+				maptile._svgImage = SVGKImage.ImageNamed(pngFilename);
+			}
+			catch(System.Exception e)
+			{
+				return null;
+			}
             return new MapTile(maptile);
         }
 

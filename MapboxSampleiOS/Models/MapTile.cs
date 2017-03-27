@@ -41,8 +41,6 @@ namespace StateMaps.Models
             this._svgImage.Size = new CGSize(256, 256);
 
         }
-
-      
          public MapTile NextXTile(int direction)
         {
             XTile += direction;
