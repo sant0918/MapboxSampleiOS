@@ -357,14 +357,15 @@ namespace StateMaps
                 lastMap = this.visibleTiles[this.visibleTiles.Count - 1];
             }
 
-            // remove tiles that have fallen off top edge
-            firstMap = this.visibleTiles[0];
-            while(firstMap[0].Frame.GetMaxY() < minimumVisibleY)
+			// remove tiles that have fallen off top edge
+			firstMap = this.visibleTiles[0];
+            while( firstMap[0].Frame.GetMaxY() < minimumVisibleY)
             {
+				
                 foreach(NSMutableArray<MapTileView> tiles in this.visibleTiles)
                 {
                     tiles[0].RemoveFromSuperview();
-                    this.visibleTiles.RemoveObjectsAtIndexes(new NSIndexSet(0));
+                    tiles.RemoveObjectsAtIndexes(new NSIndexSet(0));
                 }
                 firstMap = this.visibleTiles[0];
             }
