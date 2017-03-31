@@ -14,7 +14,7 @@ namespace StateMaps
 {
 	public class MapScrollView : UIScrollView
 	{
-		NSMutableArray<NSMutableArray<MapTileView>> visibleTiles; // visibleTile Matrix
+		volatile NSMutableArray<NSMutableArray<MapTileView>> visibleTiles; // visibleTile Matrix
 
 		UIView MapContainerView;
 		CancellationTokenSource cts;
@@ -34,7 +34,7 @@ namespace StateMaps
 		{
 			ContentSize = new CGSize(5000, 5000);//this.Frame.Size.Height * 2);
 			visibleTiles = new NSMutableArray<NSMutableArray<MapTileView>>();
-
+			cts = new CancellationTokenSource();
 			MapContainerView = new UIView();
 			MapContainerView.Frame = new CGRect(0, 0, ContentSize.Width, ContentSize.Height / 2);
 			this.AddSubview(MapContainerView);
@@ -124,7 +124,7 @@ namespace StateMaps
             Console.WriteLine("\n------------LayoutSubviews(): tileMapsFromMinXAsync------------\n");
             Task.Run(async () =>
             {
-                await this.tileMapsFromMinXAsync(minimumVisibleX, maximumVisibleX, cts);
+                await this.tileMapsFromMinXAsync(minimumVisibleX, maximumVisibleX, cts, this.visibleTiles);
             }, this.cts.Token);
             //Console.WriteLine("\n------------LayoutSubviews(): tileLabelsFromMinY------------\n");
 			//this.tileLabelsFromMinY(this.minimumVisibleY, this.maximumVisibleY);
@@ -173,6 +173,7 @@ namespace StateMaps
 			{
 				map = new NSMutableArray<MapTileView>();
 				map.Add(this.InsertMap());
+				visibleTiles.AddObjects(map);
 			}
 			else
 			{
@@ -189,7 +190,7 @@ namespace StateMaps
 
 			}
 
-			this.visibleTiles.AddObjects(map);
+
 
 			CGRect frame = new CGRect();
 			foreach (MapTileView m in map)
@@ -215,7 +216,7 @@ namespace StateMaps
 			if (this.visibleTiles.Count == 0)
 			{
 				map = new NSMutableArray<MapTileView>();
-				
+
 				map.Add(await InsertMapAsync(ct));
 			}
 			else
@@ -555,7 +556,10 @@ namespace StateMaps
 			}
 		}
 
-        async Task tileMapsFromMinXAsync(nfloat minimumVisibleX, nfloat maximumVisibleX, CancellationTokenSource cts)
+        async Task tileMapsFromMinXAsync(nfloat minimumVisibleX,
+		                                 nfloat maximumVisibleX,
+		                                 CancellationTokenSource cts,
+		                                NSMutableArray<NSMutableArray<MapTileView>> tiles)
         {
             // the upcoming tiling logic depends on there already being at least one tile in the visibleTiles array, so
             // to kick off the tiliong we need to make sure there's at least one tile.
