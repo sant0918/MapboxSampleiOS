@@ -226,14 +226,17 @@ namespace StateMaps
 				// We need to make sure we keep the same map order in array.
 				for (nuint i = 0; i <= (lastTiles.Count - 1); i++)
 				{
-					Console.WriteLine("PlaceNewMapOnRight:lastTiles[" + i + "] = " + lastTiles[i].mapTile.XTile);
+					Console.WriteLine("PlaceNewMapOnRightAsync:lastTiles[" + i + "] = " + lastTiles[i].mapTile.XTile);
 					//lastTiles[i].mapTile.NextXTile(1); // move right.
 					map.Add(await this.InsertMapAsync(ct, new MapTile(lastTiles[i].mapTile).NextXTile(1)));
 				}
 
 			}
 
-			this.visibleTiles.AddObjects(map);
+            this.BeginInvokeOnMainThread(() => {
+                this.visibleTiles.AddObjects(map);
+            });
+			
 
 			CGRect frame = new CGRect();
 			foreach (MapTileView m in map)
