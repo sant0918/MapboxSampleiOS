@@ -122,10 +122,9 @@ namespace StateMaps
 			//Console.WriteLine("\n------------LayoutSubviews(): tileLabelsFromMinX------------\n");
 			//this.tileLabelsFromMinX(minimumVisibleX, maximumVisibleX);
             Console.WriteLine("\n------------LayoutSubviews(): tileMapsFromMinXAsync------------\n");
-            Task.Run(async () =>
-            {
-                await this.tileMapsFromMinXAsync(minimumVisibleX, maximumVisibleX, cts, this.visibleTiles);
-            }, this.cts.Token);
+            
+            this.tileMapsFromMinX(minimumVisibleX, maximumVisibleX);
+            
             //Console.WriteLine("\n------------LayoutSubviews(): tileLabelsFromMinY------------\n");
 			//this.tileLabelsFromMinY(this.minimumVisibleY, this.maximumVisibleY);
 
@@ -556,10 +555,8 @@ namespace StateMaps
 			}
 		}
 
-        async Task tileMapsFromMinXAsync(nfloat minimumVisibleX,
-		                                 nfloat maximumVisibleX,
-		                                 CancellationTokenSource cts,
-		                                NSMutableArray<NSMutableArray<MapTileView>> tiles)
+        void tileMapsFromMinX(nfloat minimumVisibleX,
+		                                 nfloat maximumVisibleX)
         {
             // the upcoming tiling logic depends on there already being at least one tile in the visibleTiles array, so
             // to kick off the tiliong we need to make sure there's at least one tile.
@@ -575,7 +572,10 @@ namespace StateMaps
             nfloat rightEdge = lastMap[0].Frame.GetMaxX();
             while (rightEdge < maximumVisibleX)
             {
-                rightEdge = await this.PlaceNewMapOnRightAsync(rightEdge, cts.Token);
+                Task.Run(async() => {
+                    rightEdge = await this.PlaceNewMapOnRightAsync(rightEdge, cts.Token);
+                });
+                
             }
 
             // add tiles that are missing on left side
@@ -583,7 +583,10 @@ namespace StateMaps
             nfloat leftEdge = firstMap[0].Frame.GetMinX();
             while (leftEdge > minimumVisibleX)
             {
-                leftEdge = await this.PlaceNewMapOnLeftAsync(leftEdge, cts.Token);
+                Task.Run(async () => {
+                    leftEdge = await this.PlaceNewMapOnLeftAsync(leftEdge, cts.Token);
+                });
+                
             }
 
             // remove tiles that have fallen off right edge.
