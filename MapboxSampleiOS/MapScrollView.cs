@@ -172,7 +172,7 @@ namespace StateMaps
 			{
 				map = new NSMutableArray<MapTileView>();
 				map.Add(this.InsertMap());
-				visibleTiles.AddObjects(map);
+
 			}
 			else
 			{
@@ -189,7 +189,7 @@ namespace StateMaps
 
 			}
 
-
+			this.visibleTiles.AddObjects(map);
 
 			CGRect frame = new CGRect();
 			foreach (MapTileView m in map)
@@ -575,9 +575,9 @@ namespace StateMaps
             nfloat rightEdge = lastMap[0].Frame.GetMaxX();
             while (rightEdge < maximumVisibleX)
             {
-                Task.Run(async() => {
-                    rightEdge = await this.PlaceNewMapOnRightAsync(rightEdge, cts.Token);
-                });
+                rightEdge = Task.Run<nfloat>(() => {
+                    return this.PlaceNewMapOnRightAsync(rightEdge, cts.Token);
+                }).Result;
                 
             }
 
@@ -586,9 +586,9 @@ namespace StateMaps
             nfloat leftEdge = firstMap[0].Frame.GetMinX();
             while (leftEdge > minimumVisibleX)
             {
-                Task.Run(async () => {
-                    leftEdge = await this.PlaceNewMapOnLeftAsync(leftEdge, cts.Token);
-                });
+                leftEdge = Task.Run<nfloat>(() => {
+                    return this.PlaceNewMapOnLeftAsync(leftEdge, cts.Token);
+                }).Result;
                 
             }
 
