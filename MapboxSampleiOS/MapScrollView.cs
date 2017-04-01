@@ -133,10 +133,10 @@ namespace StateMaps
 
 		#region MapTiling
 		// inserts item into suview and returns item.
-		MapTileView InsertMap(MapTile maptile = null, int newXTile = 0)
+		MapTileView InsertMap(MapScrollView view, MapTile maptile = null, int newXTile = 0)
 		{
 			MapTileView map;
-			if (this.visibleTiles.Count == 0)
+			if (view.visibleTiles.Count == 0)
 			{
 				map = new MapTileView("tempurl", new CGRect(0, 0, 256, 256), Manager.LocMgr.Location, 15);
 			}
@@ -145,20 +145,22 @@ namespace StateMaps
 				map = new MapTileView("tempurl", new CGRect(0, 0, 256, 256), maptile, 15);
 			}
 
-			this.AddSubview(map);
+			view.AddSubview(map);
 			return map;
 		}
 
 		async Task<MapTileView> InsertMapAsync(MapTile maptile = null, int newXTile = 0)
 		{
-			MapTileView map = null;
-			// TODO: perform cancellation token logic
-			await Task.Run(() =>
-			{
-				map = InsertMap(maptile, newXTile);
-			});
 
-			return map;
+            MapScrollView view = this;
+			// TODO: perform cancellation token logic
+			return await Task.Run<MapTileView>(() =>
+			{
+                MapTileView map = InsertMap(view, maptile, newXTile );
+                return map;
+            }, view);
+
+			
 			
 		}
 
