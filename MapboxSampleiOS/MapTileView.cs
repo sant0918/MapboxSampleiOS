@@ -62,13 +62,22 @@ namespace StateMaps
 
         private void RenderSVgImages()
         {
-            using (var context = UIGraphics.GetCurrentContext())
-            {
-                context.SaveState();
-                //context.TranslateCTM(this.mapTile.tileSize.Width * map.Value.tileOffset.Item1, map.Value.tileSize.Height * map.Value.tileOffset.Item2);
-                this.mapTile._svgImage.CALayerTree.RenderInContext(context);
-                context.RestoreState();
-            }
+			using (var context = UIGraphics.GetCurrentContext())
+			{
+			//BeginInvokeOnMainThread(() =>
+			//{
+				
+
+					context.SaveState();
+					//context.TranslateCTM(this.mapTile.tileSize.Width * map.Value.tileOffset.Item1, map.Value.tileSize.Height * map.Value.tileOffset.Item2);
+					this.mapTile._svgImage.CALayerTree.RenderInContext(context);
+					context.RestoreState();
+
+				
+
+			//});
+
+				}
 
         }
 
