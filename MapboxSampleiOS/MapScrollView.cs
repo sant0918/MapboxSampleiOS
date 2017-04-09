@@ -15,7 +15,7 @@ namespace StateMaps
 	public class MapScrollView : UIScrollView
 	{
 		volatile NSMutableArray<NSMutableArray<MapTileView>> visibleTiles; // visibleTile Matrix
-
+		volatile Queue<MapTileView> subViewQueue;
 		UIView MapContainerView;
 		CancellationTokenSource cts;
 
@@ -34,6 +34,7 @@ namespace StateMaps
 		{
 			ContentSize = new CGSize(5000, 5000);//this.Frame.Size.Height * 2);
 			visibleTiles = new NSMutableArray<NSMutableArray<MapTileView>>();
+			subViewQueue = new Queue<MapTileView>();
 			cts = new CancellationTokenSource();
 			MapContainerView = new UIView();
 			MapContainerView.Frame = new CGRect(0, 0, ContentSize.Width, ContentSize.Height / 2);
@@ -108,6 +109,13 @@ namespace StateMaps
 		{
 			base.LayoutSubviews();
 
+
+			// add items from subview queue
+			while (subViewQueue.Count > 0)
+			{
+				MapTileView m = subViewQueue.Dequeue();
+				AddSubview(m);
+			}
 			this.RecenterIfNecessary();
 
 			// tile content in visible bounds.
@@ -121,11 +129,11 @@ namespace StateMaps
 
 			//Console.WriteLine("\n------------LayoutSubviews(): tileLabelsFromMinX------------\n");
 			//this.tileLabelsFromMinX(minimumVisibleX, maximumVisibleX);
-            Console.WriteLine("\n------------LayoutSubviews(): tileMapsFromMinXAsync------------\n");
-            
-            this.tileMapsFromMinX(minimumVisibleX, maximumVisibleX);
-			//this.SetNeedsDisplayInRect(visibleBounds);
-            //Console.WriteLine("\n------------LayoutSubviews(): tileLabelsFromMinY------------\n");
+			//Console.WriteLine("\n------------LayoutSubviews(): tileMapsFromMinXAsync------------\n");
+
+			this.tileMapsFromMinX(minimumVisibleX, maximumVisibleX);
+			this.SetNeedsDisplay();
+			//Console.WriteLine("\n------------LayoutSubviews(): tileLabelsFromMinY------------\n");
 			//this.tileLabelsFromMinY(this.minimumVisibleY, this.maximumVisibleY);
 
 		}
@@ -147,20 +155,13 @@ namespace StateMaps
 
 		}
 
-		async Task<MapTileView> InsertMapAsync(MapTile maptile = null, int newXTile = 0)
+		async Task<MapTileView> InsertMapAsync(MapTile maptile, int newXTile = 0)
 		{
 
-            MapScrollView view = this;
-			// TODO: perform cancellation token logic
-			return await Task.Factory.StartNew( () =>
-			{
-				
-                MapTileView map = InsertMap(view, maptile, newXTile );
-                return map;
-            });
+			MapTileView map = new MapTileView("tempurl", new CGRect(0, 0, 256, 256), 15);
+			map.mapTile = await map.getTileAsync(maptile);
+			return map;
 
-			
-			
 		}
 
 		// Adds new item into subview, adds to the end of the array and put's it in view
@@ -175,7 +176,6 @@ namespace StateMaps
 				var m = this.InsertMap(this);
 				AddSubview(m);
 				map.Add(m);
-
 			}
 			else
 			{
@@ -187,7 +187,7 @@ namespace StateMaps
 				{
 					Console.WriteLine("PlaceNewMapOnRight:lastTiles[" + i + "] = " + lastTiles[i].mapTile.XTile);
 					//lastTiles[i].mapTile.NextXTile(1); // move right.
-					map.Add(this.InsertMap(this,new MapTile(lastTiles[i].mapTile).NextXTile(1)));
+					map.Add(this.InsertMap(this, new MapTile(lastTiles[i].mapTile).NextXTile(1)));
 				}
 
 			}
@@ -211,13 +211,13 @@ namespace StateMaps
 			}
 			return frame.GetMaxX();
 		}
-		 async Task<nfloat> PlaceNewMapOnRightAsync(nfloat rightEdge, CancellationToken ct)
+		async Task<nfloat> PlaceNewMapOnRightAsync(nfloat rightEdge, CancellationToken ct)
 		{
 
 
 			NSMutableArray<MapTileView> map = new NSMutableArray<MapTileView>();
-           
-			
+
+
 
 			CGRect frame = new CGRect();
 			foreach (MapTileView m in map)
@@ -253,7 +253,7 @@ namespace StateMaps
 					(bottomTiles.Count - 1) +
 					"] = " + bottomTiles[bottomTiles.Count - 1].mapTile.YTile);
 
-				bottomTiles.AddObjects(this.InsertMap(this,_maptile.NextYTile(1))); // move down.
+				bottomTiles.AddObjects(this.InsertMap(this, _maptile.NextYTile(1))); // move down.
 
 				frame.Y = bottomEdge;
 				bottomTiles[bottomTiles.Count - 1].Frame = frame;
@@ -330,7 +330,7 @@ namespace StateMaps
 				{
 					Console.WriteLine("PlaceNewMapOnLeft:firstTiles[" + i + "] = " + firstTiles[i].mapTile.XTile);
 					// move left
-					map[0].Add(this.InsertMap(this,new MapTile(firstTiles[i].mapTile).NextXTile(-1)));
+					map[0].Add(this.InsertMap(this, new MapTile(firstTiles[i].mapTile).NextXTile(-1)));
 
 				}
 			}
@@ -358,54 +358,9 @@ namespace StateMaps
 			return frame.GetMinX();
 		}
 
-        async Task<nfloat> PlaceNewMapOnLeftAsync(nfloat leftEdge, CancellationToken ct)
-        {
 
-			return (nfloat)1;
-			/*
-            // We have to copy the left most column and update the xtile
-            for (nuint i = 0; i <= (firstTiles.Count - 1); i++)
-            {
-                if (map[0] == null)
-                {
-                    // move left
-                    map[0] = new NSMutableArray<MapTileView>(firstTiles.Count){
 
-                        await this.InsertMapAsync(ct, new MapTile(firstTiles[i].mapTile).NextXTile(-1))
-                    };
-                }
-                else
-                {
-                  
-                    // move left
-                    
-
-                }
-            }
-
-            
-            CGRect frame = new CGRect();
-            foreach (MapTileView m in map[0])
-            {
-                frame = m.Frame;
-                frame.X = leftEdge - frame.Size.Width;
-                frame.Y = this.MapContainerView.Bounds.Size.Height - frame.Size.Height;
-
-                m.Frame = frame;
-
-#if DEBUG
-                UILabel label = new UILabel();
-                frame.Y += 20;
-                label.Frame = frame;
-                label.Text = "Left:X:" + m.mapTile.XTile + " Y:" + m.mapTile.YTile;
-                this.AddSubview(label);
-                frame.Y -= 20;
-#endif
-            }
-            return frame.GetMinX();*/
-        }
-
-        private nfloat PlaceNewMapOntop(nfloat topEdge)
+		private nfloat PlaceNewMapOntop(nfloat topEdge)
 		{
 			nuint TOP = 0;
 			// Insert object requires an array so map array looks weird.
@@ -442,44 +397,44 @@ namespace StateMaps
 			return frame.GetMinY();
 		}
 
-        async Task<nfloat> PlaceNewMapOntopAsync(nfloat topEdge, CancellationToken ct)
-        {
-            nuint TOP = 0;
-            // Insert object requires an array so map array looks weird.
-            NSMutableArray<MapTileView>[] map = new NSMutableArray<MapTileView>[1];
-            // we have to get the first tile in every vertical array.
-            map[0] = new NSMutableArray<MapTileView>();
-            CGRect frame = new CGRect();
-            foreach (NSMutableArray<MapTileView> topTiles in this.visibleTiles)
-            {
-                Console.WriteLine("PlaceNewMapOntop:topTiles[0] = " + topTiles[TOP].mapTile.YTile);
-                MapTile _maptile = new MapTile(topTiles[TOP].mapTile);
+		async Task<nfloat> PlaceNewMapOntopAsync(nfloat topEdge, CancellationToken ct)
+		{
+			nuint TOP = 0;
+			// Insert object requires an array so map array looks weird.
+			NSMutableArray<MapTileView>[] map = new NSMutableArray<MapTileView>[1];
+			// we have to get the first tile in every vertical array.
+			map[0] = new NSMutableArray<MapTileView>();
+			CGRect frame = new CGRect();
+			foreach (NSMutableArray<MapTileView> topTiles in this.visibleTiles)
+			{
+				Console.WriteLine("PlaceNewMapOntop:topTiles[0] = " + topTiles[TOP].mapTile.YTile);
+				MapTile _maptile = new MapTile(topTiles[TOP].mapTile);
 
-                frame = topTiles[TOP].Frame;
-                frame.Y = topEdge - frame.Size.Height;
+				frame = topTiles[TOP].Frame;
+				frame.Y = topEdge - frame.Size.Height;
 
-                topTiles.InsertObjects(new MapTileView[1] {
-                    await this.InsertMapAsync(_maptile.NextYTile(-1))
-                }, new NSIndexSet(0));
+				topTiles.InsertObjects(new MapTileView[1] {
+					await this.InsertMapAsync(_maptile.NextYTile(-1))
+				}, new NSIndexSet(0));
 
 
 
-                topTiles[TOP].Frame = frame;
+				topTiles[TOP].Frame = frame;
 #if DEBUG
-                UILabel label = new UILabel();
-                frame.Y += 30;
-                label.Frame = frame;
-                label.Text = "Top:X:" + _maptile.XTile + " Y:" + _maptile.YTile;
-                this.AddSubview(label);
-                frame.Y -= 30;
+				UILabel label = new UILabel();
+				frame.Y += 30;
+				label.Frame = frame;
+				label.Text = "Top:X:" + _maptile.XTile + " Y:" + _maptile.YTile;
+				this.AddSubview(label);
+				frame.Y -= 30;
 #endif
-            }
+			}
 
-            //this.visibleTiles.InsertObjects(map, new NSIndexSet(0));
-            return frame.GetMinY();
-        }
+			//this.visibleTiles.InsertObjects(map, new NSIndexSet(0));
+			return frame.GetMinY();
+		}
 
-        private void tileLabelsFromMinX(nfloat minimumVisibleX, nfloat maximumVisibleX)
+		private void tileLabelsFromMinX(nfloat minimumVisibleX, nfloat maximumVisibleX)
 		{
 			// the upcoming tiling logic depends on there already being at least one tile in the visibleTiles array, so
 			// to kick off the tiliong we need to make sure there's at least one tile.
@@ -545,7 +500,6 @@ namespace StateMaps
 			if (this.visibleTiles.Count == 0)
 			{
 				this.PlaceNewMapOnRight(minimumVisibleX);
-				var v = this.Subviews;
 			}
 
 			// add tiles that are missing on right side.
@@ -566,7 +520,6 @@ namespace StateMaps
 
 				for (x = 0; x <= count; x++)
 				{
-
 					var r = Task.Factory.StartNew(async () =>
 					{
 						NSMutableArray<MapTileView> m = new NSMutableArray<MapTileView>();
@@ -574,19 +527,24 @@ namespace StateMaps
 						{
 							Console.WriteLine("PlaceNewMapOnRightAsync:lastTiles[" + i + "] = " + lastTiles[i].mapTile.XTile);
 							//lastTiles[i].mapTile.NextXTile(1); // move right.
-							MapTile mt = new MapTile(lastTiles[i].mapTile).NextXTile(1);
+							MapTile mt = new MapTile(lastTiles[i].mapTile);
+								mt = mt.NextXTile(1);
 							MapTileView mtv = await this.InsertMapAsync(mt);
-							BeginInvokeOnMainThread(() => { AddSubview(mtv); });
+							//InvokeOnMainThread(() => { AddSubview(mtv); });
 							m.Add(mtv);
 						}
 						return m;
 					});
 
+#if DEBUG
+					Console.WriteLine("Thread {0} launched.", r.Id);
+#endif
 					Task.WaitAll(r);
+
 					CGRect frame = new CGRect();
 					foreach (MapTileView m in r.Result.Result)
 					{
-
+						this.subViewQueue.Enqueue(m);
 						frame = m.Frame;
 						frame.X = rightEdge;
 						frame.Y = this.MapContainerView.Bounds.Size.Height - frame.Size.Height;
@@ -595,6 +553,13 @@ namespace StateMaps
 
 					this.visibleTiles.AddObjects(r.Result.Result);
 
+					if (r.IsCompleted)
+					{
+						#if DEBUG
+						Console.WriteLine("Disposing");
+#endif
+						r.Dispose();
+					}
 				}
 
 				// End test
@@ -635,72 +600,52 @@ namespace StateMaps
 						   //lastTiles[i].mapTile.NextXTile(1); // move right.
 						   MapTile mt = new MapTile(firstTiles[i].mapTile).NextXTile(-1);
 						   MapTileView mtv = await this.InsertMapAsync(mt);
-
-						   BeginInvokeOnMainThread(() =>
+							/*
+						   InvokeOnMainThread(() =>
 						   {
 							   AddSubview(mtv);
-						   });
+						   });*/
 						   m.Add(mtv);
 					   }
 					   return m;
 				   });
-					                              
-					Task.WaitAll(l);
-						   CGRect frame = new CGRect();
-					   foreach (MapTileView m in l.Result.Result)
-					   {
-						   //this.AddSubview(m);
-						   frame = m.Frame;
-						   frame.X = leftEdge - frame.Size.Width;
-						   frame.Y = this.MapContainerView.Bounds.Size.Height - frame.Size.Height;
-
-						   m.Frame = frame;
-					   }
-					   this.visibleTiles.InsertObjects(
-							new NSMutableArray<MapTileView>[1] { 
-							l.Result.Result 
-						}, new NSIndexSet(0)); // TODO: figure out this weird array parameter.
-					                              
-                }
-
-                
-                // End test
-                
-
-
-            }
-
-            
-            /*
-            // remove tiles that have fallen off right edge.
-            lastMap = this.visibleTiles[this.visibleTiles.Count - 1];
-            while (lastMap[0].Frame.X > maximumVisibleX)
-            {
-                foreach (MapTileView m in lastMap)
-                {
-                    m.RemoveFromSuperview();
 #if DEBUG
-                    Console.WriteLine("Removing from right edge\nX:"
-                                      + m.mapTile.XTile + "\nY:" + m.mapTile.YTile);
+					Console.WriteLine("Thread {0} launched.", l.Id);
 #endif
-                }
-                this.visibleTiles.RemoveLastObject();
-                lastMap = this.visibleTiles[this.visibleTiles.Count - 1];
-            }
+					Task.WaitAll(l);
 
-            // remove tiles that have fallen off left edge
-            firstMap = this.visibleTiles[0];
-            while (firstMap[0].Frame.GetMaxX() < minimumVisibleX)
-            {
-                foreach (MapTileView m in firstMap)
-                {
-                    m.RemoveFromSuperview();
-                    Console.WriteLine("Removing from left edge\nX:"
-                                      + m.mapTile.XTile + "\nY:" + m.mapTile.YTile);
-                }
-                this.visibleTiles.RemoveObjectsAtIndexes(new NSIndexSet(0));
-                firstMap = this.visibleTiles[0];
-            }*/
+					CGRect frame = new CGRect();
+					foreach (MapTileView m in l.Result.Result)
+					{
+						this.subViewQueue.Enqueue(m);
+						frame = m.Frame;
+						frame.X = leftEdge - frame.Size.Width;
+						frame.Y = this.MapContainerView.Bounds.Size.Height - frame.Size.Height;
+
+						m.Frame = frame;
+					}
+					this.visibleTiles.InsertObjects(
+						 new NSMutableArray<MapTileView>[1] {
+							l.Result.Result
+					 }, new NSIndexSet(0)); // TODO: figure out this weird array parameter.
+
+					if (l.IsCompleted)
+					{
+#if DEBUG
+						Console.WriteLine("Disposing");
+#endif
+						l.Dispose();
+					}
+				}
+
+
+				// End test
+
+
+
+			}
+
+        
         }
 		private void tileLabelsFromMinY(nfloat minimumVisibleY, nfloat maximumVisibleY)
 		{
