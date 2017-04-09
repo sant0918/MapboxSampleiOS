@@ -534,7 +534,7 @@ namespace StateMaps
 							m.Add(mtv);
 						}
 						return m;
-					});
+					}); // end thread dispatch
 
 #if DEBUG
 					Console.WriteLine("Thread {0} launched.", r.Id);
@@ -560,15 +560,10 @@ namespace StateMaps
 #endif
 						r.Dispose();
 					}
-				}
+				}// end for loop
 
 				// End test
-
-
-				var v = this.Subviews;
-
-
-			}
+			}// end if statement
 
 			// add tiles that are missing on left side
 			NSMutableArray<MapTileView> firstMap = this.visibleTiles[0];
@@ -637,16 +632,10 @@ namespace StateMaps
 						l.Dispose();
 					}
 				}
-
-
 				// End test
 
-
-
 			}
-
-        
-        }
+		}
 		private void tileLabelsFromMinY(nfloat minimumVisibleY, nfloat maximumVisibleY)
 		{
 			if (this.visibleTiles.Count == 0)
@@ -717,8 +706,61 @@ namespace StateMaps
 			
 		}
 
+		private void tileMapsFromMinY(nfloat minimumVisibleY, nfloat maximumVisibleY)
+		{
+			if (this.visibleTiles.Count == 0)
+			{
+				this.PlaceNewMapOnRight(minimumVisibleX);
+			}
 
+			// add tiles that are missing on the bottom.
+			NSMutableArray<MapTileView> lastMap = this.visibleTiles[this.visibleTiles.Count - 1]; // last object
+			nfloat bottomEdge = lastMap[lastMap.Count - 1].Frame.GetMaxY();
 
+			if (bottomEdge < maximumVisibleY)
+			{
+				nuint count = (nuint)Math.Floor(maximumVisibleY / bottomEdge);
+				nuint y;
+				// Start test
+				NSMutableArray<MapTileView>[] map = new NSMutableArray<MapTileView>[count];
+				NSMutableArray<MapTileView> lastTiles = this.visibleTiles[this.visibleTiles.Count - 1];
+				// we pass the XTile value and increment during insertion of new map.
+				// We need to make sure we keep the same map order in array.
+
+				for (y = 0; y <= count; y++)
+				{
+					var b = Task.Factory.StartNew(async () =>
+					{
+						NSMutableArray<MapTileView> m = new NSMutableArray<MapTileView>();
+						for (nuint i = 0; i <= (lastTiles.Count - 1); i++)
+						{
+							Console.WriteLine("PlaceNewMapOnBottomAsync:lastTiles[" + i + "] = " + lastTiles[i].mapTile.XTile);
+							//lastTiles[i].mapTile.NextXTile(1); // move right.
+							MapTile mt = new MapTile(lastTiles[i].mapTile);
+							mt = mt.NextXTile(1);
+							MapTileView mtv = await this.InsertMapAsync(mt);
+							//InvokeOnMainThread(() => { AddSubview(mtv); });
+							m.Add(mtv);
+						}
+						return m;
+					}); // end thread dispatch
+
+#if DEBUG
+					Console.WriteLine("Thread {0} launched.", r.Id);
+#endif
+					Task.WaitAll(r);
+			}
+
+			// add tiles that are missing on top.
+			NSMutableArray<MapTileView> firstMap = this.visibleTiles[0];
+			nfloat topEdge = firstMap[0].Frame.GetMinY();
+
+			while (topEdge > minimumVisibleY)
+			{
+				topEdge = this.PlaceNewMapOntop(topEdge);
+			}
+
+		}
 		#endregion
 	}
 }
