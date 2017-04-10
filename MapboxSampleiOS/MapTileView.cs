@@ -45,6 +45,8 @@ namespace StateMaps
 			// TODO: Render tiles.
 #if DEBUG
 			Console.WriteLine("Rendering image: X: " + this.mapTile.XTile + " Y: " + this.mapTile.YTile);
+			BeginInvokeOnMainThread(() => { Console.WriteLine("Image frame: X:{0} Y:{1}", Frame.X, Frame.Y); });
+
 #endif
 			RenderSVgImages();
             // TODO: Update display as user moves/pans. Use eventArgs/delegate in user gesture.

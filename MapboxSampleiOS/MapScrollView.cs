@@ -127,14 +127,14 @@ namespace StateMaps
             this.maximumVisibleX = visibleBounds.GetMaxX();
             this.maximumVisibleY = visibleBounds.GetMaxY();
 
-            //Console.WriteLine("\n------------LayoutSubviews(): tileLabelsFromMinX------------\n");
-            //this.tileLabelsFromMinX(minimumVisibleX, maximumVisibleX);
-            //Console.WriteLine("\n------------LayoutSubviews(): tileMapsFromMinXAsync------------\n");
+			//Console.WriteLine("\n------------LayoutSubviews(): tileLabelsFromMinX------------\n");
+			//this.tileLabelsFromMinX(minimumVisibleX, maximumVisibleX);
+			//Console.WriteLine("\n------------LayoutSubviews(): tileMapsFromMinXAsync------------\n");
 
-            //this.tileMapsFromMinX(minimumVisibleX, maximumVisibleX);
-            //this.SetNeedsDisplay();
-            this.tileMapsFromMinY(minimumVisibleY, maximumVisibleY);
+			Task.Run(async () => { await this.tileMapsFromMinX(minimumVisibleX, maximumVisibleX); });
             this.SetNeedsDisplay();
+			//Task.Run(async () => { await this.tileMapsFromMinY(minimumVisibleY, maximumVisibleY); });
+            //this.SetNeedsDisplay();
             //Console.WriteLine("\n------------LayoutSubviews(): tileLabelsFromMinY------------\n");
             //this.tileLabelsFromMinY(this.minimumVisibleY, this.maximumVisibleY);
 
@@ -442,7 +442,9 @@ namespace StateMaps
             // to kick off the tiliong we need to make sure there's at least one tile.
             if (this.visibleTiles.Count == 0)
             {
-                this.PlaceNewMapOnRight(minimumVisibleX);
+				
+					this.PlaceNewMapOnRight(minimumVisibleX);
+				
             }
 
             // add tiles that are missing on right side.
@@ -494,14 +496,17 @@ namespace StateMaps
             }
         }
 
-        void tileMapsFromMinX(nfloat minimumVisibleX,
+        async Task tileMapsFromMinX(nfloat minimumVisibleX,
                                          nfloat maximumVisibleX)
         {
             // the upcoming tiling logic depends on there already being at least one tile in the visibleTiles array, so
             // to kick off the tiliong we need to make sure there's at least one tile.
             if (this.visibleTiles.Count == 0)
             {
-                this.PlaceNewMapOnRight(minimumVisibleX);
+				BeginInvokeOnMainThread(() =>
+				{
+					this.PlaceNewMapOnRight(minimumVisibleX);
+				});
             }
 
             // add tiles that are missing on right side.
@@ -522,7 +527,7 @@ namespace StateMaps
 
                 for (x = 0; x <= count; x++)
                 {
-                    var r = Task.Factory.StartNew(async () =>
+                    var r = await Task.Factory.StartNew(async () =>
                     {
                         NSMutableArray<MapTileView> m = new NSMutableArray<MapTileView>();
                         for (nuint i = 0; i <= (lastTiles.Count - 1); i++)
@@ -541,10 +546,10 @@ namespace StateMaps
 #if DEBUG
                     Console.WriteLine("Thread {0} launched.", r.Id);
 #endif
-                    Task.WaitAll(r);
+                    //Task.WaitAll(r);
 
                     CGRect frame = new CGRect();
-                    foreach (MapTileView m in r.Result.Result)
+                    foreach (MapTileView m in r.Result)
                     {
                         this.subViewQueue.Enqueue(m);
                         frame = m.Frame;
@@ -553,7 +558,7 @@ namespace StateMaps
                         m.Frame = frame;
                     }
 
-                    this.visibleTiles.AddObjects(r.Result.Result);
+                    this.visibleTiles.AddObjects(r.Result);
 
                     if (r.IsCompleted)
                     {
@@ -588,7 +593,7 @@ namespace StateMaps
                 for (x = 0; x <= count; x++)
                 {
 
-                    var l = Task.Factory.StartNew(async () =>
+                    var l = await Task.Factory.StartNew(async () =>
                    {
                        NSMutableArray<MapTileView> m = new NSMutableArray<MapTileView>();
                        for (nuint i = 0; i <= (firstTiles.Count - 1); i++)
@@ -609,10 +614,10 @@ namespace StateMaps
 #if DEBUG
                     Console.WriteLine("Thread {0} launched.", l.Id);
 #endif
-                    Task.WaitAll(l);
+                    //Task.WaitAll(l);
 
                     CGRect frame = new CGRect();
-                    foreach (MapTileView m in l.Result.Result)
+                    foreach (MapTileView m in l.Result)
                     {
                         this.subViewQueue.Enqueue(m);
                         frame = m.Frame;
@@ -623,7 +628,7 @@ namespace StateMaps
                     }
                     this.visibleTiles.InsertObjects(
                          new NSMutableArray<MapTileView>[1] {
-                            l.Result.Result
+                            l.Result
                      }, new NSIndexSet(0)); // TODO: figure out this weird array parameter.
 
                     if (l.IsCompleted)
@@ -708,7 +713,7 @@ namespace StateMaps
 
         }
 
-        private void tileMapsFromMinY(nfloat minimumVisibleY, nfloat maximumVisibleY)
+        private async Task tileMapsFromMinY(nfloat minimumVisibleY, nfloat maximumVisibleY)
         {
             if (this.visibleTiles.Count == 0)
             {
@@ -728,7 +733,7 @@ namespace StateMaps
 
                 foreach (NSMutableArray<MapTileView> Tiles in this.visibleTiles)
                 {
-                    var b = Task.Factory.StartNew(async () =>
+                    var b = await Task.Factory.StartNew(async () =>
                     {
 
                         NSMutableArray<MapTileView> m = new NSMutableArray<MapTileView>();
@@ -748,18 +753,19 @@ namespace StateMaps
 #if DEBUG
                     Console.WriteLine("Thread {0} launched.", b.Id);
 #endif
-                    Task.WaitAll(b);
+                    //Task.WaitAll(b);
 
                     CGRect frame = new CGRect();
-                    foreach (MapTileView m in b.Result.Result)
+                    foreach (MapTileView m in b.Result)
                     {
                         this.subViewQueue.Enqueue(m);
-                        frame = m.Frame;
+                        frame = Tiles[Tiles.Count - 1].Frame;
                         frame.Y = bottomEdge;
                         m.Frame = frame;
+						Tiles.Add(m);
                     }
 
-                    Tiles.AddObjects(b.Result.Result);
+                   
 
                     if (b.IsCompleted)
                     {
@@ -786,7 +792,7 @@ namespace StateMaps
 
                 foreach (NSMutableArray<MapTileView> Tiles in this.visibleTiles)
                 {
-                    var t = Task.Factory.StartNew(async () =>
+                    var t = await Task.Factory.StartNew(async () =>
                     {
                         NSMutableArray<MapTileView> m = new NSMutableArray<MapTileView>();
                         for (nuint i = 0; i <= count; i++)
@@ -807,19 +813,18 @@ namespace StateMaps
 #if DEBUG
                     Console.WriteLine("Thread {0} launched.", t.Id);
 #endif
-                    Task.WaitAll(t);
+                    //Task.WaitAll(t);
 
                     CGRect frame = new CGRect();
-                    foreach (MapTileView m in t.Result.Result)
+                    foreach (MapTileView m in t.Result)
                     {
                         this.subViewQueue.Enqueue(m);
-                        frame = m.Frame;
+                        frame = Tiles[0].Frame;
                         frame.Y = topEdge - frame.Size.Height;
                         m.Frame = frame;
+						Tiles.Insert(m,0);
                     }
-                    Tiles.InsertObjects(new NSMutableArray<MapTileView>[1] {
-                            t.Result.Result
-                     }, new NSIndexSet(0));
+                    
 
                     if (t.IsCompleted)
                     {

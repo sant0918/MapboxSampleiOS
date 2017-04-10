@@ -2120,10 +2120,10 @@ namespace SVGKit
         [Export("addParserExtension:")]
         void AddParserExtension(SVGKParserExtension extension);
     }
-    /*
+    */
 	// typedef void (^SVGKImageAsynchronousLoadingDelegate)(SVGKImage *, SVGKParseResult *);
 	delegate void SVGKImageAsynchronousLoadingDelegate(SVGKImage arg0, SVGKParseResult arg1);
-*/
+
     // @interface SVGKImage : NSObject
     [BaseType(typeof(NSObject))]
     interface SVGKImage
@@ -2179,12 +2179,12 @@ namespace SVGKit
         [Static]
         [Export("imageWithContentsOfFile:")]
         SVGKImage ImageWithContentsOfFile(string path);
-
+		*/
         // +(SVGKImage *)imageWithContentsOfFileAsynchronously:(NSString *)aPath onCompletion:(SVGKImageAsynchronousLoadingDelegate)blockCompleted;
         [Static]
         [Export("imageWithContentsOfFileAsynchronously:onCompletion:")]
         SVGKImage ImageWithContentsOfFileAsynchronously(string aPath, SVGKImageAsynchronousLoadingDelegate blockCompleted);
-
+		/*
         // +(SVGKImage *)imageWithData:(NSData *)newNSData;
         [Static]
         [Export("imageWithData:")]
